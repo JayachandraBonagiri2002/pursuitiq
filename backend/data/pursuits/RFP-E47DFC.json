@@ -1,0 +1,23 @@
+{
+  "rfp_id": "RFP-E47DFC",
+  "filename": "ABB MOTR IDEA PROPOSALS.pptx",
+  "status": "error",
+  "current_agent": null,
+  "decomposition": null,
+  "win_intel": null,
+  "client_intel": null,
+  "competitor": null,
+  "ghost_bids": null,
+  "deal_fingerprint": null,
+  "solution_pricing": null,
+  "draft": null,
+  "verification": null,
+  "win_probability": null,
+  "recommended_price": null,
+  "outcome": null,
+  "outcome_notes": null,
+  "auto_ingested": false,
+  "created_at": "2026-07-02T10:27:47.766919+00:00",
+  "updated_at": "2026-07-02T10:27:47.766930+00:00",
+  "error": "shape is not a placeholder"
+}

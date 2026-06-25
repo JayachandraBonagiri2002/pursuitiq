@@ -1,0 +1,28 @@
+# Secrets — never push
+.env
+.env.local
+
+# IDE/tool config
+.claude/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+.next/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Uploads & temp
+uploads/
+*.pdf

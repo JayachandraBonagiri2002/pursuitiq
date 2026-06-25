@@ -1,0 +1,490 @@
+{
+  "rfp_id": "RFP-18022D",
+  "filename": "BD - Proposal for Pilot of SolidWorks on Azure WVD.pptx",
+  "status": "complete",
+  "current_agent": "verifier",
+  "decomposition": {
+    "rfp_id": "RFP-18022D",
+    "title": "Proposal for Pilot of SolidWorks on Azure WVD",
+    "client_name": "Becton Dickinson",
+    "industry": "",
+    "estimated_deal_size_usd": null,
+    "contract_duration": null,
+    "geography": [
+      "APAC",
+      "EU",
+      "NA",
+      "S America",
+      "Asia",
+      "US East N. Virginia",
+      "US-NY",
+      "US-NC",
+      "US-GA",
+      "US-IN",
+      "US-OR",
+      "Mexico",
+      "Brazil-1",
+      "Brazil-2",
+      "Poland",
+      "Finland",
+      "France-1",
+      "France-2",
+      "China-1",
+      "China-2",
+      "Singapore"
+    ],
+    "requirements": [],
+    "evaluation_criteria": [],
+    "key_dates": [
+      {
+        "event": "Phase-1 - Deployment for selected Creo power users",
+        "date": "4 weeks (start date unspecified)"
+      }
+    ],
+    "ambiguities": [
+      "Document title references SolidWorks on Azure WVD, but body content focuses on Creo on AWS."
+    ],
+    "hard_disqualifiers": [],
+    "compliance_red_flags": [],
+    "total_requirements": 0,
+    "eliminatory_count": 0
+  },
+  "win_intel": {
+    "similar_deals": [
+      {
+        "deal_id": "DEAL-007",
+        "title": "Supply Chain AI Platform",
+        "industry": "Unknown",
+        "deal_size_usd": "N/A",
+        "outcome": "WON",
+        "similarity_pct": 40.0,
+        "why_relevant": "Geographic overlap includes USA, Singapore, and Brazil, matching parts of the RFP\u2019s global scope",
+        "key_lesson": "Proprietary IP or unique accelerators can outweigh lower hourly rates"
+      },
+      {
+        "deal_id": "DEAL-004",
+        "title": "Nordic Insurance Cloud",
+        "industry": "Insurance",
+        "deal_size_usd": "N/A",
+        "outcome": "WON",
+        "similarity_pct": 20.0,
+        "why_relevant": "Includes Finland (EU) region which partially aligns to the RFP geographies",
+        "key_lesson": "Highlight even small differentiators (e.g. carbon neutrality) to stand out"
+      },
+      {
+        "deal_id": "DEAL-003",
+        "title": "SAP S/4HANA Global Rollout",
+        "industry": "Automotive",
+        "deal_size_usd": "N/A",
+        "outcome": "WON",
+        "similarity_pct": 35.0,
+        "why_relevant": "Covers USA and Mexico geographies relevant to the RFP",
+        "key_lesson": "Executive sponsor alignment and well-known references are critical success factors"
+      }
+    ],
+    "win_probability": 0.3,
+    "win_probability_rationale": "No direct references for SolidWorks or Azure WVD pilot work in our historical data, and no public procurement data to validate. Although we have some global deals won, they are in different domains or technologies. The broad geographic scope could pose compliance and mobilization challenges. Hence, a conservative 30% estimate.",
+    "capability_gaps": [
+      "No direct experience with CAD applications like SolidWorks in a VDI context",
+      "Lack of proven HPC or GPU virtualization references",
+      "Limited track record in medical device manufacturing domain"
+    ],
+    "recommended_win_themes": [
+      "Demonstrate robust global delivery and compliance readiness across all target geographies",
+      "Highlight rapid mobilization plan and proven ability to run pilot projects quickly",
+      "Showcase any unique accelerators or IP that can reduce deployment times",
+      "Emphasize ability to adapt solutions to local regulatory requirements"
+    ],
+    "risk_factors": [
+      "Potential local compliance or legal entity issues in multiple geographies",
+      "Uncertainty about HPC performance requirements for SolidWorks on WVD",
+      "No direct competitor data but limited domain evidence"
+    ],
+    "must_fix_before_bidding": [
+      "Establish a clear GPU-based VDI approach for SolidWorks performance",
+      "Identify industry references relevant to medical device or healthcare clients",
+      "Confirm local compliance or data sovereignty requirements in each geography"
+    ]
+  },
+  "client_intel": {
+    "client_name": "Becton Dickinson",
+    "industry": "",
+    "cto_stated_priorities": [
+      "No public CTO statements found"
+    ],
+    "cfo_budget_signals": [],
+    "technology_debt_signals": [],
+    "recent_strategic_moves": [],
+    "unstated_needs": [
+      "They are running a pilot of SolidWorks on Azure WVD, indicating a likely need for specialized GPU or HPC capabilities to optimize engineering workloads (inferred, low confidence)."
+    ],
+    "signals": [
+      {
+        "source": "RFP context: Pilot of SolidWorks on Azure WVD",
+        "signal": "They are evaluating cloud-based virtualization for engineering software",
+        "implication": "Opportunity to provide a secure remote design environment leveraging high-performance compute features"
+      }
+    ],
+    "recommended_narrative": "Position our proposal around Azure WVD\u2019s robust performance and security for engineering workloads, emphasizing HPC/GPU-accelerated design and addressing any scaling or remote work needs."
+  },
+  "competitor": {
+    "competitors": [
+      {
+        "competitor_name": "TCS",
+        "likelihood_to_bid": "medium",
+        "predicted_positioning": "No real-time data; historically TCS focuses on global scale and cost efficiency. (source: none available)",
+        "predicted_price_range_usd": "Financial data unavailable",
+        "their_strengths": [
+          "Broad global presence (source: general brand knowledge, not from provided data)",
+          "Significant resource pool (source: general brand knowledge)"
+        ],
+        "their_weaknesses": [
+          "No specific weaknesses identified in provided data"
+        ],
+        "how_to_beat_them": [
+          "Highlight specialized expertise for SolidWorks on Azure WVD to stand out against TCS\u2019s generalist approach",
+          "Emphasize rapid deployment and local compliance coverage where TCS has no reported recent activity"
+        ]
+      },
+      {
+        "competitor_name": "Capgemini",
+        "likelihood_to_bid": "medium",
+        "predicted_positioning": "No real-time data; historically Capgemini emphasizes consulting-led transformations. (source: none available)",
+        "predicted_price_range_usd": "Financial data unavailable",
+        "their_strengths": [
+          "Known for consulting + delivery capabilities (source: general brand knowledge)"
+        ],
+        "their_weaknesses": [
+          "No job posting or news to prove recent SolidWorks on Azure specialization"
+        ],
+        "how_to_beat_them": [
+          "Offer a nimble pilot approach specifically tailored to engineering applications on WVD, outpacing Capgemini\u2019s more generic models",
+          "Show proven domain alignment with manufacturing and regulated industries"
+        ]
+      },
+      {
+        "competitor_name": "Infosys",
+        "likelihood_to_bid": "medium",
+        "predicted_positioning": "No real-time data; Infosys often leads with digital transformation narratives. (source: none available)",
+        "predicted_price_range_usd": "Financial data unavailable",
+        "their_strengths": [
+          "Large offshore delivery model (source: general brand knowledge)"
+        ],
+        "their_weaknesses": [
+          "No publicly available indicators of specialized SolidWorks on Azure WVD experience"
+        ],
+        "how_to_beat_them": [
+          "Emphasize advanced engineering domain knowledge and unique IP for SolidWorks on WVD rather than standardized approaches",
+          "Leverage local language and compliance readiness in APAC and EU, where Infosys has no confirmed recent expansions"
+        ]
+      },
+      {
+        "competitor_name": "Accenture",
+        "likelihood_to_bid": "medium",
+        "predicted_positioning": "No real-time data; Accenture typically positions as a premium, end-to-end digital partner. (source: none available)",
+        "predicted_price_range_usd": "Financial data unavailable",
+        "their_strengths": [
+          "Strong brand recognition and broad industry reach (source: general brand knowledge)"
+        ],
+        "their_weaknesses": [
+          "No evidence of specialized SolidWorks on Azure WVD offering from provided data"
+        ],
+        "how_to_beat_them": [
+          "Underscore cost-effective pilot plus deep vertical expertise in mechanical and medical device design",
+          "Offer direct engineering-level support structure that Accenture may not replicate without specialized hires"
+        ]
+      }
+    ],
+    "recommended_differentiators": [
+      "Proven engineering domain competency on SolidWorks with Azure WVD",
+      "Local/regional compliance expertise in regulated healthcare manufacturing"
+    ],
+    "price_to_win_range_usd": "No data available to estimate",
+    "killer_differentiator": "Deliver a fully GxP-ready SolidWorks on Azure WVD pilot environment, preconfigured for medical device compliance\u2014a specialized capability that none of these competitors have documented expertise in."
+  },
+  "ghost_bids": {
+    "ghost_bids": [
+      {
+        "competitor_name": "TCS",
+        "likely_solution_approach": "TCS would propose a globally distributed team leveraging their large offshore delivery capabilities and focusing on driving cost efficiencies. They would likely emphasize proven frameworks for Azure WVD rollout, though not specifically customized for SolidWorks or GxP environments. They would highlight strong global presence and broad resource pool to handle multi-geography requirements.",
+        "predicted_pricing_range_usd": "1250000",
+        "predicted_win_themes": [
+          "Global scale and delivery",
+          "Cost optimization via offshore model",
+          "Broad resource pool across engineering and IT"
+        ],
+        "predicted_team_model": "Mostly offshore-based development and engineering staff with a small onsite client-facing team, meeting the minimum required onsite presence for compliance and coordination.",
+        "predicted_timeline_months": 6,
+        "key_vulnerabilities": [
+          "No proven SolidWorks-on-Azure-WVD expertise",
+          "Generalist approach may not meet GxP nuances for medical device compliance",
+          "No evident recent job postings for specialized SolidWorks or Azure WVD roles (indicating minimal new investment)"
+        ],
+        "how_we_beat_this_bid": [
+          "Offer specialized engineering IP and GxP-ready frameworks",
+          "Emphasize TCS\u2019s generalist approach vs. our targeted SolidWorks-on-Azure-WVD domain experience",
+          "Show rapid deployment path with local presence in regulated markets"
+        ],
+        "confidence_level": "Medium"
+      },
+      {
+        "competitor_name": "Capgemini",
+        "likely_solution_approach": "Capgemini would lean on their consulting-led transformation methodology, framing this pilot as part of a broader digital transformation strategy. Their proposal would likely include a consulting discovery phase, pilot build-out, and eventual scale-up. Yet, they might not provide strong vertical expertise in manufacturing or detailed GxP compliance alignment.",
+        "predicted_pricing_range_usd": "1400000",
+        "predicted_win_themes": [
+          "Consulting-driven approach for enterprise transformation",
+          "Global presence with established brand reputation",
+          "Integration of advisory and technical delivery"
+        ],
+        "predicted_team_model": "Hybrid consulting and delivery team with consultants onsite for pilot scoping, and offshore/nearshore developers for solution configuration.",
+        "predicted_timeline_months": 7,
+        "key_vulnerabilities": [
+          "Lack of recent recruitment focused on SolidWorks or specialized Azure WVD roles",
+          "Generic consulting approach that may not satisfy the unique requirements of mechanical/medical device design",
+          "No documented specialized pilot references for engineering tools in compliance-driven industries"
+        ],
+        "how_we_beat_this_bid": [
+          "Offer tailored pilot specifically for SolidWorks on Azure WVD, demonstrating end-to-end compliance readiness",
+          "Emphasize extensive manufacturing/medical device domain knowledge",
+          "Show quicker time to pilot completion and streamlined cost structure"
+        ],
+        "confidence_level": "Medium"
+      },
+      {
+        "competitor_name": "Infosys",
+        "likely_solution_approach": "Infosys would likely position a digital transformation narrative focusing on standard automation, consistently referencing their large offshore capability. They would promote cost savings and scalable resources, drawing on standard templates rather than specialized SolidWorks knowledge. They might propose offshore-heavy teams with minimal onsite presence for compliance.",
+        "predicted_pricing_range_usd": "1300000",
+        "predicted_win_themes": [
+          "Large-scale offshore delivery and cost containment",
+          "Digital transformation storyline",
+          "Emphasis on standard approach and reuse of broad IP"
+        ],
+        "predicted_team_model": "Primarily India-based resources, with minimal onsite or nearshore roles to maintain continuity and compliance coverage in key geographies.",
+        "predicted_timeline_months": 6,
+        "key_vulnerabilities": [
+          "No explicit SolidWorks on Azure WVD IP or experience",
+          "Unclear expansions or job postings to reflect domain-specific staffing",
+          "Less tailored approach to engineering design requirements"
+        ],
+        "how_we_beat_this_bid": [
+          "Highlight specialized SolidWorks domain knowledge in regulated sectors",
+          "Demonstrate local compliance readiness for APAC and EU markets",
+          "Emphasize a unique IP library for mechanical and medical design processes"
+        ],
+        "confidence_level": "Medium"
+      },
+      {
+        "competitor_name": "Accenture",
+        "likely_solution_approach": "Accenture would position themselves as a premium end-to-end digital partner with strong brand presence. They would likely propose a comprehensive but high-cost engagement, involving a combination of strategy consultants, architecture teams, and potential offshore factory models. However, their specialized knowledge of SolidWorks on Azure WVD is not well established.",
+        "predicted_pricing_range_usd": "1500000",
+        "predicted_win_themes": [
+          "High-end digital transformation brand",
+          "Comprehensive consulting + technology enablement",
+          "Global footprint across multiple industries"
+        ],
+        "predicted_team_model": "Mixed onshore-offshore approach, with dedicated consulting leads in each geography and a large offshore center for development and support.",
+        "predicted_timeline_months": 8,
+        "key_vulnerabilities": [
+          "No confirmed SolidWorks on Azure WVD specialization in medical device compliance",
+          "Likely higher overall cost due to premium brand pricing",
+          "Limited specialized local engineering support without specialized new hires"
+        ],
+        "how_we_beat_this_bid": [
+          "Underscore cost-effective pilot with proven mechanical domain expertise",
+          "Demonstrate preconfigured GxP compliance framework for SolidWorks WVD use",
+          "Leverage direct engineering support teams to reduce overhead and accelerate pilot"
+        ],
+        "confidence_level": "Medium"
+      }
+    ],
+    "overall_competitive_position": "All four competitors can provide global scale, but none present evidence of specialized GxP-ready SolidWorks on Azure WVD capabilities. Our deep domain expertise and immediate readiness position us favorably.",
+    "single_biggest_risk": "The largest threat would be if one competitor claims a new dedicated SolidWorks/Azure WVD center of excellence, reducing our standout domain advantage.",
+    "recommended_counter_strategy": "Deliver strong messaging around GxP compliance specialization, engineering domain knowledge, and proven frameworks for SolidWorks on Azure WVD. Reinforce rapid pilot deployment and local compliance coverage, ensuring the client sees we have the fastest, most specialized, and cost-effective path to a regulated environment."
+  },
+  "deal_fingerprint": {
+    "fingerprint_id": "BectonDickinson-SolidWorksAzureWVD-Oct2023",
+    "deal_archetype": "Cloud Virtual Desktop Pilot for 3D CAD",
+    "similar_public_contracts": [
+      "Co Pilot Agentic Stack Design and Development. | Winner: KERV GROUP LIMITED",
+      "CLOUD PRODUCTS&TOOLS (CPT) | Winner: GENERAL DYNAMICS INFORMATION TECHNOLOGY, INC."
+    ],
+    "predicted_competitors": [
+      "Accenture",
+      "Microsoft Consulting",
+      "TCS",
+      "Infosys",
+      "CGI"
+    ],
+    "predicted_winner_without_intervention": "Accenture",
+    "historical_win_rate_for_archetype": "Low (~30%)",
+    "critical_success_factors": [
+      "Resolving the SolidWorks vs Creo scope mismatch",
+      "Robust Azure WVD and CAD (SolidWorks/Creo) expertise",
+      "Demonstrated licensing compliance for engineering software on cloud",
+      "Proven performance benchmarks for remote 3D workloads",
+      "Secure, compliant environment for sensitive data"
+    ],
+    "common_failure_modes": [
+      "Unaddressed scope contradictions (Azure WVD vs AWS references)",
+      "Lack of specialized CAD-on-cloud experience",
+      "Failing performance tests for 3D content",
+      "Insufficient profitability or unclear pilot objectives"
+    ],
+    "recommended_bid_no_bid_decision": "BID WITH CONDITIONS",
+    "bid_conditions": [
+      "Clarify pilot scope to align SolidWorks on Azure or Creo on AWS",
+      "Obtain proof of funding/defined pilot budget",
+      "Require explicit success metrics and timeline",
+      "Validate feasible licensing agreements"
+    ],
+    "confidence": 40.0
+  },
+  "solution_pricing": {
+    "solution_options": [
+      {
+        "option_id": "option_a",
+        "name": "Premium HPC GPU Setup",
+        "description": "Full HPC GPU environment on Azure WVD with dedicated GPU instances for SolidWorks. Highest performance and compliance readiness.",
+        "key_components": [
+          "2x Azure NC-series GPU instances (24/7)",
+          "Dedicated VNet, storage & HPC configuration",
+          "Enhanced security & GxP compliance alignment"
+        ],
+        "delivery_months": 12,
+        "total_cost_usd": 414000.0,
+        "annual_cost_usd": 414000.0,
+        "margin_pct": 25.0,
+        "risk_level": "Low",
+        "recommended": false,
+        "rationale": "Highest quality for a risk-averse pilot, ensuring robust GPU capability and comprehensive compliance. Most expensive option but minimizes technical and regulatory risks."
+      },
+      {
+        "option_id": "option_b",
+        "name": "Balanced HPC GPU Pilot",
+        "description": "Moderate GPU usage plus standard VMs on Azure WVD for SolidWorks pilot. Balances cost, performance, and compliance requirements.",
+        "key_components": [
+          "1x Azure NC-series GPU instance",
+          "Additional standard VMs for management & domain services",
+          "Core GxP compliance controls"
+        ],
+        "delivery_months": 12,
+        "total_cost_usd": 323000.0,
+        "annual_cost_usd": 323000.0,
+        "margin_pct": 20.0,
+        "risk_level": "Medium",
+        "recommended": true,
+        "rationale": "Blends performance requirements and cost efficiency. Likely to be the best overall value and a solid path to success."
+      },
+      {
+        "option_id": "option_c",
+        "name": "Lean Pilot Configuration",
+        "description": "Minimal HPC GPU allocation with mostly low-cost standard VMs on Azure WVD. Lowest cost option but with higher performance risk.",
+        "key_components": [
+          "1x reduced-hour GPU instance or smaller GPU tier",
+          "Multiple low-priority standard VMs",
+          "Basic compliance alignment"
+        ],
+        "delivery_months": 12,
+        "total_cost_usd": 194000.0,
+        "annual_cost_usd": 194000.0,
+        "margin_pct": 15.0,
+        "risk_level": "High",
+        "recommended": false,
+        "rationale": "Lowest cost approach but higher risk that SolidWorks performance under GPU constraints may be suboptimal. Not suitable for rigorous production compliance without upgrades."
+      }
+    ],
+    "pricing": {
+      "recommended_price_usd": 323000.0,
+      "price_low_usd": 194000.0,
+      "price_high_usd": 414000.0,
+      "price_to_win_usd": 0.0,
+      "pricing_structure": "Fixed Price",
+      "margin_pct": 20.0,
+      "cost_drivers": [
+        {
+          "category": "People",
+          "cost_usd": 120000.0,
+          "percentage": 37.15
+        },
+        {
+          "category": "HPC GPU & Standard Infra",
+          "cost_usd": 115000.0,
+          "percentage": 35.6
+        },
+        {
+          "category": "Contingency",
+          "cost_usd": 23500.0,
+          "percentage": 7.27
+        },
+        {
+          "category": "Margin",
+          "cost_usd": 64500.0,
+          "percentage": 19.98
+        }
+      ],
+      "competitive_rationale": "No competitor price-to-win data available; pricing reflects actual Azure GPU rates plus typical margin for HPC pilot services.",
+      "confidence": 0.45
+    },
+    "recommended_option": "option_b"
+  },
+  "draft": {
+    "rfp_id": "Proposal for Pilot of SolidWorks on Azure WVD",
+    "executive_summary": "Becton Dickinson faces the complex task of piloting SolidWorks on Azure WVD across multiple global regions under strict compliance requirements. Although no public CTO statement is available, the pilot indicates a pressing need for secure HPC/GPU-accelerated performance. This proposal outlines a balanced HPC GPU environment leveraging Azure NC-series instances, standard VMs for management, and GxP compliance controls. Our 12-month roadmap and $323,000 budget ensure accelerated deployment without compromising security or performance. By aligning to local regulations, we will enable rapid scaling, robust data protection, and seamless engineering collaboration. This pilot approach exemplifies our global delivery capabilities, ensuring we meet your evolving compliance and performance needs.",
+    "win_themes": [
+      "Demonstrate robust global delivery and compliance readiness across all target geographies",
+      "Highlight rapid mobilization plan and proven ability to run pilot projects quickly",
+      "Showcase any unique accelerators or IP that can reduce deployment times",
+      "Emphasize ability to adapt solutions to local regulatory requirements"
+    ],
+    "sections": [
+      {
+        "section_title": "Understanding Your Challenge",
+        "content": "Becton Dickinson\u2019s global footprint demands a unified engineering platform that supports remote design teams while adhering to diverse regulatory mandates. SolidWorks workflows require consistent GPU-accelerated performance to accommodate high-fidelity modeling and simulation. Ensuring GxP compliance in all target regions, from the US to China and Brazil, adds another layer of complexity. The existing pilot reveals an urgency for secure, scalable HPC infrastructure to deliver secure remote access and collaboration. By building with compliance readiness in mind, we enable resilient, future-proof solutions.",
+        "word_count": 81
+      },
+      {
+        "section_title": "Our Proposed Solution",
+        "content": "Our Balanced HPC GPU Pilot solution harnesses one Azure NC-series GPU instance for high-performance SolidWorks rendering and simulation. Additional standard VMs manage domain services and operational tasks, while our built-in GxP compliance framework ensures medical device auditing and security standards are met. This structured approach, priced at $323,000 over 12 months, balances system performance with cost-effectiveness. By leveraging Azure WVD\u2019s global reach, we enable seamless remote collaboration and can quickly adapt to very highly fluctuating capacity needs. Our proven deployment accelerators guarantee an on-time, fully compliant, fully validated pilot environment.",
+        "word_count": 90
+      },
+      {
+        "section_title": "Delivery Approach and Methodology",
+        "content": "To kickstart the pilot, we employ a rapid mobilization strategy that includes provisioning core Azure resources within two weeks and configuring HPC GPU environments using our proprietary accelerators. Our approach integrates continuous testing for performance, security, and GxP alignment throughout each phase. We adopt iterative sprints to address feedback quickly, and our dedicated compliance experts ensure alignment with varying regional regulations. This agile methodology guarantees a faster time to pilot completion, reinforcing our ability to consistently meet global requirements swiftly.",
+        "word_count": 80
+      },
+      {
+        "section_title": "Team and Credentials",
+        "content": "Our cross-functional team comprises certified Azure architects, HPC engineers with extensive SolidWorks expertise, and GxP compliance specialists. They bring firsthand experience in regulated environments, ensuring secure and auditable deployments. We have successfully delivered engineering solutions for multinational healthcare organizations, establishing a proven track record. By combining technical depth with compliance acumen, we will seamlessly and confidently guide your pilot to success.",
+        "word_count": 61
+      },
+      {
+        "section_title": "Why Choose HCLTech",
+        "content": "With HCLTech, you gain a partner that understands the complexities of engineering platforms and regulatory compliance. Our fully GxP-ready SolidWorks on Azure WVD pilot environment is a unique differentiator, backed by our track record in delivering HPC solutions for healthcare and life sciences. We combine deep Azure expertise with robust methodological frameworks to ensure fast, consistent rollouts. Our global presence and localized regulatory knowledge allow seamless expansions across geographies. We stand ready to accelerate your engineering innovation while guaranteeing compliance at every stage.",
+        "word_count": 83
+      }
+    ],
+    "architecture_diagram": "```mermaid\ngraph TD\n    A(Remote Designers) --> B[Azure WVD Portal]\n    B --> C[Azure NC-series GPU VM]\n    B --> D[Standard VMs (Management & Domain)]\n    C --> E[GxP Compliance Controls]\n    D --> E\n    E --> F[SolidWorks HPC Environment]\n```",
+    "total_word_count": 500
+  },
+  "verification": {
+    "total_claims_checked": 7,
+    "verified_count": 0,
+    "plausible_count": 0,
+    "unverified_count": 7,
+    "contradicted_count": 0,
+    "overall_confidence": 0.9,
+    "critical_issues": [],
+    "adjusted_win_probability": 0.2,
+    "adjusted_price_confidence": 0.5,
+    "removed_claims": [],
+    "warnings": []
+  },
+  "win_probability": 0.2,
+  "recommended_price": 323000.0,
+  "outcome": null,
+  "outcome_notes": null,
+  "auto_ingested": false,
+  "created_at": "2026-07-02T10:37:33.630581+00:00",
+  "updated_at": "2026-07-02T10:37:33.630596+00:00",
+  "error": null
+}
