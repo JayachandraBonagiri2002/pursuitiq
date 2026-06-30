@@ -101,9 +101,10 @@ def run_win_intel(decomposition: RFPDecomposition, vector_store_id: str) -> WinI
                 f"Show wins, losses, and key lessons."
             )
 
+            from config import REASONING_LOW
             search_response = client.responses.create(
                 model=MODEL,
-                reasoning={"effort": REASONING_MEDIUM},
+                reasoning={"effort": REASONING_LOW},
                 tools=[{
                     "type": "file_search",
                     "vector_store_ids": [vector_store_id],
@@ -170,7 +171,7 @@ def run_win_intel(decomposition: RFPDecomposition, vector_store_id: str) -> WinI
             )},
         ],
         response_format=WinIntelResult,
-        max_completion_tokens=128000,
+        max_completion_tokens=16000,
     )
 
     result: WinIntelResult = response.choices[0].message.parsed

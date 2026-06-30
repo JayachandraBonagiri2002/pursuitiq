@@ -149,7 +149,7 @@ def run_draft_generator(
             )},
         ],
         response_format=ProposalDraft,
-        max_completion_tokens=128000,
+        max_completion_tokens=32000,
     )
 
     result: ProposalDraft = response.choices[0].message.parsed

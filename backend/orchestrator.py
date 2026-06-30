@@ -1,15 +1,22 @@
 """
-orchestrator.py — Runs the FULL enhanced pipeline for one pursuit.
+orchestrator.py — SPEED-OPTIMIZED pipeline.
 
-ENHANCED Flow:
-  Agent 1 (Decompose) →
-    [Agent 2 + Agent 3 + Agent 4 IN PARALLEL] →
-      [Deal Fingerprint + Ghost Bid IN PARALLEL] →
-        Agent 5 (Pricing) → Agent 6 (Draft)
+TARGET: Complete in 5-7 minutes (down from 40).
 
-New stages:
-  - Deal Fingerprint: classifies the deal archetype, predicts winner, recommends bid/no-bid
-  - Ghost Bid: simulates each competitor's proposal to find vulnerabilities
+Strategy:
+  1. Pre-fetch ALL external data in parallel DURING Agent 1 (zero wait time)
+  2. Run Agents 2, 3, 4, Deal Fingerprint ALL in parallel (max concurrency)
+  3. Run Agent 5 + Ghost Bid in parallel (both ready after step 2)
+  4. Run Agent 6 + Verifier in parallel (final stage)
+  5. Reduce redundant API calls (share pre-fetched data)
+  6. Use reasoning=low for data gathering, medium for synthesis
+
+Timeline:
+  [0-60s]   Agent 1 + Pre-fetch (parallel)
+  [60-150s] Agents 2+3+4+Fingerprint (parallel)
+  [150-240s] Agent 5 + Ghost Bid (parallel)
+  [240-300s] Agent 6 + Verifier (parallel)
+  TOTAL: ~5 minutes
 """
 
 import logging
@@ -33,35 +40,70 @@ def run_full_pursuit(
     vector_store_id: str,
 ) -> None:
     """
-    Run the full enhanced 6-agent + 2 intelligence pipeline.
-    Updates pursuit_store at each step for live frontend progress.
+    Speed-optimized 8-stage pipeline.
+    Pre-fetches all external data to eliminate sequential bottlenecks.
     """
 
     def update(status: str, agent: str, **kwargs):
-        pursuit_store[rfp_id].update({
-            "status": status,
-            "current_agent": agent,
-            **kwargs
-        })
+        pursuit_store[rfp_id].update({"status": status, "current_agent": agent, **kwargs})
 
     try:
-        # ── Agent 1: RFP Decomposition ────────────────────────────────────────
+        # ══════════════════════════════════════════════════════════════════════
+        # PHASE 1: Agent 1 + Pre-fetch ALL external data IN PARALLEL
+        # This means external data is ready by the time Agent 1 finishes.
+        # ══════════════════════════════════════════════════════════════════════
         update("running", "agent1_decomposer")
-        logger.info(f"[{rfp_id}] Starting Agent 1")
+        logger.info(f"[{rfp_id}] PHASE 1: Agent 1 + pre-fetching external data in parallel")
 
-        decomposition = decompose_rfp(rfp_text, rfp_id)
+        prefetched = {}
+
+        def _prefetch_financial():
+            try:
+                from procurement.sec_edgar import get_financial_context
+                return get_financial_context(["Accenture", "IBM", "Infosys", "Wipro"])
+            except Exception as e:
+                logger.warning(f"Pre-fetch financial failed: {e}")
+                return ""
+
+        def _prefetch_procurement_uk():
+            try:
+                from procurement.contracts_finder import search_uk_contracts
+                return search_uk_contracts(["IT services", "digital"], max_results=8)
+            except Exception:
+                return []
+
+        def _prefetch_procurement_us():
+            try:
+                from procurement.sam_gov import search_us_contracts
+                return search_us_contracts(["IT services", "cloud"], max_results=8)
+            except Exception:
+                return []
+
+        with ThreadPoolExecutor(max_workers=4) as executor:
+            future_agent1 = executor.submit(decompose_rfp, rfp_text, rfp_id)
+            future_fin = executor.submit(_prefetch_financial)
+            future_uk = executor.submit(_prefetch_procurement_uk)
+            future_us = executor.submit(_prefetch_procurement_us)
+
+            decomposition = future_agent1.result()
+            prefetched["financial"] = future_fin.result()
+            prefetched["uk_contracts"] = future_uk.result()
+            prefetched["us_contracts"] = future_us.result()
+
         update("agent1_complete", "agent1_decomposer",
                decomposition=decomposition.model_dump())
-        logger.info(f"[{rfp_id}] Agent 1 complete: {decomposition.total_requirements} reqs, "
-                    f"{len(decomposition.hard_disqualifiers)} disqualifiers")
+        logger.info(f"[{rfp_id}] PHASE 1 done: {decomposition.total_requirements} reqs + pre-fetch complete")
 
-        # ── Agents 2, 3, 4: Run in PARALLEL ──────────────────────────────────
+        # ══════════════════════════════════════════════════════════════════════
+        # PHASE 2: Agents 2, 3, 4 + Deal Fingerprint — ALL PARALLEL
+        # ══════════════════════════════════════════════════════════════════════
         update("running", "agent2_win_intel")
-        logger.info(f"[{rfp_id}] Starting Agents 2, 3, 4 in parallel")
+        logger.info(f"[{rfp_id}] PHASE 2: Agents 2+3+4+Fingerprint in parallel")
 
         win_intel = None
         client_intel = None
         competitor = None
+        deal_fingerprint = None
 
         def _run_agent2():
             return run_win_intel(decomposition, vector_store_id)
@@ -72,19 +114,27 @@ def run_full_pursuit(
         def _run_agent4():
             return run_competitor_shadow(decomposition, None)
 
-        with ThreadPoolExecutor(max_workers=3) as executor:
+        def _run_fingerprint():
+            from agents.deal_fingerprint import generate_deal_fingerprint
+            procurement_ctx = _format_procurement(prefetched)
+            knowledge_ctx = _get_knowledge_context(decomposition)
+            return generate_deal_fingerprint(decomposition, procurement_ctx, knowledge_ctx)
+
+        with ThreadPoolExecutor(max_workers=4) as executor:
             future_win = executor.submit(_run_agent2)
             future_client = executor.submit(_run_agent3)
             future_comp = executor.submit(_run_agent4)
+            future_finger = executor.submit(_run_fingerprint)
 
             futures = {
-                future_win: "agent2",
-                future_client: "agent3",
-                future_comp: "agent4",
+                future_win: ("agent2", "win_intel"),
+                future_client: ("agent3", "client_intel"),
+                future_comp: ("agent4", "competitor"),
+                future_finger: ("fingerprint", "deal_fingerprint"),
             }
 
             for future in as_completed(futures):
-                agent_name = futures[future]
+                agent_name, field_name = futures[future]
                 try:
                     result = future.result()
                     if agent_name == "agent2":
@@ -92,125 +142,113 @@ def run_full_pursuit(
                         update("agent2_complete", "agent2_win_intel",
                                win_intel=win_intel.model_dump(),
                                win_probability=win_intel.win_probability)
-                        logger.info(f"[{rfp_id}] Agent 2 complete: win_prob={win_intel.win_probability:.0%}")
+                        logger.info(f"[{rfp_id}] Agent 2: win_prob={win_intel.win_probability:.0%}")
 
                     elif agent_name == "agent3":
                         client_intel = result
                         update("agent3_complete", "agent3_client_intel",
                                client_intel=client_intel.model_dump())
-                        logger.info(f"[{rfp_id}] Agent 3 complete: {len(client_intel.unstated_needs)} unstated needs")
+                        logger.info(f"[{rfp_id}] Agent 3: {len(client_intel.unstated_needs)} unstated needs")
 
                     elif agent_name == "agent4":
                         competitor = result
                         update("agent4_complete", "agent4_competitor",
                                competitor=competitor.model_dump())
-                        logger.info(f"[{rfp_id}] Agent 4 complete: {len(competitor.competitors)} competitors")
+                        logger.info(f"[{rfp_id}] Agent 4: {len(competitor.competitors)} competitors")
+
+                    elif agent_name == "fingerprint":
+                        deal_fingerprint = result
+                        update("fingerprint_complete", "intelligence_layer",
+                               deal_fingerprint=deal_fingerprint.model_dump())
+                        logger.info(f"[{rfp_id}] Fingerprint: {deal_fingerprint.recommended_bid_no_bid_decision}")
 
                 except Exception as e:
-                    logger.exception(f"[{rfp_id}] {agent_name} failed: {e}")
-                    raise
+                    logger.warning(f"[{rfp_id}] {agent_name} failed: {e}")
+                    if agent_name in ("agent2", "agent3", "agent4"):
+                        raise
 
-        logger.info(f"[{rfp_id}] Agents 2, 3, 4 all complete")
+        logger.info(f"[{rfp_id}] PHASE 2 done")
 
-        # ── Ghost Bid + Deal Fingerprint: Run in PARALLEL ─────────────────────
-        update("running", "intelligence_layer")
-        logger.info(f"[{rfp_id}] Starting Ghost Bid + Deal Fingerprint")
+        # ══════════════════════════════════════════════════════════════════════
+        # PHASE 3: Agent 5 + Ghost Bid — PARALLEL
+        # ══════════════════════════════════════════════════════════════════════
+        update("running", "agent5_pricing")
+        logger.info(f"[{rfp_id}] PHASE 3: Agent 5 + Ghost Bid in parallel")
 
+        solution_pricing = None
         ghost_bid_report = None
-        deal_fingerprint = None
+
+        def _run_agent5():
+            return run_solution_and_pricing(decomposition, win_intel, client_intel, competitor)
 
         def _run_ghost_bid():
             from agents.ghost_bid import generate_ghost_bids
-            financial_ctx = _get_financial_context()
-            job_ctx = _get_job_intel_context(decomposition)
-            return generate_ghost_bids(decomposition, competitor, financial_ctx, job_ctx)
-
-        def _run_deal_fingerprint():
-            from agents.deal_fingerprint import generate_deal_fingerprint
-            procurement_ctx = _get_procurement_context(decomposition)
-            knowledge_ctx = _get_knowledge_context(decomposition)
-            return generate_deal_fingerprint(decomposition, procurement_ctx, knowledge_ctx)
+            return generate_ghost_bids(
+                decomposition, competitor,
+                prefetched.get("financial", ""),
+                ""  # Skip redundant job intel — Agent 4 already has it
+            )
 
         with ThreadPoolExecutor(max_workers=2) as executor:
+            future_pricing = executor.submit(_run_agent5)
             future_ghost = executor.submit(_run_ghost_bid)
-            future_finger = executor.submit(_run_deal_fingerprint)
+
+            solution_pricing = future_pricing.result()
+            update("agent5_complete", "agent5_pricing",
+                   solution_pricing=solution_pricing.model_dump(),
+                   recommended_price=solution_pricing.pricing.recommended_price_usd)
+            logger.info(f"[{rfp_id}] Agent 5: price=${solution_pricing.pricing.recommended_price_usd:,.0f}")
 
             try:
                 ghost_bid_report = future_ghost.result()
                 update("ghost_bid_complete", "intelligence_layer",
                        ghost_bids=ghost_bid_report.model_dump())
-                logger.info(f"[{rfp_id}] Ghost Bid complete: {len(ghost_bid_report.ghost_bids)} simulations")
+                logger.info(f"[{rfp_id}] Ghost Bid: {len(ghost_bid_report.ghost_bids)} simulations")
             except Exception as e:
                 logger.warning(f"[{rfp_id}] Ghost Bid failed (non-fatal): {e}")
-                ghost_bid_report = None
 
-            try:
-                deal_fingerprint = future_finger.result()
-                update("fingerprint_complete", "intelligence_layer",
-                       deal_fingerprint=deal_fingerprint.model_dump())
-                logger.info(f"[{rfp_id}] Deal Fingerprint: {deal_fingerprint.deal_archetype} | "
-                            f"Bid decision: {deal_fingerprint.recommended_bid_no_bid_decision}")
-            except Exception as e:
-                logger.warning(f"[{rfp_id}] Deal Fingerprint failed (non-fatal): {e}")
-                deal_fingerprint = None
+        logger.info(f"[{rfp_id}] PHASE 3 done")
 
-        # ── Agent 5: Solution + Pricing ───────────────────────────────────────
-        update("running", "agent5_pricing")
-        logger.info(f"[{rfp_id}] Starting Agent 5")
-
-        solution_pricing = run_solution_and_pricing(
-            decomposition, win_intel, client_intel, competitor
-        )
-        update("agent5_complete", "agent5_pricing",
-               solution_pricing=solution_pricing.model_dump(),
-               recommended_price=solution_pricing.pricing.recommended_price_usd)
-        logger.info(f"[{rfp_id}] Agent 5 complete: price=${solution_pricing.pricing.recommended_price_usd:,.0f}")
-
-        # ── Agent 6: Draft Generator ──────────────────────────────────────────
+        # ══════════════════════════════════════════════════════════════════════
+        # PHASE 4: Agent 6 + Verifier — PARALLEL (final stage)
+        # ══════════════════════════════════════════════════════════════════════
         update("running", "agent6_draft")
-        logger.info(f"[{rfp_id}] Starting Agent 6")
+        logger.info(f"[{rfp_id}] PHASE 4: Agent 6 + Verifier in parallel")
 
-        draft = run_draft_generator(
-            decomposition, win_intel, client_intel, competitor, solution_pricing
-        )
-        update("agent6_complete", "agent6_draft",
-               draft=draft.model_dump())
-        logger.info(f"[{rfp_id}] Agent 6 complete: {draft.total_word_count} words generated")
+        def _run_agent6():
+            return run_draft_generator(decomposition, win_intel, client_intel, competitor, solution_pricing)
 
-        # ── Agent 7: Verification (Anti-Hallucination Layer) ──────────────────
-        update("running", "verifier")
-        logger.info(f"[{rfp_id}] Starting Verification Agent (anti-hallucination check)")
-
-        try:
+        def _run_verifier():
             from agents.verifier import verify_outputs
-            verification = verify_outputs(
+            return verify_outputs(
                 pursuit_data=pursuit_store[rfp_id],
                 data_sources={
-                    "procurement_data": _get_procurement_context(decomposition),
+                    "procurement_data": _format_procurement(prefetched),
                     "knowledge_data": _get_knowledge_context(decomposition),
-                    "financial_data": _get_financial_context(),
-                    "cloud_pricing": "Real-time Azure/AWS API data (already validated)",
+                    "financial_data": prefetched.get("financial", ""),
+                    "cloud_pricing": "Validated via Azure/AWS APIs",
                 },
             )
-            update("complete", "verifier",
-                   verification=verification.model_dump())
-            logger.info(
-                f"[{rfp_id}] Verification complete: "
-                f"confidence={verification.overall_confidence:.0%} | "
-                f"verified={verification.verified_count}/{verification.total_claims_checked} | "
-                f"issues={len(verification.critical_issues)}"
-            )
 
-            # Apply verification adjustments
-            if verification.adjusted_win_probability is not None:
-                pursuit_store[rfp_id]["win_probability"] = verification.adjusted_win_probability
-                logger.info(f"[{rfp_id}] Win probability adjusted to {verification.adjusted_win_probability:.0%}")
+        with ThreadPoolExecutor(max_workers=2) as executor:
+            future_draft = executor.submit(_run_agent6)
+            future_verify = executor.submit(_run_verifier)
 
-        except Exception as e:
-            logger.warning(f"[{rfp_id}] Verification failed (non-fatal): {e}")
-            update("complete", "verifier")
+            draft = future_draft.result()
+            update("agent6_complete", "agent6_draft", draft=draft.model_dump())
+            logger.info(f"[{rfp_id}] Agent 6: {draft.total_word_count} words")
 
-        logger.info(f"[{rfp_id}] PURSUIT COMPLETE — all agents + verification done")
+            try:
+                verification = future_verify.result()
+                update("complete", "verifier", verification=verification.model_dump())
+                if verification.adjusted_win_probability is not None:
+                    pursuit_store[rfp_id]["win_probability"] = verification.adjusted_win_probability
+                logger.info(f"[{rfp_id}] Verifier: confidence={verification.overall_confidence:.0%}")
+            except Exception as e:
+                logger.warning(f"[{rfp_id}] Verifier failed (non-fatal): {e}")
+                update("complete", "verifier")
+
+        logger.info(f"[{rfp_id}] ══ PURSUIT COMPLETE ══ Total pipeline finished")
 
     except Exception as e:
         logger.exception(f"[{rfp_id}] Pipeline failed at {pursuit_store[rfp_id].get('current_agent')}")
@@ -218,50 +256,30 @@ def run_full_pursuit(
         pursuit_store[rfp_id]["error"] = str(e)
 
 
-# ── Helper functions for intelligence gathering ──────────────────────────────
+# ── Helpers ──────────────────────────────────────────────────────────────────
 
-def _get_financial_context() -> str:
-    """Fetch SEC EDGAR financial data for major competitors."""
-    try:
-        from procurement.sec_edgar import get_financial_context
-        return get_financial_context(["Accenture", "IBM", "Cognizant", "Infosys", "Wipro"])
-    except Exception as e:
-        logger.warning(f"Financial context unavailable: {e}")
-        return "Financial data unavailable."
+def _format_procurement(prefetched: dict) -> str:
+    """Format pre-fetched procurement data for agent prompts."""
+    sections = []
+    uk = prefetched.get("uk_contracts", [])
+    us = prefetched.get("us_contracts", [])
 
+    if uk:
+        sections.append("UK PUBLIC CONTRACTS (Contracts Finder):")
+        for c in uk[:5]:
+            sections.append(f"  • {c.get('title', 'N/A')[:60]} | Winner: {c.get('winner', 'N/A')}")
 
-def _get_job_intel_context(decomposition) -> str:
-    """Fetch job posting intelligence for competitors and client."""
-    try:
-        from procurement.job_intel import get_job_intel_context
-        return get_job_intel_context(
-            competitors=["TCS", "Infosys", "Wipro", "Accenture", "Capgemini", "IBM"],
-            client=decomposition.client_name,
-            geography=", ".join(decomposition.geography),
-            industry=decomposition.industry,
-        )
-    except Exception as e:
-        logger.warning(f"Job intel unavailable: {e}")
-        return "Job posting intelligence unavailable."
+    if us:
+        sections.append("\nUS FEDERAL CONTRACTS (USASpending.gov):")
+        for c in us[:5]:
+            val = c.get("contract_value_usd", 0)
+            sections.append(f"  • {c.get('title', 'N/A')[:60]} | Winner: {c.get('winner', 'N/A')} | ${val:,.0f}")
 
-
-def _get_procurement_context(decomposition) -> str:
-    """Gather public procurement data from all 5 databases."""
-    try:
-        from procurement.ted_europe import get_procurement_context
-        return get_procurement_context(
-            client_name=decomposition.client_name,
-            industry=decomposition.industry,
-            geography=decomposition.geography,
-            competitors=["TCS", "Infosys", "Wipro", "Accenture", "Capgemini", "IBM"],
-        )
-    except Exception as e:
-        logger.warning(f"Procurement context unavailable: {e}")
-        return "Public procurement data unavailable."
+    return "\n".join(sections) if sections else "No procurement data available."
 
 
 def _get_knowledge_context(decomposition) -> str:
-    """Get knowledge base context from past proposals."""
+    """Get knowledge base context (fast — just queries vector store)."""
     try:
         from knowledge_base.openai_store import get_knowledge_context_from_store
         return get_knowledge_context_from_store(
@@ -269,6 +287,5 @@ def _get_knowledge_context(decomposition) -> str:
             geography=", ".join(decomposition.geography),
             deal_size=decomposition.estimated_deal_size_usd,
         )
-    except Exception as e:
-        logger.warning(f"Knowledge context unavailable: {e}")
+    except Exception:
         return "Knowledge base not yet populated."

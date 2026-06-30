@@ -144,7 +144,7 @@ def generate_ghost_bids(
                 {"role": "user", "content": user_message},
             ],
             response_format=GhostBidReport,
-            max_completion_tokens=128000,
+            max_completion_tokens=16000,
         )
 
         result: GhostBidReport = response.choices[0].message.parsed

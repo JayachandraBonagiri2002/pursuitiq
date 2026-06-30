@@ -65,14 +65,14 @@ def run_client_intel(decomposition: RFPDecomposition) -> ClientIntelligence:
     )
 
     try:
+        from config import REASONING_LOW
         search_response = client.responses.create(
             model=MODEL,
-            reasoning={"effort": REASONING_MEDIUM},
+            reasoning={"effort": REASONING_LOW},
             tools=[{"type": "web_search_preview"}],
             input=search_prompt,
         )
 
-        # Extract the text content from the response
         raw_intel = ""
         for item in search_response.output:
             if hasattr(item, "content"):
@@ -106,7 +106,7 @@ def run_client_intel(decomposition: RFPDecomposition) -> ClientIntelligence:
             )},
         ],
         response_format=ClientIntelligence,
-        max_completion_tokens=128000,
+        max_completion_tokens=16000,
     )
 
     result: ClientIntelligence = synthesis_response.choices[0].message.parsed

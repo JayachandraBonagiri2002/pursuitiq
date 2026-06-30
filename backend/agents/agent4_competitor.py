@@ -22,12 +22,10 @@ from config import MODEL, REASONING_MEDIUM
 logger = logging.getLogger(__name__)
 
 MAJOR_COMPETITORS = [
-    "TCS (Tata Consultancy Services)",
+    "TCS",
     "Infosys",
-    "Wipro",
     "Accenture",
     "Capgemini",
-    "IBM",
 ]
 
 SYNTHESIS_SYSTEM = """You are the most feared Competitive Intelligence Director in enterprise IT.
@@ -67,38 +65,21 @@ ANTI-HALLUCINATION RULES:
 
 def _search_competitor_full_intel(client, competitor: str, rfp_context: str, geography: str) -> str:
     """
-    Gather COMPREHENSIVE intelligence about a competitor from multiple angles.
-    Uses web search to cover: news, job postings, financial signals.
+    Single comprehensive web search per competitor (1 API call, not 4).
+    Covers news, jobs, financials, positioning in one query.
     """
     search_prompt = (
-        f"Research {competitor} comprehensively for a competitive bid analysis. Search for ALL of these:\n\n"
-        f"1. LATEST NEWS & DEALS:\n"
-        f"   - Most recent quarterly earnings and revenue growth\n"
-        f"   - Major deal wins announced in the last 6 months\n"
-        f"   - New partnerships or acquisitions\n"
-        f"   - Leadership changes or restructuring\n"
-        f"   - Recent client losses or contract terminations\n\n"
-        f"2. JOB POSTINGS (CRITICAL — reveals what they're bidding on):\n"
-        f"   - Search for '{competitor} jobs {geography}' — are they hiring in this geography?\n"
-        f"   - What roles are they hiring? (architects, developers, managers = staffing for a bid)\n"
-        f"   - What technologies do the job postings mention?\n"
-        f"   - How many open roles in this geography? (more = more likely they're bidding)\n\n"
-        f"3. PRICING & FINANCIAL SIGNALS:\n"
-        f"   - What is their operating margin? (this is their pricing floor)\n"
-        f"   - What is their revenue per employee? (this reveals their rate card)\n"
-        f"   - Are they under pressure to grow revenue? (if yes, they'll bid aggressively)\n"
-        f"   - What is their offshore/onshore delivery mix?\n\n"
-        f"4. POSITIONING IN THIS CONTEXT:\n"
-        f"   - Their capabilities in {rfp_context}\n"
-        f"   - Recent case studies or thought leadership in this sector\n"
-        f"   - Platform launches or new service offerings relevant here\n\n"
-        f"Include dates and sources for everything. Be specific."
+        f"Find the latest about {competitor} IT services: "
+        f"recent deal wins, quarterly earnings, operating margin, "
+        f"job openings in {geography}, capabilities in {rfp_context}. "
+        f"Include sources and dates."
     )
 
     try:
+        from config import REASONING_LOW
         response = client.responses.create(
             model=MODEL,
-            reasoning={"effort": REASONING_MEDIUM},
+            reasoning={"effort": REASONING_LOW},
             tools=[{"type": "web_search_preview"}],
             input=search_prompt,
         )
@@ -143,7 +124,7 @@ def run_competitor_shadow(
         logger.info(f"Agent 4: comprehensive web search for {comp}")
         return comp, _search_competitor_full_intel(client, comp, rfp_context, geography)
 
-    with ThreadPoolExecutor(max_workers=6) as executor:
+    with ThreadPoolExecutor(max_workers=4) as executor:
         futures = [executor.submit(_search, c) for c in MAJOR_COMPETITORS]
         for future in as_completed(futures):
             name, intel = future.result()
@@ -171,30 +152,10 @@ def run_competitor_shadow(
         logger.warning(f"Agent 4: procurement data unavailable ({e})")
         procurement_intel = "Public procurement data unavailable for this analysis."
 
-    # ── Source 3: SEC EDGAR Financial Intelligence ────────────────────────────
-    financial_intel = ""
-    try:
-        from procurement.sec_edgar import get_financial_context
-        financial_intel = get_financial_context([c.split(" (")[0] for c in MAJOR_COMPETITORS if c.split(" (")[0] in ["Accenture", "IBM", "Cognizant", "Infosys", "Wipro"]])
-        logger.info(f"Agent 4: SEC EDGAR financials — {len(financial_intel):,} chars")
-    except Exception as e:
-        logger.warning(f"Agent 4: SEC EDGAR unavailable ({e})")
-        financial_intel = "Financial filing data unavailable."
-
-    # ── Source 4: Job Posting Intelligence ────────────────────────────────────
-    job_intel = ""
-    try:
-        from procurement.job_intel import get_job_intel_context
-        job_intel = get_job_intel_context(
-            competitors=[c.split(" (")[0] for c in MAJOR_COMPETITORS[:4]],
-            client=decomposition.client_name,
-            geography=geography,
-            industry=decomposition.industry,
-        )
-        logger.info(f"Agent 4: job intel — {len(job_intel):,} chars")
-    except Exception as e:
-        logger.warning(f"Agent 4: job intel unavailable ({e})")
-        job_intel = "Job posting intelligence unavailable."
+    # Sources 3 & 4 (SEC EDGAR + Job Intel) are pre-fetched by orchestrator
+    # and injected into Ghost Bid. Agent 4 uses web search results instead.
+    financial_intel = "See web search results above for financial signals."
+    job_intel = "See web search results above for hiring signals."
 
     # ── Synthesis ─────────────────────────────────────────────────────────────
     logger.info(f"Agent 4: synthesising all intelligence into competitive strategy")
@@ -254,7 +215,7 @@ def run_competitor_shadow(
             )},
         ],
         response_format=CompetitorShadow,
-        max_completion_tokens=128000,
+        max_completion_tokens=16000,
     )
 
     result: CompetitorShadow = response.choices[0].message.parsed

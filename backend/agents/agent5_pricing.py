@@ -172,7 +172,7 @@ def run_solution_and_pricing(
             )},
         ],
         response_format=SolutionAndPricing,
-        max_completion_tokens=128000,
+        max_completion_tokens=32000,
     )
 
     result: SolutionAndPricing = response.choices[0].message.parsed
