@@ -7,14 +7,16 @@ const API = "http://localhost:8000";
 
 const AGENTS = [
   { id: "agent1_decomposer",  name: "RFP Decomposer",    description: "Extracting all requirements & hidden disqualifiers" },
-  { id: "agent2_win_intel",   name: "Win Intelligence",  description: "Searching 100 past deals for win probability" },
-  { id: "agent3_client_intel",name: "Client Intel",      description: "Mining earnings calls, LinkedIn & press releases" },
-  { id: "agent4_competitor",  name: "Competitor Shadow",  description: "Live web search: TCS, Accenture, Capgemini latest moves & pricing" },
-  { id: "agent5_pricing",     name: "Solution + Pricing", description: "Deep reasoning: 3 solution options with full pricing model" },
-  { id: "agent6_draft",       name: "Draft Generator",   description: "Writing first-draft proposal" },
+  { id: "agent2_win_intel",   name: "Win Intelligence",  description: "3-layer intel: knowledge base + procurement + deal corpus" },
+  { id: "agent3_client_intel",name: "Client Intel",      description: "Web search: earnings calls, job postings, press releases" },
+  { id: "agent4_competitor",  name: "Competitor War Room", description: "4 sources: web + SEC filings + job postings + public contracts" },
+  { id: "intelligence_layer", name: "Ghost Bid + Fingerprint", description: "Simulating competitor proposals & classifying deal archetype" },
+  { id: "agent5_pricing",     name: "Solution + Pricing", description: "Evidence-based pricing from 3 real data sources" },
+  { id: "agent6_draft",       name: "Draft Generator",   description: "Writing proposal using past winning templates" },
+  { id: "verifier",           name: "Verification",      description: "Cross-checking all claims against raw data sources" },
 ];
 
-const agentOrder = ["agent1_decomposer","agent2_win_intel","agent3_client_intel","agent4_competitor","agent5_pricing","agent6_draft"];
+const agentOrder = ["agent1_decomposer","agent2_win_intel","agent3_client_intel","agent4_competitor","intelligence_layer","agent5_pricing","agent6_draft","verifier"];
 
 function getAgentStatus(pursuit: any, agentId: string): "done" | "running" | "pending" {
   const statusMap: Record<string,string> = {
@@ -22,6 +24,8 @@ function getAgentStatus(pursuit: any, agentId: string): "done" | "running" | "pe
     agent2_complete: "agent2_win_intel",
     agent3_complete: "agent3_client_intel",
     agent4_complete: "agent4_competitor",
+    ghost_bid_complete: "intelligence_layer",
+    fingerprint_complete: "intelligence_layer",
     agent5_complete: "agent5_pricing",
     complete:        "agent6_draft",
   };
@@ -113,6 +117,8 @@ export default function PursuitPage() {
   const win     = pursuit.win_intel;
   const client  = pursuit.client_intel;
   const comp    = pursuit.competitor;
+  const ghostBids = pursuit.ghost_bids;
+  const fingerprint = pursuit.deal_fingerprint;
   const pricing = pursuit.solution_pricing;
   const draft   = pursuit.draft;
 
@@ -175,24 +181,36 @@ export default function PursuitPage() {
       </div>
 
       {(win || decomp) && (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
           <MetricCard label="Requirements" value={decomp?.total_requirements ?? "—"} />
           <MetricCard label="Disqualifiers" value={decomp?.hard_disqualifiers?.length ?? "—"} accent="red" />
           <MetricCard label="Win Probability" value={win ? `${Math.round(win.win_probability > 1 ? win.win_probability : win.win_probability * 100)}%` : "—"} accent={(win?.win_probability > 1 ? win.win_probability : (win?.win_probability ?? 0) * 100) >= 40 ? "green" : "red"} />
           <MetricCard label="Recommended Price" value={pricing ? `$${(pricing.pricing.recommended_price_usd / 1e6).toFixed(0)}M` : "—"} accent="purple" />
+          <MetricCard label="Confidence" value={pursuit.verification ? `${Math.round(pursuit.verification.overall_confidence * 100)}%` : "—"} accent={pursuit.verification?.overall_confidence >= 0.7 ? "green" : "red"} />
+        </div>
+      )}
+
+      {pursuit.verification?.critical_issues?.length > 0 && (
+        <div className="mb-6 rounded-xl border border-amber-700 bg-amber-950/20 p-4">
+          <p className="text-amber-400 font-semibold text-sm mb-2">Verification Warnings ({pursuit.verification.critical_issues.length})</p>
+          {pursuit.verification.critical_issues.map((issue: string, i: number) => (
+            <p key={i} className="text-amber-200 text-xs mb-1">! {issue}</p>
+          ))}
         </div>
       )}
 
       {done && (
         <>
           <TabNav
-            tabs={["Overview", "Client Intel", "Competition", "Pricing", "Draft"]}
+            tabs={["Overview", "Client Intel", "Competition", "Ghost Bids", "Fingerprint", "Pricing", "Draft"]}
             active={tab}
             onChange={setTab}
           />
           {tab === "Overview"    && <OverviewTab decomp={decomp} win={win} />}
           {tab === "Client Intel" && <ClientTab client={client} />}
           {tab === "Competition" && <CompetitionTab comp={comp} />}
+          {tab === "Ghost Bids"  && <GhostBidsTab ghostBids={ghostBids} />}
+          {tab === "Fingerprint" && <FingerprintTab fingerprint={fingerprint} />}
           {tab === "Pricing"     && <PricingTab pricing={pricing} />}
           {tab === "Draft"       && <DraftTab draft={draft} rfpId={rfp_id} />}
         </>
@@ -482,6 +500,178 @@ function DraftTab({ draft, rfpId }: any) {
           <pre className="text-green-300 text-xs bg-gray-950 rounded-lg p-4 overflow-x-auto whitespace-pre-wrap">
             {draft.architecture_diagram}
           </pre>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function GhostBidsTab({ ghostBids }: any) {
+  if (!ghostBids) return <Empty />;
+  const bids = ghostBids.ghost_bids || [];
+  return (
+    <div className="space-y-6">
+      {ghostBids.recommended_counter_strategy && (
+        <div className="card border-purple-700 bg-purple-950/20">
+          <h3 className="text-purple-400 font-semibold mb-2">Recommended Counter-Strategy</h3>
+          <p className="text-gray-200 text-sm leading-relaxed">{ghostBids.recommended_counter_strategy}</p>
+          {ghostBids.single_biggest_risk && (
+            <p className="text-red-400 text-sm mt-3">Biggest risk: {ghostBids.single_biggest_risk}</p>
+          )}
+        </div>
+      )}
+
+      {ghostBids.overall_competitive_position && (
+        <div className="card">
+          <h3 className="text-gray-400 text-sm font-medium mb-2">Our Competitive Position</h3>
+          <p className="text-gray-200 text-sm leading-relaxed">{ghostBids.overall_competitive_position}</p>
+        </div>
+      )}
+
+      {bids.map((bid: any, i: number) => (
+        <div key={i} className="card space-y-4">
+          <div className="flex justify-between items-center">
+            <h3 className="text-white font-bold text-lg">{bid.competitor_name}</h3>
+            <span className={`text-xs px-3 py-1 rounded-full font-medium
+              ${bid.confidence_level === "high" ? "bg-red-900 text-red-300" :
+                bid.confidence_level === "medium" ? "bg-amber-900 text-amber-300" : "bg-gray-800 text-gray-400"}`}>
+              {bid.confidence_level} confidence
+            </span>
+          </div>
+
+          <div className="grid grid-cols-3 gap-3 text-center">
+            <div className="bg-gray-900 rounded-lg p-3">
+              <p className="text-xs text-gray-500">Predicted Price</p>
+              <p className="text-white font-bold text-sm">{bid.predicted_pricing_range_usd}</p>
+            </div>
+            <div className="bg-gray-900 rounded-lg p-3">
+              <p className="text-xs text-gray-500">Timeline</p>
+              <p className="text-white font-bold text-sm">{bid.predicted_timeline_months} months</p>
+            </div>
+            <div className="bg-gray-900 rounded-lg p-3">
+              <p className="text-xs text-gray-500">Team Model</p>
+              <p className="text-white font-bold text-sm truncate">{bid.predicted_team_model}</p>
+            </div>
+          </div>
+
+          <div>
+            <p className="text-gray-400 text-sm mb-2">{bid.likely_solution_approach}</p>
+          </div>
+
+          {bid.predicted_win_themes?.length > 0 && (
+            <div>
+              <p className="text-xs text-amber-400 font-medium mb-1 uppercase tracking-wide">Their Win Themes</p>
+              {bid.predicted_win_themes.map((t: string, j: number) => (
+                <p key={j} className="text-xs text-amber-200 mb-1">- {t}</p>
+              ))}
+            </div>
+          )}
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <p className="text-xs text-red-400 font-medium mb-2 uppercase tracking-wide">Their Vulnerabilities</p>
+              {bid.key_vulnerabilities?.slice(0, 3).map((v: string, j: number) => (
+                <p key={j} className="text-xs text-red-200 mb-1">! {v}</p>
+              ))}
+            </div>
+            <div>
+              <p className="text-xs text-green-400 font-medium mb-2 uppercase tracking-wide">How We Beat Them</p>
+              {bid.how_we_beat_this_bid?.slice(0, 3).map((h: string, j: number) => (
+                <p key={j} className="text-xs text-green-200 mb-1">&rarr; {h}</p>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function FingerprintTab({ fingerprint }: any) {
+  if (!fingerprint) return <Empty />;
+  const decision = fingerprint.recommended_bid_no_bid_decision;
+  const decisionColor = decision === "BID" ? "green" : decision === "NO-BID" ? "red" : "amber";
+  return (
+    <div className="space-y-6">
+      <div className={`card border-${decisionColor}-700 bg-${decisionColor}-950/20 text-center py-8`}>
+        <p className="text-gray-500 text-sm mb-2">Bid/No-Bid Recommendation</p>
+        <p className={`text-4xl font-black text-${decisionColor}-400`}>{decision}</p>
+        <p className="text-gray-500 text-sm mt-2">
+          Confidence: {Math.round((fingerprint.confidence || 0) * 100)}%
+        </p>
+      </div>
+
+      <div className="card">
+        <h3 className="text-purple-400 font-semibold mb-3">Deal Archetype</h3>
+        <p className="text-white text-lg font-medium">{fingerprint.deal_archetype}</p>
+        {fingerprint.historical_win_rate_for_archetype && (
+          <p className="text-gray-400 text-sm mt-2">
+            Historical win rate: <span className="text-amber-300 font-medium">{fingerprint.historical_win_rate_for_archetype}</span>
+          </p>
+        )}
+      </div>
+
+      {fingerprint.predicted_winner_without_intervention && (
+        <div className="card border-red-800 bg-red-950/20">
+          <h3 className="text-red-400 font-semibold mb-2">Predicted Winner (If We Do Nothing Special)</h3>
+          <p className="text-red-200 text-lg font-medium">{fingerprint.predicted_winner_without_intervention}</p>
+        </div>
+      )}
+
+      {fingerprint.predicted_competitors?.length > 0 && (
+        <div className="card">
+          <h3 className="text-gray-400 text-sm font-medium mb-3">Predicted Bidders</h3>
+          <div className="flex flex-wrap gap-2">
+            {fingerprint.predicted_competitors.map((c: string, i: number) => (
+              <span key={i} className="px-3 py-1.5 bg-gray-800 rounded-lg text-sm text-gray-300">{c}</span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {fingerprint.critical_success_factors?.length > 0 && (
+          <div className="card border-green-800">
+            <h3 className="text-green-400 font-semibold mb-3">Critical Success Factors</h3>
+            <div className="space-y-2">
+              {fingerprint.critical_success_factors.map((f: string, i: number) => (
+                <p key={i} className="text-sm text-green-200">+ {f}</p>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {fingerprint.common_failure_modes?.length > 0 && (
+          <div className="card border-red-800">
+            <h3 className="text-red-400 font-semibold mb-3">Common Failure Modes</h3>
+            <div className="space-y-2">
+              {fingerprint.common_failure_modes.map((f: string, i: number) => (
+                <p key={i} className="text-sm text-red-200">! {f}</p>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {fingerprint.bid_conditions?.length > 0 && (
+        <div className="card border-amber-800 bg-amber-950/20">
+          <h3 className="text-amber-400 font-semibold mb-3">Bid Conditions (Must Be True)</h3>
+          <div className="space-y-2">
+            {fingerprint.bid_conditions.map((c: string, i: number) => (
+              <p key={i} className="text-sm text-amber-200">* {c}</p>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {fingerprint.similar_public_contracts?.length > 0 && (
+        <div className="card">
+          <h3 className="text-gray-400 text-sm font-medium mb-3">Similar Public Contracts (Reference)</h3>
+          <div className="space-y-2">
+            {fingerprint.similar_public_contracts.map((c: string, i: number) => (
+              <p key={i} className="text-xs text-gray-400">{c}</p>
+            ))}
+          </div>
         </div>
       )}
     </div>

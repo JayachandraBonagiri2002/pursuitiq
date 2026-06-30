@@ -1,11 +1,13 @@
 """
-agents/agent6_draft.py — Agent 6: Proposal Draft Generator
+agents/agent6_draft.py — Agent 6: Proposal Draft Generator (ENHANCED)
 
-What it does:
-  Generates a complete first-draft proposal — executive summary, all sections,
-  win themes, and a Mermaid architecture diagram spec.
+Now learns from YOUR past winning proposals:
+  - Matches the tone and structure of proven winners
+  - Reuses differentiator language that actually scored well
+  - References real case studies from your knowledge base
+  - Follows section flows that evaluators liked
 
-Model: GPT-5.5 at reasoning=medium (produces partner-quality proposals efficiently)
+Model: GPT-5.5 at reasoning=medium
 Output: ProposalDraft
 """
 
@@ -20,21 +22,37 @@ from config import MODEL, REASONING_MEDIUM
 logger = logging.getLogger(__name__)
 
 SYSTEM = """You are a Principal Proposal Writer at a global IT services firm.
-You have won hundreds of multi-million dollar bids. Your proposals are known for:
-- Executive summaries that speak directly to the client's unstated fears
-- Win themes that run consistently through every section
-- Technical content that is credible but accessible to non-technical evaluators
-- A tone that feels like a trusted partner, not a salesperson
+You have won hundreds of multi-million dollar bids.
 
-Your job: write a compelling first-draft proposal based on the intelligence provided.
+You now have access to REAL past winning proposals from your company's knowledge base.
+Use them as STYLE TEMPLATES — match their tone, structure, and approach.
 
-RULES:
-- The executive summary must mention something specific the client has publicly said
-  (from our client intelligence) — this shows we understand them, not just their RFP
-- Every section must reference at least one win theme
+KEY RULES:
+- The executive summary must reference something specific from client intelligence
+  (a public statement the client made, a strategic move they announced)
+- Every section must weave in at least one win theme
+- If past winning proposals are provided, MATCH THEIR TONE AND STRUCTURE
+  (they won for a reason — that voice resonates with evaluators)
 - The architecture diagram must be in Mermaid syntax (graph TD format)
 - Write as if this is the final version — bid teams will polish, not rewrite
-- Return ONLY valid JSON matching the ProposalDraft schema"""
+- Reference real capabilities and differentiators from your knowledge base
+
+STYLE GUIDELINES FROM PAST WINNERS:
+- Lead with the client's problem, not your solution
+- Use specific numbers, not vague promises ("847 COBOL programmes" not "legacy systems")
+- Show you understand their industry's regulatory landscape
+- End each section with a forward-looking statement that reinforces the win theme
+
+Return ONLY valid JSON matching the ProposalDraft schema.
+
+ANTI-HALLUCINATION RULES:
+- NEVER invent client quotes, statistics, or case studies that aren't in the provided data
+- If client intelligence mentions something the CTO said, you may quote it. If not, don't invent quotes.
+- Architecture diagrams must reflect the ACTUAL proposed solution from Agent 5, not a generic diagram
+- Word counts in sections must be ACCURATE (count them)
+- Don't claim capabilities your company doesn't have — stick to what the knowledge base shows
+- If style templates are provided from past proposals, match their structure but don't copy content verbatim
+- The executive summary must reference REAL client intelligence, not generic statements"""
 
 
 def run_draft_generator(
@@ -45,11 +63,37 @@ def run_draft_generator(
     solution_pricing: SolutionAndPricing,
 ) -> ProposalDraft:
     """
-    Agent 6: Generate the proposal first draft using GPT-5.5 at medium reasoning.
+    Agent 6: Generate proposal draft using past winners as style templates.
     """
     client = get_client()
 
-    logger.info(f"Agent 6: generating proposal draft | rfp_id={decomposition.rfp_id} | model={MODEL}")
+    logger.info(f"Agent 6: generating proposal draft | rfp_id={decomposition.rfp_id}")
+
+    # ── Fetch style templates from knowledge base ─────────────────────────────
+    style_context = ""
+    try:
+        from knowledge_base.openai_store import search_knowledge_store
+
+        # Get executive summaries and solution approaches from winning proposals
+        style_raw = search_knowledge_store(
+            query=(
+                f"executive summary solution approach delivery methodology "
+                f"for {decomposition.industry} proposals. "
+                f"Show winning proposal structure and tone."
+            ),
+            industry=decomposition.industry,
+            geography=", ".join(decomposition.geography),
+        )
+
+        if style_raw and "No matching" not in style_raw and "unavailable" not in style_raw:
+            style_context = f"STYLE TEMPLATES FROM PAST WINNING PROPOSALS:\n{style_raw}"
+        else:
+            style_context = "No past proposals available for style reference. Write in best-practice enterprise proposal style."
+
+        logger.info(f"Agent 6: style templates — {len(style_context):,} chars")
+    except Exception as e:
+        logger.warning(f"Agent 6: knowledge base templates unavailable ({e})")
+        style_context = "No past proposals available for style reference. Write in best-practice enterprise proposal style."
 
     # Find the recommended solution option
     recommended = next(
@@ -69,7 +113,7 @@ def run_draft_generator(
                 f"Client: {decomposition.client_name} ({decomposition.industry})\n"
                 f"Geography: {', '.join(decomposition.geography)}\n\n"
 
-                f"CLIENT INTELLIGENCE (use this in executive summary):\n"
+                f"CLIENT INTELLIGENCE (use in executive summary):\n"
                 f"CTO priorities: {', '.join(client_intel.cto_stated_priorities[:3])}\n"
                 f"Unstated needs: {', '.join(client_intel.unstated_needs[:3])}\n"
                 f"Recommended narrative: {client_intel.recommended_narrative}\n\n"
@@ -85,8 +129,13 @@ def run_draft_generator(
                 f"Timeline: {recommended.delivery_months} months\n"
                 f"Price: ${solution_pricing.pricing.recommended_price_usd:,.0f}\n\n"
 
+                f"{'='*70}\n"
+                f"STYLE TEMPLATES FROM PAST WINNING PROPOSALS:\n"
+                f"{'='*70}\n"
+                f"{style_context}\n\n"
+
                 f"SECTIONS TO WRITE:\n"
-                f"1. Executive Summary (personalised to client intelligence)\n"
+                f"1. Executive Summary (personalised to client intelligence, match winning style)\n"
                 f"2. Understanding Your Challenge\n"
                 f"3. Our Proposed Solution\n"
                 f"4. Delivery Approach and Methodology\n"
@@ -95,6 +144,7 @@ def run_draft_generator(
 
                 f"Also generate a Mermaid architecture diagram (graph TD format) "
                 f"showing the proposed solution architecture.\n\n"
+                f"Match the tone and structure of the winning proposal templates above.\n"
                 f"Return a complete ProposalDraft JSON."
             )},
         ],

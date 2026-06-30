@@ -50,7 +50,15 @@ OUTPUT RULES:
 - Every hard disqualifier goes into hard_disqualifiers[] as a clear alarming statement.
 - Set priority=eliminatory for ANY requirement that would auto-exclude a bidder.
 - Set is_hidden_risk=true for requirements that are easy to miss but critical.
-- Be exhaustive — a missed requirement costs real money."""
+- Be exhaustive — a missed requirement costs real money.
+
+ANTI-HALLUCINATION RULES:
+- ONLY extract requirements that are EXPLICITLY stated in the document
+- NEVER infer a requirement that isn't written. If it's not in the text, it doesn't exist.
+- For every hard_disqualifier, you MUST be able to point to the exact text in the document
+- Page references must be ACCURATE — cite the actual [PAGE N] marker
+- If you're unsure whether something is a requirement, mark it as ambiguity, not a requirement
+- ZERO tolerance for invented requirements. Missing a real one is bad. Inventing a fake one is worse."""
 
 
 def decompose_rfp(rfp_text: str, rfp_id: str | None = None) -> RFPDecomposition:

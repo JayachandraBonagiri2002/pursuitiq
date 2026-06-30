@@ -201,3 +201,25 @@ class PursuitStatus(BaseModel):
     disqualifiers:    List[str]       = Field(default_factory=list)
     critical_risks:   List[str]       = Field(default_factory=list)
     next_actions:     List[str]       = Field(default_factory=list)
+
+
+# ═══════════════════════════════════════════════════════════════════
+# SOURCE ATTRIBUTION — Every claim traces to evidence
+# ═══════════════════════════════════════════════════════════════════
+
+class SourcedClaim(BaseModel):
+    """A single claim with its source attribution."""
+    claim: str
+    source: str = Field(description="Data source: 'SEC_EDGAR', 'TED_EUROPA', 'UK_CONTRACTS', 'USA_SPENDING', 'AZURE_API', 'AWS_API', 'WEB_SEARCH', 'KNOWLEDGE_BASE', 'DEAL_CORPUS', 'JOB_POSTINGS', 'INFERENCE'")
+    evidence_snippet: Optional[str] = None
+    confidence: float = Field(default=0.7, description="0.0-1.0 confidence in this specific claim")
+
+
+class VerificationStatus(BaseModel):
+    """Verification status attached to pursuit results."""
+    overall_confidence: float
+    verified_claims: int
+    total_claims: int
+    critical_warnings: List[str] = Field(default_factory=list)
+    data_freshness: str = Field(description="When the data sources were last queried")
+    sources_used: List[str] = Field(default_factory=list)

@@ -1,15 +1,15 @@
 """
-agents/agent2_win_intel.py — Agent 2: Win Intelligence
+agents/agent2_win_intel.py — Agent 2: Win Intelligence (ENHANCED)
 
-What it does:
-  Searches 100 past deals in the vector store to find similar wins/losses.
-  Returns win probability, capability gaps, and recommended win themes.
+Now powered by THREE intelligence layers:
+  1. YOUR proposal knowledge base (Azure AI Search — real past proposals)
+  2. Public procurement data (TED/USASpending — real contract awards)
+  3. OpenAI Vector Store (deal corpus — supplementary patterns)
 
-Model: GPT-5.5 at reasoning=medium + Vector Store (File Search via Responses API)
+Model: GPT-5.5 at reasoning=medium
 Output: WinIntelResult
 """
 
-import json
 import logging
 from openai_client import get_client
 from schemas import WinIntelResult, RFPDecomposition
@@ -18,50 +18,89 @@ from config import MODEL, REASONING_MEDIUM
 logger = logging.getLogger(__name__)
 
 SYSTEM = """You are a Win Strategy Director at a global IT services firm.
-You have access to 100 past deal records via file search. Your job is to:
-1. Find the most similar past deals to this RFP
-2. Identify what made us win or lose similar engagements
-3. Calculate an honest win probability (not optimistic — accurate)
-4. Identify gaps we must fix before bidding
-5. Recommend the 3-5 strongest win themes to lead with
+You now have access to THREE types of intelligence:
 
-Be honest about capability gaps. A bid submitted without fixing critical gaps
-wastes millions of dollars and damages client relationships.
+1. REAL PAST PROPOSALS — actual proposals your company submitted (winning and losing)
+   These show exactly how you priced, structured, and positioned past bids.
 
-Return ONLY valid JSON matching the WinIntelResult schema."""
+2. PUBLIC PROCUREMENT DATA — real contract awards from government databases
+   These show who actually won similar contracts and at what price. This is ground truth.
+
+3. DEAL CORPUS — historical deal records with win/loss patterns and lessons learned.
+
+Your job:
+1. Identify patterns from real past proposals that apply to this RFP
+2. Cross-reference with public procurement data to validate pricing and competitor assumptions
+3. Calculate an HONEST win probability grounded in evidence, not optimism
+4. Identify specific capability gaps that must be fixed
+5. Recommend 3-5 win themes proven to work in similar situations
+
+CRITICAL: If the public procurement data shows a competitor has been winning similar
+contracts consistently, LOWER the win probability accordingly. Be brutally honest.
+A bid submitted on false confidence wastes more money than one abandoned early.
+
+Return ONLY valid JSON matching the WinIntelResult schema.
+
+ANTI-HALLUCINATION RULES:
+- Win probability MUST be justified by specific evidence from the data provided
+- If the knowledge base has no similar deals, say so — don't invent similarity
+- If procurement data contradicts your assessment, the procurement data wins
+- Every capability gap must be traceable to a specific requirement you can't meet
+- NEVER claim "we won similar deals" unless the knowledge base explicitly shows this
+- If evidence is weak, set win_probability LOWER, not higher. Err toward pessimism.
+- State your confidence: if based on 1 data source = low confidence, 3+ sources = high confidence"""
 
 
 def run_win_intel(decomposition: RFPDecomposition, vector_store_id: str) -> WinIntelResult:
     """
-    Agent 2: Search the deal corpus and generate win intelligence.
-
-    Uses the Responses API with file_search tool to query the vector store,
-    then synthesises into structured output via chat completions.
-
-    Args:
-        decomposition:   Output from Agent 1
-        vector_store_id: OpenAI Vector Store ID containing deal records
-
-    Returns:
-        WinIntelResult with probability, gaps, and win themes
+    Agent 2: Enhanced win intelligence from three data layers.
     """
     client = get_client()
+    logger.info(f"Agent 2: gathering multi-layer intelligence | rfp_id={decomposition.rfp_id}")
 
-    search_query = (
-        f"Find deals similar to: Industry={decomposition.industry}, "
-        f"Geography={', '.join(decomposition.geography)}, "
-        f"Deal size={decomposition.estimated_deal_size_usd or 'unknown'}, "
-        f"Duration={decomposition.contract_duration or 'unknown'}. "
-        f"Key requirements: {', '.join([r.text[:60] for r in decomposition.requirements[:5]])}. "
-        f"Show wins, losses, and key lessons."
-    )
+    # ── Layer 1: Proposal Knowledge Base (OpenAI Vector Store) ─────────────────
+    knowledge_context = ""
+    try:
+        from knowledge_base.openai_store import get_knowledge_context_from_store
+        knowledge_context = get_knowledge_context_from_store(
+            industry=decomposition.industry,
+            geography=", ".join(decomposition.geography),
+            deal_size=decomposition.estimated_deal_size_usd,
+            requirements_summary=", ".join(r.text[:60] for r in decomposition.requirements[:5]),
+        )
+        logger.info(f"Agent 2: knowledge base returned {len(knowledge_context):,} chars")
+    except Exception as e:
+        logger.warning(f"Agent 2: knowledge base search failed ({e}), continuing without it")
+        knowledge_context = "Knowledge base not yet populated. Use other intelligence sources."
 
-    logger.info(f"Agent 2: searching deal corpus | rfp_id={decomposition.rfp_id}")
+    # ── Layer 2: Public Procurement Data ──────────────────────────────────────
+    procurement_context = ""
+    try:
+        from procurement.ted_europe import get_procurement_context
+        procurement_context = get_procurement_context(
+            client_name=decomposition.client_name,
+            industry=decomposition.industry,
+            geography=decomposition.geography,
+            competitors=["TCS", "Infosys", "Wipro", "Accenture", "Capgemini", "IBM"],
+        )
+        logger.info(f"Agent 2: procurement data returned {len(procurement_context):,} chars")
+    except Exception as e:
+        logger.warning(f"Agent 2: procurement data fetch failed ({e}), continuing without it")
+        procurement_context = "Public procurement data unavailable."
 
-    # Step 1: Use Responses API with file_search to retrieve relevant deals
-    raw_intel = ""
+    # ── Layer 3: Deal Corpus (existing vector store) ──────────────────────────
+    corpus_context = ""
     if vector_store_id:
         try:
+            search_query = (
+                f"Find deals similar to: Industry={decomposition.industry}, "
+                f"Geography={', '.join(decomposition.geography)}, "
+                f"Deal size={decomposition.estimated_deal_size_usd or 'unknown'}, "
+                f"Duration={decomposition.contract_duration or 'unknown'}. "
+                f"Key requirements: {', '.join([r.text[:60] for r in decomposition.requirements[:5]])}. "
+                f"Show wins, losses, and key lessons."
+            )
+
             search_response = client.responses.create(
                 model=MODEL,
                 reasoning={"effort": REASONING_MEDIUM},
@@ -75,23 +114,23 @@ def run_win_intel(decomposition: RFPDecomposition, vector_store_id: str) -> WinI
                 if hasattr(item, "content"):
                     for block in item.content:
                         if hasattr(block, "text"):
-                            raw_intel += block.text + "\n"
+                            corpus_context += block.text + "\n"
         except Exception as e:
-            logger.warning(f"Agent 2: file search failed ({e}), continuing without corpus")
+            logger.warning(f"Agent 2: corpus search failed ({e})")
 
-    if not raw_intel.strip():
-        raw_intel = "No deal corpus available. Provide analysis based on general knowledge."
+    if not corpus_context.strip():
+        corpus_context = "Deal corpus not available."
 
-    logger.info(f"Agent 2: file search complete, {len(raw_intel):,} chars retrieved")
+    logger.info(f"Agent 2: all three layers gathered, synthesising...")
 
-    # Step 2: Synthesise into structured WinIntelResult
+    # ── Synthesis: Combine all intelligence into WinIntelResult ────────────────
     response = client.beta.chat.completions.parse(
         model=MODEL,
         reasoning_effort=REASONING_MEDIUM,
         messages=[
             {"role": "system", "content": SYSTEM},
             {"role": "user", "content": (
-                f"Analyse this RFP against our historical deal database.\n\n"
+                f"Analyse this RFP against ALL available intelligence.\n\n"
                 f"RFP SUMMARY:\n"
                 f"Title: {decomposition.title}\n"
                 f"Client: {decomposition.client_name}\n"
@@ -99,15 +138,34 @@ def run_win_intel(decomposition: RFPDecomposition, vector_store_id: str) -> WinI
                 f"Geography: {', '.join(decomposition.geography)}\n"
                 f"Estimated size: {decomposition.estimated_deal_size_usd}\n"
                 f"Duration: {decomposition.contract_duration}\n\n"
+
                 f"KEY REQUIREMENTS ({len(decomposition.requirements)} total):\n"
                 + "\n".join([
                     f"- [{r.priority.value.upper()}] {r.text}"
                     for r in decomposition.requirements[:15]
                 ]) + "\n\n"
+
                 f"DISQUALIFIERS FOUND:\n"
                 + "\n".join([f"- {d}" for d in decomposition.hard_disqualifiers]) + "\n\n"
-                f"SIMILAR DEALS FROM OUR CORPUS:\n{raw_intel}\n\n"
-                f"Based on our deal history, provide win intelligence.\n"
+
+                f"{'='*70}\n"
+                f"INTELLIGENCE LAYER 1 — YOUR PAST PROPOSALS (from knowledge base):\n"
+                f"{'='*70}\n"
+                f"{knowledge_context}\n\n"
+
+                f"{'='*70}\n"
+                f"INTELLIGENCE LAYER 2 — PUBLIC PROCUREMENT DATA (real contracts):\n"
+                f"{'='*70}\n"
+                f"{procurement_context}\n\n"
+
+                f"{'='*70}\n"
+                f"INTELLIGENCE LAYER 3 — DEAL CORPUS (historical patterns):\n"
+                f"{'='*70}\n"
+                f"{corpus_context}\n\n"
+
+                f"Based on ALL THREE intelligence layers, provide win intelligence.\n"
+                f"If public procurement shows competitors consistently winning this type of work, "
+                f"reflect that honestly in win_probability.\n"
                 f"Return a complete WinIntelResult JSON."
             )},
         ],
@@ -117,7 +175,6 @@ def run_win_intel(decomposition: RFPDecomposition, vector_store_id: str) -> WinI
 
     result: WinIntelResult = response.choices[0].message.parsed
 
-    # Normalize win probability — o3 sometimes returns percentage (38) instead of decimal (0.38)
     if result.win_probability > 1.0:
         result.win_probability = result.win_probability / 100.0
     if result.win_probability > 1.0:

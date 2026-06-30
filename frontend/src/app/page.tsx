@@ -57,6 +57,14 @@ export default function HomePage() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center px-6 py-16">
 
+      {/* Top navigation */}
+      <div className="fixed top-0 right-0 p-4 flex gap-3 z-50">
+        <a href="/knowledge"
+          className="px-4 py-2 bg-gray-800/80 backdrop-blur border border-gray-700 hover:border-purple-500 text-gray-300 hover:text-white text-sm rounded-lg transition-all">
+          Knowledge Base
+        </a>
+      </div>
+
       <div className="mb-10 flex items-center gap-2 px-4 py-2 rounded-full border border-purple-800 bg-purple-950/40 text-purple-300 text-sm font-medium">
         <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
         HCLTech x OpenAI Agentic AI Hackathon — Track 2: Sales Operations
@@ -80,8 +88,8 @@ export default function HomePage() {
         {[
           { value: "12 min", label: "vs 6 weeks manually" },
           { value: "6",      label: "specialized AI agents" },
-          { value: "100",    label: "past deals in corpus" },
-          { value: "900Cr",  label: "revenue potential" },
+          { value: "3",      label: "intelligence layers" },
+          { value: "3",      label: "procurement databases" },
         ].map(m => (
           <div key={m.label} className="text-center">
             <div className="text-3xl font-bold text-purple-400">{m.value}</div>

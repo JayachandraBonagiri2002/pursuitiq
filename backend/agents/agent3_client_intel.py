@@ -29,7 +29,16 @@ Focus especially on:
   (e.g. if their CTO complains about slow software releases, they need DevOps even if not in RFP)
 - How to position our proposal to resonate with their actual priorities
 
-Return ONLY valid JSON matching the ClientIntelligence schema. No preamble."""
+Return ONLY valid JSON matching the ClientIntelligence schema. No preamble.
+
+ANTI-HALLUCINATION RULES:
+- ONLY report signals that appeared in the web search results provided
+- If web search found nothing about the CTO, say "No public CTO statements found" — don't invent
+- Every signal MUST have a source (publication name, date, URL if available)
+- Unstated needs must be INFERRED from evidence, not invented. Show the logic chain:
+  "Client posted 40 Java developer jobs → they're building internally → unstated need: augmentation not replacement"
+- If you can't find evidence for a signal, DON'T include it
+- Mark confidence: "high" (multiple sources confirm), "medium" (one source), "low" (inference only)"""
 
 
 def run_client_intel(decomposition: RFPDecomposition) -> ClientIntelligence:

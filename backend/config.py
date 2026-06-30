@@ -14,16 +14,25 @@ if not OPENAI_API_KEY:
     )
 
 # ── Models ────────────────────────────────────────────────────────────────────
-# GPT-5.5: Maximum intelligence, 1M context, configurable reasoning depth
 MODEL = os.getenv("MODEL", "gpt-5.5")
 
-# Reasoning effort levels — control how deeply the model thinks per agent
-# "high"   = deep multi-step reasoning (for legal analysis, pricing math)
-# "medium" = balanced quality + speed (for synthesis, web research)
-# "low"    = fast responses (for simple extraction, classification)
 REASONING_HIGH = "high"
 REASONING_MEDIUM = "medium"
 REASONING_LOW = "low"
 
-# ── Vector Store ──────────────────────────────────────────────────────────────
+# ── Vector Store (legacy deal corpus) ─────────────────────────────────────────
 VECTOR_STORE_ID = os.getenv("VECTOR_STORE_ID", "")
+
+# ── Azure Blob Storage (proposal knowledge base) ─────────────────────────────
+AZURE_STORAGE_ACCOUNT_URL = os.getenv(
+    "AZURE_STORAGE_ACCOUNT_URL",
+    "https://stpursuitiq.blob.core.windows.net"
+)
+AZURE_STORAGE_CONNECTION_STRING = os.getenv("AZURE_STORAGE_CONNECTION_STRING", "")
+
+# ── Azure AI Search (semantic search over proposals) ──────────────────────────
+AZURE_SEARCH_ENDPOINT = os.getenv(
+    "AZURE_SEARCH_ENDPOINT",
+    "https://search-pursuitiq.search.windows.net"
+)
+AZURE_SEARCH_API_KEY = os.getenv("AZURE_SEARCH_API_KEY", "")

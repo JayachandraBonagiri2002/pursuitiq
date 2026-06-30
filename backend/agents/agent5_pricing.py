@@ -1,11 +1,14 @@
 """
-agents/agent5_pricing.py — Agent 5: Solution Design + Pricing
+agents/agent5_pricing.py — Agent 5: Solution Design + Pricing (ENHANCED)
 
-What it does:
-  Designs 3 solution options and produces a detailed pricing model.
-  Uses GPT-5.5 at reasoning=high for the math-heavy pricing and margin calculations.
+Now grounded in THREE pricing sources:
+  1. Your past proposal pricing patterns (from knowledge base)
+  2. Real competitor pricing from public contracts
+  3. Live cloud infrastructure pricing (Azure/AWS APIs)
 
-Model: GPT-5.5 at reasoning=high (deep reasoning — handles complex multi-variable pricing)
+No more guessing. Every price is traceable to a real data source.
+
+Model: GPT-5.5 at reasoning=high (deep reasoning for complex pricing math)
 Output: SolutionAndPricing
 """
 
@@ -21,29 +24,43 @@ from config import MODEL, REASONING_HIGH
 logger = logging.getLogger(__name__)
 
 SYSTEM = """You are a Solution Architect and Pricing Director at a global IT services firm.
-Given full intelligence about an RFP — requirements, client needs, competitor landscape —
-design 3 solution options and produce a detailed, credible pricing model.
+You now have access to THREE real pricing data sources:
 
-The 3 options should represent genuinely different approaches:
+1. YOUR PAST PROPOSALS — how YOU actually priced similar work (from your knowledge base)
+2. PUBLIC CONTRACT AWARDS — what the MARKET actually pays (from government procurement databases)
+3. LIVE CLOUD PRICING — real infrastructure costs from Azure and AWS APIs
+
+PRICING METHODOLOGY:
+- Start with YOUR past pricing patterns for similar deals (this is your baseline)
+- Validate against public contract awards (this is market reality)
+- Add real infrastructure costs from cloud APIs (this is cost truth)
+- Factor in competitor price-to-win range (from Agent 4's intelligence)
+- Apply realistic margin targets (your past proposals show what you actually achieve)
+
+The 3 solution options should represent genuinely different approaches:
   Option A: Premium / lowest risk / highest quality
   Option B: Balanced / recommended (usually this one wins)
   Option C: Lean / lowest cost / higher risk
 
-For each option, think carefully about:
-- What delivery model (onshore / nearshore / offshore mix) fits the requirements
-- What the real cost drivers are (people, technology licenses, travel, infrastructure)
-- What margin is achievable given competitive pressure
-- What risks could blow the budget
+For each option, build pricing BOTTOM-UP from real data:
+- People costs: use rate cards implied by your past proposals
+- Infrastructure: use REAL cloud pricing data provided
+- Contingency: 10-15% for complex deals
+- Margin: based on what your past proposals actually achieved
 
-For pricing:
-- Build from actual cost drivers, not top-down
-- Apply realistic delivery mix percentages
-- Include contingency (10–15% for complex deals)
-- Factor in the competitor price range
-- Recommend the price that maximises win probability while protecting margin
+CRITICAL: If your past proposals show you typically price banking deals in Germany at
+€X per FTE/month, USE THAT. Don't invent numbers. Ground everything in evidence.
 
-IMPORTANT: Show your reasoning in the rationale fields.
-Return ONLY valid JSON matching the SolutionAndPricing schema."""
+Return ONLY valid JSON matching the SolutionAndPricing schema.
+
+ANTI-HALLUCINATION RULES:
+- Infrastructure costs MUST use the REAL cloud pricing data provided. Never estimate cloud costs from memory.
+- If past proposal pricing is available, use it as the primary anchor — it's what YOU actually charged
+- If public contract data shows market prices, your recommended price must be WITHIN that range (±20%)
+- Show the math: People cost + Infra cost + Contingency + Margin = Total. Every component must be traceable.
+- If you don't have enough data to price accurately, SET CONFIDENCE LOW (below 0.5) — don't pretend certainty
+- NEVER output a price that contradicts all available evidence. If data says market is €30-50M, don't recommend €80M.
+- margin_pct must reflect reality: IT services typically 12-25%. If you output 40%+, explain why."""
 
 
 def run_solution_and_pricing(
@@ -53,16 +70,58 @@ def run_solution_and_pricing(
     competitor:      CompetitorShadow,
 ) -> SolutionAndPricing:
     """
-    Agent 5: Design solutions and price them using GPT-5.5 at high reasoning.
+    Agent 5: Solution design + pricing grounded in three real data sources.
     """
     client = get_client()
 
-    logger.info(f"Agent 5: running solution + pricing (o3) | rfp_id={decomposition.rfp_id}")
+    logger.info(f"Agent 5: building pricing from real data | rfp_id={decomposition.rfp_id}")
 
-    # Fetch real-time cloud pricing based on deal geography
+    # ── Source 1: Past proposal pricing patterns ──────────────────────────────
+    pricing_knowledge = ""
+    try:
+        from knowledge_base.openai_store import search_knowledge_store
+        pricing_raw = search_knowledge_store(
+            query=f"pricing commercial investment cost rates {decomposition.industry} proposal",
+            industry=decomposition.industry,
+            geography=", ".join(decomposition.geography),
+        )
+        if pricing_raw and "No matching" not in pricing_raw and "unavailable" not in pricing_raw:
+            pricing_knowledge = f"YOUR PAST PRICING PATTERNS (from real proposals in knowledge base):\n{pricing_raw}"
+        else:
+            pricing_knowledge = "No past pricing data in knowledge base yet. Use market data."
+        logger.info(f"Agent 5: pricing knowledge — {len(pricing_knowledge):,} chars")
+    except Exception as e:
+        logger.warning(f"Agent 5: knowledge base pricing search failed ({e})")
+        pricing_knowledge = "Knowledge base not available. Use market data."
+
+    # ── Source 2: Public contract values ──────────────────────────────────────
+    procurement_pricing = ""
+    try:
+        from procurement.ted_europe import search_ted_contracts
+        sector_contracts = search_ted_contracts(
+            industry_keywords=[decomposition.industry, "IT services"],
+            country=_get_country_code(decomposition.geography),
+            max_results=10,
+        )
+        if sector_contracts:
+            procurement_pricing = "REAL CONTRACT VALUES FROM PUBLIC PROCUREMENT (ground truth):\n"
+            for c in sector_contracts:
+                value_str = f"€{c['contract_value_eur']:,.0f}" if c.get('contract_value_eur') else "Undisclosed"
+                procurement_pricing += (
+                    f"  • {c.get('title', 'N/A')[:60]} | Winner: {c.get('winner', 'N/A')} | "
+                    f"Value: {value_str}\n"
+                )
+            procurement_pricing += "\nUse these REAL values to calibrate your pricing.\n"
+        logger.info(f"Agent 5: found {len(sector_contracts)} public contracts for pricing reference")
+    except Exception as e:
+        logger.warning(f"Agent 5: procurement pricing fetch failed ({e})")
+        procurement_pricing = "Public procurement pricing data unavailable."
+
+    # ── Source 3: Live cloud pricing (existing) ───────────────────────────────
     logger.info(f"Agent 5: fetching real-time cloud pricing for {decomposition.geography}")
     cloud_pricing = get_cloud_pricing_context(decomposition.geography)
 
+    # ── Synthesis ─────────────────────────────────────────────────────────────
     response = client.beta.chat.completions.parse(
         model=MODEL,
         reasoning_effort=REASONING_HIGH,
@@ -82,21 +141,33 @@ def run_solution_and_pricing(
                     for r in decomposition.requirements[:15]
                 ]) + "\n\n"
 
-                f"UNSTATED CLIENT NEEDS (from intelligence):\n"
+                f"UNSTATED CLIENT NEEDS:\n"
                 + "\n".join([f"- {n}" for n in client_intel.unstated_needs]) + "\n\n"
 
                 f"OUR WIN PROBABILITY: {win_intel.win_probability:.0%}\n"
-                f"CAPABILITY GAPS TO ADDRESS:\n"
+                f"CAPABILITY GAPS:\n"
                 + "\n".join([f"- {g}" for g in win_intel.capability_gaps]) + "\n\n"
 
-                f"COMPETITOR PRICE TO WIN RANGE: {competitor.price_to_win_range_usd}\n"
-                f"OUR KILLER DIFFERENTIATOR: {competitor.killer_differentiator}\n\n"
+                f"COMPETITOR PRICE TO WIN: {competitor.price_to_win_range_usd}\n"
+                f"KILLER DIFFERENTIATOR: {competitor.killer_differentiator}\n\n"
 
+                f"{'='*70}\n"
+                f"PRICING SOURCE 1 — YOUR PAST PROPOSALS:\n"
+                f"{'='*70}\n"
+                f"{pricing_knowledge}\n\n"
+
+                f"{'='*70}\n"
+                f"PRICING SOURCE 2 — REAL PUBLIC CONTRACT VALUES:\n"
+                f"{'='*70}\n"
+                f"{procurement_pricing}\n\n"
+
+                f"{'='*70}\n"
+                f"PRICING SOURCE 3 — LIVE CLOUD INFRASTRUCTURE COSTS:\n"
+                f"{'='*70}\n"
                 f"{cloud_pricing}\n\n"
 
-                f"Design 3 solution options with full pricing. "
-                f"Use the REAL cloud pricing data above to calculate infrastructure costs. "
-                f"Recommend Option B (balanced) unless Option A or C is clearly better. "
+                f"Design 3 solution options with EVIDENCE-BASED pricing.\n"
+                f"Build from your past pricing patterns, validated against market data.\n"
                 f"Return a complete SolutionAndPricing JSON."
             )},
         ],
@@ -111,3 +182,20 @@ def run_solution_and_pricing(
         f"price={result.pricing.recommended_price_usd:,.0f}"
     )
     return result
+
+
+def _get_country_code(geography: list[str]) -> str | None:
+    """Map geography list to country code for procurement search."""
+    country_map = {
+        "germany": "DE", "france": "FR", "uk": "GB", "united kingdom": "GB",
+        "netherlands": "NL", "spain": "ES", "italy": "IT", "sweden": "SE",
+        "norway": "NO", "denmark": "DK", "finland": "FI", "belgium": "BE",
+        "austria": "AT", "switzerland": "CH", "poland": "PL", "ireland": "IE",
+        "usa": "US", "united states": "US", "india": "IN", "singapore": "SG",
+        "australia": "AU", "uae": "AE",
+    }
+    for geo in geography:
+        code = country_map.get(geo.lower())
+        if code:
+            return code
+    return None

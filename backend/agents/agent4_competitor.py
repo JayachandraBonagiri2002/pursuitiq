@@ -1,13 +1,13 @@
 """
-agents/agent4_competitor.py — Agent 4: Competitor Shadow (Real-Time Intelligence)
+agents/agent4_competitor.py — Agent 4: Competitor War Room (ENHANCED)
 
-What it does:
-  Uses LIVE web search to gather real-time competitive intelligence —
-  latest quarterly results, recent deal wins, leadership changes, pricing moves,
-  partnerships, and market positioning. Then models how each competitor will
-  approach THIS specific bid.
+Now powered by FOUR intelligence sources:
+  1. Real-time web search (latest news, earnings, partnerships)
+  2. Public procurement data (actual contracts they've won, real prices)
+  3. Job posting intelligence (reveals what they're staffing up for)
+  4. Financial filings signals (margins, revenue, pricing floor)
 
-  NO hardcoded profiles. Everything comes from the real world, right now.
+The combination produces intelligence no single source could reveal alone.
 
 Model: GPT-5.5 at reasoning=medium + Web Search (Responses API)
 Output: CompetitorShadow
@@ -30,44 +30,69 @@ MAJOR_COMPETITORS = [
     "IBM",
 ]
 
-SYNTHESIS_SYSTEM = """You are a Competitive Intelligence Director at a global IT services firm.
-You think like a superpower business strategist — you see patterns competitors miss,
-you predict moves before they make them, and you find the one angle that defeats everyone.
+SYNTHESIS_SYSTEM = """You are the most feared Competitive Intelligence Director in enterprise IT.
+You don't just research competitors — you PREDICT their moves before they make them.
 
-You have been given REAL-TIME web intelligence about major competitors gathered moments ago.
-Use this fresh data to model how each competitor will approach THIS specific bid.
+You now have FOUR types of intelligence for each competitor:
 
-For each competitor:
-- Assess whether they will bid on THIS deal (based on their recent strategy + capabilities)
-- Predict their positioning angle (based on their latest messaging, not outdated assumptions)
-- Estimate their likely price range (based on recent deal sizes and pricing patterns)
-- Identify their CURRENT strengths in THIS context (from latest wins, partnerships, earnings)
-- Identify fresh weaknesses to exploit (leadership changes, missed quarters, lost deals, layoffs)
-- Give specific tactics to beat them based on what's happening RIGHT NOW
+1. REAL-TIME WEB INTEL — latest news, earnings, partnerships, leadership changes
+2. PUBLIC CONTRACT AWARDS — actual deals they've won with real prices (from government DBs)
+3. JOB POSTING SIGNALS — what they're hiring for reveals what they're bidding on
+4. FINANCIAL SIGNALS — their margins reveal their pricing floor
 
-Then identify: what is the ONE killer differentiator that beats all of them simultaneously?
-This must be grounded in the real-time intelligence — not a generic statement.
+YOUR TASK:
+For each competitor, synthesise all four sources to determine:
+- Will they bid? (job postings in the right geography = YES they're preparing)
+- At what price? (public contracts show their REAL pricing, not estimates)
+- What's their angle? (recent messaging + wins reveal positioning)
+- Where are they weak RIGHT NOW? (layoffs, leadership turnover, missed quarters)
+- How to beat them specifically? (not generic — based on their current situation)
 
-Think like the most feared strategy consultant in the industry.
-Return ONLY valid JSON matching the CompetitorShadow schema."""
+GHOST BID SIMULATION:
+For the killer_differentiator, think: "If I could see all 6 competitors' proposals,
+what ONE thing would we include that NONE of them can match?"
+
+Ground everything in the evidence provided. Mark confidence level on predictions.
+Return ONLY valid JSON matching the CompetitorShadow schema.
+
+ANTI-HALLUCINATION RULES:
+- Predicted price ranges MUST be grounded in: SEC EDGAR margins OR public contract values OR both
+- If SEC EDGAR shows 15% operating margin, pricing floor = cost / (1 - 0.15). Use this math.
+- likelihood_to_bid: "high" ONLY if job postings confirm hiring in this geography for this skill set
+- NEVER claim a competitor "will definitely bid" without evidence (hiring, recent similar wins, or public statements)
+- If financial data is unavailable for a competitor, say "financial data unavailable" — don't estimate margins
+- The killer_differentiator must be something NO competitor has. If multiple could match it, it's not a differentiator.
+- Every claim about a competitor must cite its source (web search, SEC filing, public contract, or job posting)"""
 
 
-def _search_competitor_intel(client, competitor: str, rfp_context: str) -> str:
+def _search_competitor_full_intel(client, competitor: str, rfp_context: str, geography: str) -> str:
     """
-    Search the web for real-time intelligence about a specific competitor.
-    Returns raw text from web search results.
+    Gather COMPREHENSIVE intelligence about a competitor from multiple angles.
+    Uses web search to cover: news, job postings, financial signals.
     """
     search_prompt = (
-        f"Find the latest information about {competitor} in IT services. Search for:\n"
-        f"1. Their most recent quarterly earnings and revenue growth\n"
-        f"2. Major deal wins announced in the last 6 months\n"
-        f"3. New partnerships or acquisitions\n"
-        f"4. Their current pricing strategy and delivery model\n"
-        f"5. Any leadership changes or restructuring\n"
-        f"6. Their positioning in {rfp_context}\n"
-        f"7. Recent client losses or contract terminations\n"
-        f"8. New technology capabilities or platform launches\n"
-        f"Include dates and sources for everything."
+        f"Research {competitor} comprehensively for a competitive bid analysis. Search for ALL of these:\n\n"
+        f"1. LATEST NEWS & DEALS:\n"
+        f"   - Most recent quarterly earnings and revenue growth\n"
+        f"   - Major deal wins announced in the last 6 months\n"
+        f"   - New partnerships or acquisitions\n"
+        f"   - Leadership changes or restructuring\n"
+        f"   - Recent client losses or contract terminations\n\n"
+        f"2. JOB POSTINGS (CRITICAL — reveals what they're bidding on):\n"
+        f"   - Search for '{competitor} jobs {geography}' — are they hiring in this geography?\n"
+        f"   - What roles are they hiring? (architects, developers, managers = staffing for a bid)\n"
+        f"   - What technologies do the job postings mention?\n"
+        f"   - How many open roles in this geography? (more = more likely they're bidding)\n\n"
+        f"3. PRICING & FINANCIAL SIGNALS:\n"
+        f"   - What is their operating margin? (this is their pricing floor)\n"
+        f"   - What is their revenue per employee? (this reveals their rate card)\n"
+        f"   - Are they under pressure to grow revenue? (if yes, they'll bid aggressively)\n"
+        f"   - What is their offshore/onshore delivery mix?\n\n"
+        f"4. POSITIONING IN THIS CONTEXT:\n"
+        f"   - Their capabilities in {rfp_context}\n"
+        f"   - Recent case studies or thought leadership in this sector\n"
+        f"   - Platform launches or new service offerings relevant here\n\n"
+        f"Include dates and sources for everything. Be specific."
     )
 
     try:
@@ -99,10 +124,7 @@ def run_competitor_shadow(
     win_intel: WinIntelResult | None = None,
 ) -> CompetitorShadow:
     """
-    Agent 4: Real-time competitive intelligence via web search.
-
-    Step 1: Search the web for each major competitor's latest moves
-    Step 2: Synthesize into competitive strategy using the full RFP context
+    Agent 4: Competitor War Room — multi-source competitive intelligence.
     """
     client = get_client()
 
@@ -110,30 +132,73 @@ def run_competitor_shadow(
         f"{decomposition.industry} deal in {', '.join(decomposition.geography)}, "
         f"size {decomposition.estimated_deal_size_usd}"
     )
+    geography = ", ".join(decomposition.geography)
 
-    logger.info(f"Agent 4: gathering real-time competitor intelligence | rfp_id={decomposition.rfp_id}")
+    logger.info(f"Agent 4: building competitor war room | rfp_id={decomposition.rfp_id}")
 
-    # Step 1: Search ALL competitors in parallel (6 threads = 6x faster)
-    all_intel = {}
+    # ── Source 1: Web search ALL competitors in parallel ──────────────────────
+    all_web_intel = {}
 
     def _search(comp):
-        logger.info(f"Agent 4: searching web for {comp}")
-        return comp, _search_competitor_intel(client, comp, rfp_context)
+        logger.info(f"Agent 4: comprehensive web search for {comp}")
+        return comp, _search_competitor_full_intel(client, comp, rfp_context, geography)
 
     with ThreadPoolExecutor(max_workers=6) as executor:
         futures = [executor.submit(_search, c) for c in MAJOR_COMPETITORS]
         for future in as_completed(futures):
             name, intel = future.result()
-            all_intel[name] = intel
+            all_web_intel[name] = intel
 
-    combined_intel = "\n\n".join([
+    combined_web = "\n\n".join([
         f"{'='*60}\n{name}\n{'='*60}\n{intel}"
-        for name, intel in all_intel.items()
+        for name, intel in all_web_intel.items()
     ])
 
-    logger.info(f"Agent 4: web search complete, {len(combined_intel):,} chars of competitor intel gathered")
+    logger.info(f"Agent 4: web intel gathered — {len(combined_web):,} chars")
 
-    # Step 2: Synthesize into competitive strategy
+    # ── Source 2: Public procurement data ─────────────────────────────────────
+    procurement_intel = ""
+    try:
+        from procurement.ted_europe import get_procurement_context
+        procurement_intel = get_procurement_context(
+            client_name=decomposition.client_name,
+            industry=decomposition.industry,
+            geography=decomposition.geography,
+            competitors=[c.split(" (")[0] for c in MAJOR_COMPETITORS],
+        )
+        logger.info(f"Agent 4: procurement data — {len(procurement_intel):,} chars")
+    except Exception as e:
+        logger.warning(f"Agent 4: procurement data unavailable ({e})")
+        procurement_intel = "Public procurement data unavailable for this analysis."
+
+    # ── Source 3: SEC EDGAR Financial Intelligence ────────────────────────────
+    financial_intel = ""
+    try:
+        from procurement.sec_edgar import get_financial_context
+        financial_intel = get_financial_context([c.split(" (")[0] for c in MAJOR_COMPETITORS if c.split(" (")[0] in ["Accenture", "IBM", "Cognizant", "Infosys", "Wipro"]])
+        logger.info(f"Agent 4: SEC EDGAR financials — {len(financial_intel):,} chars")
+    except Exception as e:
+        logger.warning(f"Agent 4: SEC EDGAR unavailable ({e})")
+        financial_intel = "Financial filing data unavailable."
+
+    # ── Source 4: Job Posting Intelligence ────────────────────────────────────
+    job_intel = ""
+    try:
+        from procurement.job_intel import get_job_intel_context
+        job_intel = get_job_intel_context(
+            competitors=[c.split(" (")[0] for c in MAJOR_COMPETITORS[:4]],
+            client=decomposition.client_name,
+            geography=geography,
+            industry=decomposition.industry,
+        )
+        logger.info(f"Agent 4: job intel — {len(job_intel):,} chars")
+    except Exception as e:
+        logger.warning(f"Agent 4: job intel unavailable ({e})")
+        job_intel = "Job posting intelligence unavailable."
+
+    # ── Synthesis ─────────────────────────────────────────────────────────────
+    logger.info(f"Agent 4: synthesising all intelligence into competitive strategy")
+
     response = client.beta.chat.completions.parse(
         model=MODEL,
         reasoning_effort=REASONING_MEDIUM,
@@ -154,17 +219,37 @@ def run_competitor_shadow(
                 + "\n".join([f"- {d}" for d in decomposition.hard_disqualifiers])
                 + "\n\n"
 
-                f"OUR WIN THEMES (from past deals):\n"
+                f"OUR WIN THEMES:\n"
                 + ("\n".join([f"- {t}" for t in win_intel.recommended_win_themes]) if win_intel else "- Not yet available")
                 + "\n\n"
 
-                f"REAL-TIME COMPETITOR INTELLIGENCE (gathered moments ago from web):\n"
-                f"{combined_intel}\n\n"
+                f"{'='*70}\n"
+                f"SOURCE 1: REAL-TIME WEB INTELLIGENCE (news + jobs + financials)\n"
+                f"{'='*70}\n"
+                f"{combined_web}\n\n"
 
-                f"Based on this REAL-TIME intelligence, model how each competitor "
-                f"will approach this specific bid. Find the ONE killer differentiator "
-                f"that beats all of them — grounded in what you see happening RIGHT NOW "
-                f"in the market, not generic platitudes.\n"
+                f"{'='*70}\n"
+                f"SOURCE 2: PUBLIC CONTRACT AWARDS (real prices, real winners)\n"
+                f"{'='*70}\n"
+                f"{procurement_intel}\n\n"
+
+                f"{'='*70}\n"
+                f"SOURCE 3: SEC EDGAR FINANCIAL FILINGS (real margins = pricing floor)\n"
+                f"{'='*70}\n"
+                f"{financial_intel}\n\n"
+
+                f"{'='*70}\n"
+                f"SOURCE 4: JOB POSTING INTELLIGENCE (hiring = bidding signal)\n"
+                f"{'='*70}\n"
+                f"{job_intel}\n\n"
+
+                f"CRITICAL ANALYSIS RULES:\n"
+                f"- Operating margin from SEC filings = their PRICING FLOOR (can't go below)\n"
+                f"- Active hiring in this geography = HIGH likelihood to bid\n"
+                f"- Public contract values = REAL price anchors (not estimates)\n"
+                f"- Revenue per employee = their implied rate card\n\n"
+                f"For the killer_differentiator: what ONE thing can we do that NONE "
+                f"of them can match? Base it on evidence from ALL FOUR sources.\n\n"
                 f"Return a complete CompetitorShadow JSON."
             )},
         ],
