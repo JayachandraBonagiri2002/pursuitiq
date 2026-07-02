@@ -17,6 +17,11 @@ Endpoints:
     GET  /api/pursuits                   → List all pursuits
     GET  /api/pursuit/{rfp_id}/export    → Download proposal as DOCX
 
+    # Outcome Tracking & Learning
+    POST /api/pursuit/{rfp_id}/outcome   → Mark pursuit as WON/LOST (re-ingests for learning)
+    GET  /api/pursuits/completed         → List all completed pursuits with outcomes
+    GET  /api/intelligence/stats         → Aggregate intelligence stats
+
     # Knowledge Base Management
     POST /api/knowledge/upload           → Upload a proposal to knowledge base
     GET  /api/knowledge/documents        → List all documents in knowledge base
@@ -41,8 +46,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ── In-memory state ──────────────────────────────────────────────────────────
-pursuit_store: dict[str, dict[str, Any]] = {}
+# ── Persistent state (survives restarts, shared across instances) ─────────────
+from persistent_store import PursuitStore
+pursuit_store = PursuitStore()
 vector_store_id: str = ""
 
 
@@ -295,6 +301,81 @@ async def reindex_knowledge_base(background_tasks: BackgroundTasks):
 
 
 # ══════════════════════════════════════════════════════════════════════════════
+# OUTCOME TRACKING & LEARNING (auto-learning feedback loop)
+# ══════════════════════════════════════════════════════════════════════════════
+
+class OutcomeRequest(BaseModel):
+    outcome: str  # "WON" or "LOST"
+    notes: Optional[str] = None
+
+
+@app.post("/api/pursuit/{rfp_id}/outcome")
+async def record_outcome(rfp_id: str, request: OutcomeRequest):
+    """
+    Record whether a proposal WON or LOST.
+    Re-ingests the pursuit into the knowledge base with outcome data
+    so future runs learn which strategies actually work.
+    """
+    if rfp_id not in pursuit_store:
+        raise HTTPException(404, f"No pursuit found with ID: {rfp_id}")
+
+    outcome = request.outcome.upper()
+    if outcome not in ("WON", "LOST"):
+        raise HTTPException(400, "Outcome must be 'WON' or 'LOST'")
+
+    pursuit_store.mark_outcome(rfp_id, outcome)
+    if request.notes:
+        pursuit_store.update_pursuit(rfp_id, outcome_notes=request.notes)
+
+    # Re-ingest with outcome so the knowledge base learns what wins
+    reingest_result = None
+    try:
+        from knowledge_base.auto_ingest import ingest_with_outcome
+        reingest_result = ingest_with_outcome(pursuit_store[rfp_id], outcome)
+    except Exception as e:
+        logger.warning(f"Outcome re-ingest failed: {e}")
+
+    return {
+        "rfp_id": rfp_id,
+        "outcome": outcome,
+        "reingested": reingest_result is not None,
+        "message": f"Marked as {outcome}. Knowledge base updated — future proposals will learn from this.",
+    }
+
+
+@app.get("/api/intelligence/stats")
+async def get_intelligence_stats():
+    """
+    Get aggregate intelligence stats — how much the system has learned.
+    """
+    stats = pursuit_store.get_stats()
+    return {
+        **stats,
+        "message": f"System has processed {stats['total_pursuits']} pursuits. "
+                   f"Knowledge base grows with every run.",
+    }
+
+
+@app.get("/api/pursuits/completed")
+async def list_completed_pursuits():
+    """List all completed pursuits with their outcomes."""
+    completed = pursuit_store.get_completed()
+    return [
+        {
+            "rfp_id": p["rfp_id"],
+            "filename": p.get("filename"),
+            "status": p["status"],
+            "outcome": p.get("outcome", "PENDING"),
+            "win_probability": p.get("win_probability"),
+            "recommended_price": p.get("recommended_price"),
+            "auto_ingested": p.get("auto_ingested", False),
+            "updated_at": p.get("updated_at"),
+        }
+        for p in completed
+    ]
+
+
+# ══════════════════════════════════════════════════════════════════════════════
 # PROCUREMENT DATA ENDPOINT (NEW — query public contract databases)
 # ══════════════════════════════════════════════════════════════════════════════
 
@@ -395,6 +476,7 @@ async def _reindex_all():
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
 def _empty_pursuit(rfp_id: str, filename: str) -> dict:
+    from datetime import datetime, timezone
     return {
         "rfp_id": rfp_id,
         "filename": filename,
@@ -411,5 +493,10 @@ def _empty_pursuit(rfp_id: str, filename: str) -> dict:
         "verification": None,
         "win_probability": None,
         "recommended_price": None,
+        "outcome": None,
+        "outcome_notes": None,
+        "auto_ingested": False,
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "updated_at": datetime.now(timezone.utc).isoformat(),
         "error": None,
     }

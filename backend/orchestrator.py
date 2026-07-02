@@ -250,6 +250,18 @@ def run_full_pursuit(
 
         logger.info(f"[{rfp_id}] ══ PURSUIT COMPLETE ══ Total pipeline finished")
 
+        # ══════════════════════════════════════════════════════════════════════
+        # AUTO-LEARN: Ingest results into knowledge base for future runs
+        # ══════════════════════════════════════════════════════════════════════
+        try:
+            from knowledge_base.auto_ingest import auto_ingest_pursuit
+            ingest_result = auto_ingest_pursuit(pursuit_store[rfp_id])
+            if ingest_result:
+                pursuit_store[rfp_id]["auto_ingested"] = True
+                logger.info(f"[{rfp_id}] Auto-ingested into knowledge base — system is now smarter")
+        except Exception as e:
+            logger.warning(f"[{rfp_id}] Auto-ingest failed (non-fatal): {e}")
+
     except Exception as e:
         logger.exception(f"[{rfp_id}] Pipeline failed at {pursuit_store[rfp_id].get('current_agent')}")
         pursuit_store[rfp_id]["status"] = "error"
