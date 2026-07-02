@@ -127,8 +127,9 @@ async def upload_rfp(
     file: UploadFile = File(...),
 ):
     filename_lower = file.filename.lower()
-    if not (filename_lower.endswith(".pdf") or filename_lower.endswith(".docx")):
-        raise HTTPException(400, "Only PDF and DOCX files are accepted.")
+    valid_extensions = (".pdf", ".docx", ".pptx", ".ppt")
+    if not any(filename_lower.endswith(ext) for ext in valid_extensions):
+        raise HTTPException(400, "Supported formats: PDF, DOCX, PPTX")
 
     rfp_id = "RFP-" + str(uuid.uuid4())[:6].upper()
     file_bytes = await file.read()
@@ -438,9 +439,13 @@ async def _run_demo_pipeline(rfp_id: str):
 
 async def _run_upload_pipeline(rfp_id: str, file_bytes: bytes, filename: str):
     try:
-        if filename.lower().endswith(".docx"):
+        ext = filename.lower().rsplit(".", 1)[-1] if "." in filename else ""
+        if ext == "docx":
             from openai_client import extract_text_from_docx
             rfp_text = extract_text_from_docx(file_bytes)
+        elif ext in ("pptx", "ppt"):
+            from knowledge_base.document_parser import get_full_text
+            rfp_text = get_full_text(file_bytes, filename)
         else:
             from openai_client import extract_text_from_pdf
             rfp_text = extract_text_from_pdf(file_bytes)
