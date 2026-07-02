@@ -27,7 +27,8 @@ export default function HomePage() {
 
   const uploadFile = async (file: File) => {
     const name = file.name.toLowerCase();
-    if (!name.endsWith(".pdf") && !name.endsWith(".docx")) { setError("Please upload a PDF or DOCX file."); return; }
+    const validExts = [".pdf", ".docx", ".pptx", ".ppt"];
+    if (!validExts.some(ext => name.endsWith(ext))) { setError("Please upload a PDF, DOCX, or PPTX file."); return; }
     setLoading(true);
     setError("");
     const form = new FormData();
@@ -137,9 +138,9 @@ export default function HomePage() {
                         : "border-gray-700 hover:border-gray-500 bg-gray-900/30"
                       }`}
         >
-          <p className="text-gray-300 font-medium">Drop your RFP here (PDF or DOCX)</p>
+          <p className="text-gray-300 font-medium">Drop your RFP here (PDF, DOCX, or PPTX)</p>
           <p className="text-gray-600 text-sm mt-1">or click to browse</p>
-          <input ref={fileRef} type="file" accept=".pdf,.docx" className="hidden" onChange={handleFileChange} />
+          <input ref={fileRef} type="file" accept=".pdf,.docx,.pptx,.ppt" className="hidden" onChange={handleFileChange} />
         </div>
 
         {error && (

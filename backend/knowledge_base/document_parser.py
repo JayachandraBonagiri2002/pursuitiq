@@ -158,10 +158,17 @@ def _extract_pptx(file_bytes: bytes) -> list[dict]:
 
         for shape in slide.shapes:
             if shape.has_text_frame:
+                is_title = shape == slide.shapes.title if slide.shapes.title else False
+                if not is_title:
+                    try:
+                        is_title = shape.is_placeholder and shape.placeholder_format.idx == 0
+                    except Exception:
+                        is_title = False
+
                 for para in shape.text_frame.paragraphs:
                     text = para.text.strip()
                     if text:
-                        if shape == slide.shapes.title or (hasattr(shape, 'placeholder_format') and shape.placeholder_format and shape.placeholder_format.idx == 0):
+                        if is_title:
                             slide_title = text
                         else:
                             slide_text.append(text)
