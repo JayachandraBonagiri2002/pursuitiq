@@ -35,17 +35,18 @@ def extract_text_from_pdf(pdf_bytes: bytes) -> str:
     """
     Extract all text from a PDF binary.
     Adds [PAGE N] markers so Agent 1 can cite page numbers in its output.
+    Uses pypdf (pure Python) to avoid DLL loading issues on Windows.
     """
-    import fitz  # PyMuPDF
-    doc = fitz.open(stream=pdf_bytes, filetype="pdf")
+    import io
+    from pypdf import PdfReader
+
+    reader = PdfReader(io.BytesIO(pdf_bytes))
     pages = []
-    for page_num, page in enumerate(doc, start=1):
-        text = page.get_text("text").strip()
-        if text:
-            pages.append(f"[PAGE {page_num}]\n{text}")
-    doc.close()
-    full_text = "\n\n".join(pages)
-    return full_text
+    for page_num, page in enumerate(reader.pages, start=1):
+        text = page.extract_text()
+        if text and text.strip():
+            pages.append(f"[PAGE {page_num}]\n{text.strip()}")
+    return "\n\n".join(pages)
 
 
 def extract_text_from_docx(docx_bytes: bytes) -> str:

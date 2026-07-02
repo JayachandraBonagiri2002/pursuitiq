@@ -33,9 +33,9 @@ def extract_text(file_bytes: bytes, filename: str) -> list[dict]:
 
 def _extract_pdf(file_bytes: bytes) -> list[dict]:
     """Extract text from PDF with page markers, grouped by detected sections."""
-    import fitz
+    from pypdf import PdfReader
 
-    doc = fitz.open(stream=file_bytes, filetype="pdf")
+    reader = PdfReader(io.BytesIO(file_bytes))
     chunks = []
     current_section = "Cover / Introduction"
     current_content = []
@@ -49,9 +49,9 @@ def _extract_pdf(file_bytes: bytes) -> list[dict]:
         "technical approach", "management approach", "staffing",
     ]
 
-    for page_num, page in enumerate(doc, start=1):
-        text = page.get_text("text").strip()
-        if not text:
+    for page_num, page in enumerate(reader.pages, start=1):
+        text = page.extract_text()
+        if not text or not text.strip():
             continue
 
         lines = text.split("\n")
@@ -82,14 +82,10 @@ def _extract_pdf(file_bytes: bytes) -> list[dict]:
             "page": current_page,
         })
 
-    doc.close()
-
     if not chunks:
         all_text = ""
-        doc2 = fitz.open(stream=file_bytes, filetype="pdf")
-        for page in doc2:
-            all_text += page.get_text("text") + "\n"
-        doc2.close()
+        for page in reader.pages:
+            all_text += (page.extract_text() or "") + "\n"
         chunks = [{"section": "Full Document", "content": all_text.strip(), "page": 1}]
 
     return chunks
