@@ -22,7 +22,7 @@ REASONING_MEDIUM = "medium"
 REASONING_LOW = "low"
 
 # ── Pipeline concurrency (reduce if hitting rate limits) ─────────────────────
-MAX_PARALLEL_AGENTS = int(os.getenv("MAX_PARALLEL_AGENTS", "2"))
+MAX_PARALLEL_AGENTS = int(os.getenv("MAX_PARALLEL_AGENTS", "4"))
 
 # ── Vector Store (legacy deal corpus) ─────────────────────────────────────────
 VECTOR_STORE_ID = os.getenv("VECTOR_STORE_ID", "")
