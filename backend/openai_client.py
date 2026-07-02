@@ -1,18 +1,33 @@
 """
 openai_client.py — One shared OpenAI client for the whole app.
 Import get_client() wherever you need to call OpenAI.
+
+Rate limit handling:
+  - OpenAI SDK's built-in max_retries handles 429/5xx with exponential backoff
+  - Reduced parallel concurrency to avoid hitting TPM/RPM limits
+  - All agents automatically benefit — no per-file changes needed
 """
 
+import logging
 import openai
 from config import OPENAI_API_KEY
 
+logger = logging.getLogger(__name__)
+
 _client: openai.OpenAI | None = None
+
+MAX_RETRIES = 8
+
 
 def get_client() -> openai.OpenAI:
     """Returns the shared OpenAI client. Creates it once, reuses forever."""
     global _client
     if _client is None:
-        _client = openai.OpenAI(api_key=OPENAI_API_KEY)
+        _client = openai.OpenAI(
+            api_key=OPENAI_API_KEY,
+            max_retries=MAX_RETRIES,
+            timeout=180.0,
+        )
     return _client
 
 

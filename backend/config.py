@@ -15,10 +15,14 @@ if not OPENAI_API_KEY:
 
 # ── Models ────────────────────────────────────────────────────────────────────
 MODEL = os.getenv("MODEL", "gpt-5.5")
+MODEL_LIGHT = os.getenv("MODEL_LIGHT", "gpt-4.1-mini")
 
 REASONING_HIGH = "high"
 REASONING_MEDIUM = "medium"
 REASONING_LOW = "low"
+
+# ── Pipeline concurrency (reduce if hitting rate limits) ─────────────────────
+MAX_PARALLEL_AGENTS = int(os.getenv("MAX_PARALLEL_AGENTS", "2"))
 
 # ── Vector Store (legacy deal corpus) ─────────────────────────────────────────
 VECTOR_STORE_ID = os.getenv("VECTOR_STORE_ID", "")

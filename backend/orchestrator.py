@@ -29,6 +29,7 @@ from agents.agent3_client_intel import run_client_intel
 from agents.agent4_competitor import run_competitor_shadow
 from agents.agent5_pricing import run_solution_and_pricing
 from agents.agent6_draft import run_draft_generator
+from config import MAX_PARALLEL_AGENTS
 
 logger = logging.getLogger(__name__)
 
@@ -120,7 +121,7 @@ def run_full_pursuit(
             knowledge_ctx = _get_knowledge_context(decomposition)
             return generate_deal_fingerprint(decomposition, procurement_ctx, knowledge_ctx)
 
-        with ThreadPoolExecutor(max_workers=4) as executor:
+        with ThreadPoolExecutor(max_workers=MAX_PARALLEL_AGENTS) as executor:
             future_win = executor.submit(_run_agent2)
             future_client = executor.submit(_run_agent3)
             future_comp = executor.submit(_run_agent4)
