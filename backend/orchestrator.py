@@ -80,16 +80,33 @@ def run_full_pursuit(
             except Exception:
                 return []
 
-        with ThreadPoolExecutor(max_workers=4) as executor:
+        def _prefetch_job_intel():
+            """Pre-fetch job intelligence for all major competitors."""
+            try:
+                from procurement.job_intel import get_job_intel_context
+                # Use generic initial params - will be refined once RFP is decomposed
+                return get_job_intel_context(
+                    competitors=["Accenture", "TCS", "Infosys", "Capgemini"],
+                    client="",  # Will be filled after decomposition
+                    geography="United States",  # Default, will be refined
+                    industry="IT Services"  # Default, will be refined
+                )
+            except Exception as e:
+                logger.warning(f"Pre-fetch job intel failed: {e}")
+                return ""
+
+        with ThreadPoolExecutor(max_workers=5) as executor:
             future_agent1 = executor.submit(decompose_rfp, rfp_text, rfp_id)
             future_fin = executor.submit(_prefetch_financial)
             future_uk = executor.submit(_prefetch_procurement_uk)
             future_us = executor.submit(_prefetch_procurement_us)
+            future_jobs = executor.submit(_prefetch_job_intel)
 
             decomposition = future_agent1.result()
             prefetched["financial"] = future_fin.result()
             prefetched["uk_contracts"] = future_uk.result()
             prefetched["us_contracts"] = future_us.result()
+            prefetched["job_intel"] = future_jobs.result()
 
         update("agent1_complete", "agent1_decomposer",
                decomposition=decomposition.model_dump())
@@ -184,10 +201,24 @@ def run_full_pursuit(
 
         def _run_ghost_bid():
             from agents.ghost_bid import generate_ghost_bids
+            # Fetch refined job intel based on actual RFP decomposition
+            job_intel_refined = ""
+            try:
+                from procurement.job_intel import get_job_intel_context
+                job_intel_refined = get_job_intel_context(
+                    competitors=["Accenture", "TCS", "Infosys", "Capgemini"],
+                    client=decomposition.client_name,
+                    geography=", ".join(decomposition.geography),
+                    industry=decomposition.industry
+                )
+            except Exception as e:
+                logger.warning(f"Failed to fetch refined job intel for ghost bid: {e}")
+                job_intel_refined = prefetched.get("job_intel", "")
+
             return generate_ghost_bids(
                 decomposition, competitor,
                 prefetched.get("financial", ""),
-                ""  # Skip redundant job intel — Agent 4 already has it
+                job_intel_refined
             )
 
         with ThreadPoolExecutor(max_workers=2) as executor:

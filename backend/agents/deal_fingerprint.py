@@ -136,7 +136,7 @@ def generate_deal_fingerprint(
                 {"role": "user", "content": user_message},
             ],
             response_format=DealFingerprint,
-            max_completion_tokens=16000,
+            max_completion_tokens=64000,
         )
 
         result: DealFingerprint = response.choices[0].message.parsed

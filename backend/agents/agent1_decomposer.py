@@ -92,7 +92,7 @@ def decompose_rfp(rfp_text: str, rfp_id: str | None = None) -> RFPDecomposition:
             )},
         ],
         response_format=RFPDecomposition,
-        max_completion_tokens=16000,
+        max_completion_tokens=64000,
     )
 
     result: RFPDecomposition = response.choices[0].message.parsed

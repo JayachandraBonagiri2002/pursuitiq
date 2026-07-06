@@ -54,7 +54,39 @@ class GhostBidReport(BaseModel):
 # System Prompt
 # ═══════════════════════════════════════════════════════════════════
 
-SYSTEM_PROMPT = """You are a red team bid strategist. For each competitor, you must SIMULATE their likely proposal as if you were their bid director. Use the financial data to determine their pricing floor (operating margin = minimum they need). Use job posting data to confirm if they're staffing up for this bid. Be specific - predict actual numbers, not ranges where possible."""
+SYSTEM_PROMPT = """You are a red team bid strategist with access to LIVE MARKET INTELLIGENCE.
+
+CRITICAL ACCURACY REQUIREMENTS:
+1. Use ONLY real data from the sources provided (SEC EDGAR financials, job postings, procurement history)
+2. NEVER fabricate competitor capabilities, pricing, or positioning
+3. If data is insufficient for a competitor, state "insufficient data" rather than guessing
+4. Ground ALL predictions in evidence - cite the source (financial filing, job posting, contract award)
+
+For each competitor, you must SIMULATE their likely proposal as if you were their bid director:
+
+PRICING PREDICTIONS:
+- Operating margin from SEC filings = their PRICING FLOOR (they cannot go below cost + margin)
+- Example: If Accenture shows 15% operating margin, their minimum price = cost / 0.85
+- Use actual contract values from procurement data to anchor price predictions
+- If no financial data available, state "pricing prediction not possible without financial data"
+
+BID LIKELIHOOD:
+- Active hiring in the RFP's geography + relevant skills = HIGH likelihood to bid
+- Recent similar contract wins in the region = HIGH likelihood
+- No hiring activity + no recent wins = MEDIUM or LOW likelihood
+- NEVER say "will definitely bid" without concrete evidence
+
+SOLUTION APPROACH:
+- Base on their known strengths from real contract awards
+- Reference actual technologies they've used in similar deals
+- If no similar deals found, say "approach uncertain - no similar contracts found"
+
+VULNERABILITIES:
+- Recent layoffs, leadership changes, missed quarters (from financial data)
+- Technology gaps (absence of relevant skills in job postings)
+- Geographic weaknesses (no recent contracts in this region)
+
+Be specific with numbers where data supports it. Use ranges only when data is limited."""
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -129,9 +161,38 @@ def generate_ghost_bids(
         f"{'='*70}\n"
         f"{job_intel_context}\n\n"
 
-        f"For EACH competitor, simulate their complete bid proposal.\n"
-        f"Be their bid director — what would YOU propose if you worked there?\n"
-        f"Then tell us exactly how to beat each ghost bid.\n\n"
+        f"{'='*70}\n"
+        f"ANALYSIS INSTRUCTIONS - USE REAL DATA:\n"
+        f"{'='*70}\n"
+        f"For EACH competitor listed above, simulate their complete bid proposal:\n\n"
+
+        f"1. PRICING PREDICTION:\n"
+        f"   - Use their SEC EDGAR operating margin to calculate pricing floor\n"
+        f"   - Cross-reference with actual contract values they've won (from procurement data)\n"
+        f"   - If operating margin is 15%, minimum price = total_cost / (1 - 0.15)\n"
+        f"   - Cite the source: 'Based on SEC filing showing 15% margin' or 'Based on similar contract at $X'\n"
+        f"   - If no data: state 'Insufficient financial data for pricing prediction'\n\n"
+
+        f"2. LIKELIHOOD TO BID:\n"
+        f"   - HIGH: if job postings show hiring in {', '.join(decomposition.geography)} for relevant skills\n"
+        f"   - HIGH: if they have recent contract wins in this geography/industry\n"
+        f"   - MEDIUM: if they have capability but no recent local activity\n"
+        f"   - LOW: if no hiring activity AND no recent wins\n"
+        f"   - Cite evidence: 'Job postings show 15 roles in {decomposition.geography[0]}' or 'Won 3 similar contracts in 2024'\n\n"
+
+        f"3. SOLUTION APPROACH:\n"
+        f"   - Base on technologies/approaches from their actual contract wins\n"
+        f"   - Reference specific methodologies from their job postings\n"
+        f"   - If no data: state 'Approach unclear - limited contract history'\n\n"
+
+        f"4. VULNERABILITIES:\n"
+        f"   - Recent financial issues (from SEC filings: revenue decline, margin compression)\n"
+        f"   - Geographic gaps (no offices or recent contracts in target region)\n"
+        f"   - Capability gaps (no job postings for required skills)\n"
+        f"   - Must be based on evidence provided above\n\n"
+
+        f"Be their bid director — what would YOU propose if you worked there and had this data?\n"
+        f"Then tell us exactly how to beat each ghost bid based on their specific vulnerabilities.\n\n"
         f"Return a complete GhostBidReport JSON."
     )
 
@@ -144,7 +205,7 @@ def generate_ghost_bids(
                 {"role": "user", "content": user_message},
             ],
             response_format=GhostBidReport,
-            max_completion_tokens=16000,
+            max_completion_tokens=64000,
         )
 
         result: GhostBidReport = response.choices[0].message.parsed

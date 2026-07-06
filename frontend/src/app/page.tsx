@@ -79,24 +79,6 @@ export default function HomePage() {
         <p className="text-2xl text-gray-300 font-light">
           Agentic Pursuit Intelligence Platform
         </p>
-        <p className="text-gray-500 text-lg max-w-xl mx-auto">
-          6 AI agents turn a 200-page RFP into a winning pursuit strategy — in 12 minutes,
-          not 6 weeks.
-        </p>
-      </div>
-
-      <div className="flex gap-8 mb-12">
-        {[
-          { value: "12 min", label: "vs 6 weeks manually" },
-          { value: "6",      label: "specialized AI agents" },
-          { value: "3",      label: "intelligence layers" },
-          { value: "3",      label: "procurement databases" },
-        ].map(m => (
-          <div key={m.label} className="text-center">
-            <div className="text-3xl font-bold text-purple-400">{m.value}</div>
-            <div className="text-xs text-gray-500 mt-1">{m.label}</div>
-          </div>
-        ))}
       </div>
 
       <div className="w-full max-w-xl space-y-4">

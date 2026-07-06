@@ -53,14 +53,19 @@ what ONE thing would we include that NONE of them can match?"
 Ground everything in the evidence provided. Mark confidence level on predictions.
 Return ONLY valid JSON matching the CompetitorShadow schema.
 
-ANTI-HALLUCINATION RULES:
+ANTI-HALLUCINATION RULES - ENFORCE STRICTLY:
 - Predicted price ranges MUST be grounded in: SEC EDGAR margins OR public contract values OR both
 - If SEC EDGAR shows 15% operating margin, pricing floor = cost / (1 - 0.15). Use this math.
-- likelihood_to_bid: "high" ONLY if job postings confirm hiring in this geography for this skill set
+- likelihood_to_bid: "high" ONLY if job postings confirm hiring in this geography for this skill set OR recent contract wins in region
 - NEVER claim a competitor "will definitely bid" without evidence (hiring, recent similar wins, or public statements)
 - If financial data is unavailable for a competitor, say "financial data unavailable" — don't estimate margins
 - The killer_differentiator must be something NO competitor has. If multiple could match it, it's not a differentiator.
-- Every claim about a competitor must cite its source (web search, SEC filing, public contract, or job posting)"""
+- Every claim about a competitor must cite its source (web search, SEC filing, public contract, or job posting)
+- When using public contract data, cite specific contract titles and values (e.g., "Won £2M digital transformation contract, 2024")
+- If a competitor has NO recent contracts in the target geography, explicitly state "No recent contract wins in [geography]"
+- Confidence level must reflect data quality: high=multiple sources agree, medium=limited data, low=extrapolating from weak signals
+- For predicted pricing, show the calculation: "Revenue/employee = $X, margin = Y%, therefore estimated bid = $Z"
+- NEVER invent competitor capabilities - only list what's proven by contracts won, job postings, or web search results"""
 
 
 def _search_competitor_full_intel(client, competitor: str, rfp_context: str, geography: str) -> str:
@@ -137,17 +142,91 @@ def run_competitor_shadow(
 
     logger.info(f"Agent 4: web intel gathered — {len(combined_web):,} chars")
 
-    # ── Source 2: Public procurement data ─────────────────────────────────────
+    # ── Source 2: Public procurement data (ENHANCED - Europe + US federal) ─────
     procurement_intel = ""
     try:
-        from procurement.ted_europe import get_procurement_context
-        procurement_intel = get_procurement_context(
+        from procurement.ted_europe import get_competitor_wins, get_procurement_context
+        from procurement.sam_gov import get_vendor_federal_contracts
+
+        # Get general procurement context
+        general_context = get_procurement_context(
             client_name=decomposition.client_name,
             industry=decomposition.industry,
             geography=decomposition.geography,
             competitors=[c.split(" (")[0] for c in MAJOR_COMPETITORS],
         )
-        logger.info(f"Agent 4: procurement data — {len(procurement_intel):,} chars")
+
+        # Get specific wins for each competitor from BOTH Europe (TED) and US (SAM.gov)
+        competitor_wins_europe = {}
+        competitor_wins_us = {}
+
+        def _get_europe_wins(comp_name):
+            try:
+                wins = get_competitor_wins(
+                    competitor_name=comp_name,
+                    industry_keywords=[decomposition.industry, "IT", "digital"],
+                    max_results=8
+                )
+                return comp_name, wins
+            except Exception as e:
+                logger.warning(f"Failed to get Europe wins for {comp_name}: {e}")
+                return comp_name, []
+
+        def _get_us_wins(comp_name):
+            try:
+                wins = get_vendor_federal_contracts(
+                    vendor_name=comp_name,
+                    max_results=8
+                )
+                return comp_name, wins
+            except Exception as e:
+                logger.warning(f"Failed to get US wins for {comp_name}: {e}")
+                return comp_name, []
+
+        # Fetch both Europe and US contracts in parallel
+        with ThreadPoolExecutor(max_workers=8) as executor:
+            europe_futures = [executor.submit(_get_europe_wins, c.split(" (")[0]) for c in MAJOR_COMPETITORS]
+            us_futures = [executor.submit(_get_us_wins, c.split(" (")[0]) for c in MAJOR_COMPETITORS]
+
+            for future in as_completed(europe_futures):
+                comp, wins = future.result()
+                if wins:
+                    competitor_wins_europe[comp] = wins
+
+            for future in as_completed(us_futures):
+                comp, wins = future.result()
+                if wins:
+                    competitor_wins_us[comp] = wins
+
+        # Format competitor-specific wins
+        wins_context = "\n\n### COMPETITOR-SPECIFIC CONTRACT WINS (REAL DATA):\n"
+
+        for comp in [c.split(" (")[0] for c in MAJOR_COMPETITORS]:
+            wins_context += f"\n**{comp}:**\n"
+
+            # Europe wins
+            if comp in competitor_wins_europe and competitor_wins_europe[comp]:
+                wins_context += f"  European Contracts:\n"
+                for w in competitor_wins_europe[comp][:4]:
+                    wins_context += f"    - {w.get('title', 'N/A')[:80]} | "
+                    wins_context += f"Value: {w.get('contract_value_eur', 'N/A')} EUR | "
+                    wins_context += f"Date: {w.get('publication_date', 'N/A')}\n"
+
+            # US wins
+            if comp in competitor_wins_us and competitor_wins_us[comp]:
+                wins_context += f"  US Federal Contracts:\n"
+                for w in competitor_wins_us[comp][:4]:
+                    wins_context += f"    - {w.get('title', 'N/A')[:80]} | "
+                    value_usd = w.get('contract_value_usd', 0)
+                    wins_context += f"Value: ${value_usd:,.0f} USD | " if value_usd else "Value: N/A | "
+                    wins_context += f"Date: {w.get('publication_date', 'N/A')}\n"
+
+            if comp not in competitor_wins_europe and comp not in competitor_wins_us:
+                wins_context += f"  No recent public contracts found in Europe or US databases\n"
+
+        total_wins = len(competitor_wins_europe) + len(competitor_wins_us)
+        procurement_intel = general_context + wins_context
+        logger.info(f"Agent 4: procurement data — {len(procurement_intel):,} chars, Europe: {len(competitor_wins_europe)}, US: {len(competitor_wins_us)} competitors with wins")
     except Exception as e:
         logger.warning(f"Agent 4: procurement data unavailable ({e})")
         procurement_intel = "Public procurement data unavailable for this analysis."
@@ -215,7 +294,7 @@ def run_competitor_shadow(
             )},
         ],
         response_format=CompetitorShadow,
-        max_completion_tokens=16000,
+        max_completion_tokens=64000,
     )
 
     result: CompetitorShadow = response.choices[0].message.parsed

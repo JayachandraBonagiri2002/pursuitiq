@@ -1,0 +1,472 @@
+{
+  "rfp_id": "RFP-DEMO-001",
+  "filename": "Nordbank_AG_RFP.pdf",
+  "status": "running",
+  "current_agent": "agent5_pricing",
+  "decomposition": {
+    "rfp_id": "RFP-DEMO-001",
+    "title": "REQUEST FOR PROPOSAL \u2014 IT SERVICES TRANSFORMATION",
+    "client_name": "Nordbank AG",
+    "industry": "Banking",
+    "estimated_deal_size_usd": "EUR 45\u201365 million over 5 years",
+    "contract_duration": "5 years",
+    "geography": [
+      "Germany",
+      "Poland",
+      "European Economic Area"
+    ],
+    "requirements": [
+      {
+        "req_id": "M1",
+        "text": "Minimum EUR 200M annual IT services revenue",
+        "category": "commercial",
+        "priority": "eliminatory",
+        "page_ref": "PAGE 5",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "M2",
+        "text": "Minimum 3 references from European banking clients",
+        "category": "commercial",
+        "priority": "eliminatory",
+        "page_ref": "PAGE 5",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "M3",
+        "text": "Azure Gold Partner status (mandatory)",
+        "category": "technical",
+        "priority": "eliminatory",
+        "page_ref": "PAGE 5",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": "Azure Gold Partner"
+      },
+      {
+        "req_id": "M4",
+        "text": "ISO 27001:2022 certification (mandatory)",
+        "category": "compliance",
+        "priority": "eliminatory",
+        "page_ref": "PAGE 5",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": "ISO 27001:2022"
+      },
+      {
+        "req_id": "M5",
+        "text": "Proposed Delivery Manager available full-time on-site in Frankfurt",
+        "category": "staffing",
+        "priority": "eliminatory",
+        "page_ref": "PAGE 5",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "T1",
+        "text": "COBOL to Java migration experience (minimum 500,000 lines migrated)",
+        "category": "technical",
+        "priority": "scored",
+        "page_ref": "PAGE 6",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "T2",
+        "text": "PCI-DSS Level 1 Service Provider certification",
+        "category": "compliance",
+        "priority": "scored",
+        "page_ref": "PAGE 6",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": "PCI-DSS Level 1"
+      },
+      {
+        "req_id": "T3",
+        "text": "Multi-cloud architecture capability (Azure primary, AWS DR)",
+        "category": "technical",
+        "priority": "scored",
+        "page_ref": "PAGE 6",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "T4",
+        "text": "DevSecOps implementation experience in regulated environments",
+        "category": "technical",
+        "priority": "scored",
+        "page_ref": "PAGE 6",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "A.1",
+        "text": "Must maintain a registered legal entity in the state of Hesse - failure to demonstrate at bid submission will result in automatic disqualification",
+        "category": "compliance",
+        "priority": "eliminatory",
+        "page_ref": "PAGE 9",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "Buried in Appendix A, non-negotiable requirement",
+        "jurisdiction_note": "Germany (Hesse)",
+        "cert_required": null
+      },
+      {
+        "req_id": "A.2",
+        "text": "All personnel with access to production systems or data must hold at least BPSS clearance",
+        "category": "compliance",
+        "priority": "must_have",
+        "page_ref": "PAGE 9",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "Appendix A compliance requirement",
+        "jurisdiction_note": null,
+        "cert_required": "BPSS"
+      },
+      {
+        "req_id": "A.3",
+        "text": "No subcontracting of core delivery activities without prior written approval",
+        "category": "compliance",
+        "priority": "must_have",
+        "page_ref": "PAGE 9",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "Appendix A restriction",
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "B.1",
+        "text": "All PII must remain within the EEA at all times - No exceptions",
+        "category": "compliance",
+        "priority": "eliminatory",
+        "page_ref": "PAGE 10",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "Data residency clause with no exceptions",
+        "jurisdiction_note": "EEA",
+        "cert_required": null
+      },
+      {
+        "req_id": "B.2",
+        "text": "Operational data may not be processed in India, Philippines, or South Africa without explicit written approval",
+        "category": "compliance",
+        "priority": "must_have",
+        "page_ref": "PAGE 10",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "Data processing restriction in Appendix B",
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "C.1",
+        "text": "Minimum 60% of programme staff by headcount must be EU-based",
+        "category": "staffing",
+        "priority": "must_have",
+        "page_ref": "PAGE 11",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "Staffing ratio requirement in Appendix C",
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "C.2",
+        "text": "Proposed Solution Architect must hold AWS Certified Solutions Architect \u2013 Professional AND Microsoft Azure Solutions Architect Expert",
+        "category": "staffing",
+        "priority": "must_have",
+        "page_ref": "PAGE 11",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "Dual certification requirement in Appendix C",
+        "jurisdiction_note": null,
+        "cert_required": "AWS Certified Solutions Architect \u2013 Professional, Azure Solutions Architect Expert"
+      },
+      {
+        "req_id": "C.3",
+        "text": "Assigned CISO must be a CISSP holder (active)",
+        "category": "staffing",
+        "priority": "must_have",
+        "page_ref": "PAGE 11",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "Certification requirement buried in Appendix C",
+        "jurisdiction_note": null,
+        "cert_required": "CISSP"
+      },
+      {
+        "req_id": "C.4",
+        "text": "Programme must include a qualified GDPR Data Protection Officer from Day 1",
+        "category": "staffing",
+        "priority": "must_have",
+        "page_ref": "PAGE 11",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "GDPR DPO requirement in Appendix C",
+        "jurisdiction_note": null,
+        "cert_required": "GDPR DPO"
+      }
+    ],
+    "evaluation_criteria": [
+      {
+        "name": "Technical Approach",
+        "weight_pct": 35.0,
+        "description": ""
+      },
+      {
+        "name": "Team Credentials and Certifications",
+        "weight_pct": 25.0,
+        "description": ""
+      },
+      {
+        "name": "Commercial Proposal",
+        "weight_pct": 20.0,
+        "description": ""
+      },
+      {
+        "name": "Implementation Methodology",
+        "weight_pct": 15.0,
+        "description": ""
+      },
+      {
+        "name": "Client References",
+        "weight_pct": 5.0,
+        "description": ""
+      }
+    ],
+    "key_dates": [
+      {
+        "event": "RFP Questions Deadline",
+        "date": "May 5, 2026"
+      },
+      {
+        "event": "Proposal Submission Deadline",
+        "date": "May 30, 2026 at 17:00 CET"
+      },
+      {
+        "event": "Shortlist Notification",
+        "date": "June 15, 2026"
+      },
+      {
+        "event": "Oral Presentations",
+        "date": "June 23\u201327, 2026"
+      },
+      {
+        "event": "Contract Award",
+        "date": "August 1, 2026"
+      }
+    ],
+    "ambiguities": [],
+    "hard_disqualifiers": [
+      "PAGE 5: M1 - Minimum EUR 200M annual IT services revenue (mandatory)",
+      "PAGE 5: M2 - Minimum 3 references from European banking clients (mandatory)",
+      "PAGE 5: M3 - Azure Gold Partner status (mandatory)",
+      "PAGE 5: M4 - ISO 27001:2022 certification (mandatory)",
+      "PAGE 5: M5 - Proposed Delivery Manager full-time in Frankfurt (mandatory)",
+      "PAGE 9: A.1 - Registered legal entity in Hesse (Failure = automatic disqualification)",
+      "PAGE 10: B.1 - PII must remain in EEA at all times (No exceptions)"
+    ],
+    "compliance_red_flags": [
+      "PAGE 9: A.2 - Mandatory BPSS clearance for all relevant personnel",
+      "PAGE 9: A.3 - Subcontracting restrictions on core delivery",
+      "PAGE 10: B.2 - Operational data processing outside EEA requires explicit approval",
+      "PAGE 11: C.1 - 60% EU-based staffing requirement",
+      "PAGE 11: C.2, C.3, C.4 - Multiple certification and DPO requirements"
+    ],
+    "total_requirements": 18,
+    "eliminatory_count": 7
+  },
+  "win_intel": {
+    "similar_deals": [
+      {
+        "deal_id": "DEAL-001",
+        "title": "Core Banking Modernisation",
+        "industry": "Banking",
+        "deal_size_usd": "$52M (\u2248\u20ac47M, within the \u20ac45\u201365M range)",
+        "outcome": "WON",
+        "similarity_pct": 92.0,
+        "why_relevant": "Matches required certifications, references, local entity in Frankfurt, same industry and size",
+        "key_lesson": "Securing a local Frankfurt entity and emphasizing compliance (BaFin BAIT, ISO 27001, Azure Partner) was decisive"
+      }
+    ],
+    "win_probability": 0.7,
+    "win_probability_rationale": "We closely match key requirements (local entity, certifications, references) and have proven success in a nearly identical German banking deal (DEAL-001). No public procurement data indicates a dominant competitor, so our baseline odds are moderately strong but not guaranteed.",
+    "capability_gaps": [],
+    "recommended_win_themes": [
+      "Emphasize Frankfurt-based legal entity to meet BaFin and local-entity requirements",
+      "Highlight proven COBOL-to-Java migration success with over 500k LOC converted",
+      "Showcase Azure Gold and ISO 27001:2022 credentials as table stakes",
+      "Stress local, EU-based staffing model to satisfy regulatory compliance",
+      "Demonstrate DevSecOps expertise in regulated environments with PCI-DSS capability"
+    ],
+    "risk_factors": [
+      "Failure to assign a qualified, full-time Delivery Manager on site in Frankfurt",
+      "Stringent European data sovereignty requirements (PII within EEA only)",
+      "Ensuring at least 60% of program staff are EU-based throughout the contract"
+    ],
+    "must_fix_before_bidding": [
+      "Confirm full-time Frankfurt Delivery Manager availability",
+      "Ensure all personnel with production access have requisite BPSS clearance",
+      "Verify compliance processes for strict EEA data sovereignty"
+    ]
+  },
+  "client_intel": {
+    "client_name": "Nordbank AG",
+    "industry": "Banking",
+    "cto_stated_priorities": [
+      "No public CTO statements found"
+    ],
+    "cfo_budget_signals": [],
+    "technology_debt_signals": [],
+    "recent_strategic_moves": [],
+    "unstated_needs": [],
+    "signals": [],
+    "recommended_narrative": "No relevant public information was found. Given the lack of data, it may be prudent to emphasize a broad IT transformation approach covering modernization, regulatory compliance, and cost-efficiency without specific references to stated priorities."
+  },
+  "competitor": {
+    "competitors": [
+      {
+        "competitor_name": "TCS",
+        "likelihood_to_bid": "medium",
+        "predicted_positioning": "Likely to emphasize global scale and proven ability to manage large-scale transitions, although no public references found for European banking specifically. Source: public contract data (US Federal).",
+        "predicted_price_range_usd": "Likely around $65M-$75M, referencing their US contract at $73.4M. (financial data unavailable, using public contract anchor)",
+        "their_strengths": [
+          "Demonstrated capability to handle high-value projects (US Federal $73.4M PDR contract)",
+          "Global delivery footprint, though no direct data on Europe BFSI involvement"
+        ],
+        "their_weaknesses": [
+          "No recent contract wins in Europe BFSI cited in available data",
+          "No job postings disclosed for Germany or Poland (lack of direct bidding signal)"
+        ],
+        "how_to_beat_them": [
+          "Emphasize local legal entity in Hesse and full-time onsite management (no proof TCS can fulfill this from data)",
+          "Show robust European banking references to surpass their unverified BFSI track record"
+        ]
+      },
+      {
+        "competitor_name": "Infosys",
+        "likelihood_to_bid": "medium",
+        "predicted_positioning": "May highlight automation and cost-efficiency, referencing smaller-scale US Federal database optimization deals. No confirmed European banking references from the data provided.",
+        "predicted_price_range_usd": "Potentially $40M-$60M, referencing smaller $2.48M US Federal deals (financial data unavailable, adjusted for larger scope). Confidence = medium due to limited contract data.",
+        "their_strengths": [
+          "Proven track record in database optimization (US Federal $2.48M DB2 project)",
+          "Global IT services brand with known BFSI capabilities (not directly shown in public data)"
+        ],
+        "their_weaknesses": [
+          "No disclosed large-deal references comparable to the project size in Europe",
+          "No job postings or local Germany-based hiring data from available sources"
+        ],
+        "how_to_beat_them": [
+          "Demonstrate deeper European banking experience and on-site presence in Frankfurt",
+          "Underscore proven credentials for multi-cloud architecture in regulated EU environments"
+        ]
+      },
+      {
+        "competitor_name": "Capgemini",
+        "likelihood_to_bid": "medium",
+        "predicted_positioning": "Likely to emphasize end-to-end transformation with cloud and testing capabilities, referencing US Federal contracts up to $63M. No direct evidence of recent deals in European banking from public data.",
+        "predicted_price_range_usd": "Likely $60M-$70M, referencing their $63M US Federal contract. (financial data unavailable, using public contract anchor)",
+        "their_strengths": [
+          "Capable of running large digital transformation engagements (proven by $63M CSS project for US Federal)",
+          "Broad consulting and system integration portfolio, known brand in Europe (not specifically evidenced here)"
+        ],
+        "their_weaknesses": [
+          "No recent contract wins in Germany or Poland from publicly available data",
+          "Unclear if they have the needed leadership on-site in Frankfurt (no job posting evidence)"
+        ],
+        "how_to_beat_them": [
+          "Highlight your dedicated COBOL-to-Java migration track record with references in Europe",
+          "Underscore immediate availability of a Frankfurt-based Delivery Manager"
+        ]
+      },
+      {
+        "competitor_name": "Accenture",
+        "likelihood_to_bid": "medium",
+        "predicted_positioning": "Likely to emphasize global transformation expertise, referencing very large-scale digital deals in US public sector, but no direct mention of European banking references in provided data.",
+        "predicted_price_range_usd": "Could span $60M-$80M given history of large US Federal contracts ($1.5B scale). (financial data unavailable, using contract scale for reference)",
+        "their_strengths": [
+          "Massive digital transformation experience (e.g., $1.5B TIVOD support for US government)",
+          "Strong brand with known BFSI credentials globally (not explicitly shown in this data)"
+        ],
+        "their_weaknesses": [
+          "No official confirmation of local Hesse entity or on-site resources in data",
+          "Generic large-scale approach might lack specialized local compliance references"
+        ],
+        "how_to_beat_them": [
+          "Highlight deeply specialized, localized compliance experience for German banking regulation",
+          "Underscore immediate readiness for full-time Frankfurt-based resource plus PCI-DSS and ISO 27001 synergy"
+        ]
+      }
+    ],
+    "recommended_differentiators": [
+      "Demonstrate robust local compliance coverage (Hesse legal entity, onsite Delivery Manager in Frankfurt).",
+      "Provide explicit references for EU bank COBOL-Java migrations to outmatch unverified BFSI credentials.",
+      "Emphasize multi-cloud architecture specifically tailored to EEA data residency requirements."
+    ],
+    "price_to_win_range_usd": "$50M-$70M (based on RFP EUR 45\u201365M, approximated in USD)",
+    "killer_differentiator": "An exclusive, fully operational COBOL-to-Java accelerator proven in European banking contexts with zero downtime compliance, pre-certified for EEA data residency\u2014a capability unmatched by competing systems integrators in the provided data."
+  },
+  "ghost_bids": null,
+  "deal_fingerprint": {
+    "fingerprint_id": "nordbank-it-transformation-2023",
+    "deal_archetype": "Large Banking IT Modernization \u2014 EU Regulated",
+    "similar_public_contracts": [
+      "US Federal: Enterprise IT Services \u2013 SAIC ($1.19B)",
+      "US Federal: Cloud Products & Tools \u2013 GDIT ($902M)",
+      "US Federal: IT Services for MDA \u2013 Northrop Grumman ($579M)"
+    ],
+    "predicted_competitors": [
+      "Accenture",
+      "TCS",
+      "Capgemini",
+      "IBM",
+      "Wipro",
+      "Atos"
+    ],
+    "predicted_winner_without_intervention": "Accenture",
+    "historical_win_rate_for_archetype": "Around 25%",
+    "critical_success_factors": [
+      "Demonstrable COBOL-to-Java migration experience at scale",
+      "Strict adherence to EEA data residency rules",
+      "Having a registered legal entity in Hesse and local on-site leadership",
+      "Relevant BFSI references (min. 3) in Europe",
+      "Azure Gold and ISO 27001:2022 credentials",
+      "Compliance with DevSecOps standards in regulated settings"
+    ],
+    "common_failure_modes": [
+      "Failing to demonstrate local legal entity in Hesse",
+      "Inadequate European banking references",
+      "Non-compliance with PII residency/EEA requirements",
+      "Underestimating local staffing (60% EU-based) and on-site presence",
+      "Insufficient or expired certifications (e.g. ISO 27001, PCI-DSS)"
+    ],
+    "recommended_bid_no_bid_decision": "BID WITH CONDITIONS",
+    "bid_conditions": [
+      "Formally confirm local entity registration in Hesse prior to bid submission",
+      "Guarantee full adherence to EEA data sovereignty (no offshore handling)",
+      "Staffing plan to ensure 60%+ EU-based resources and on-site delivery manager",
+      "Obtain or confirm PCI-DSS Level 1 certification if not current",
+      "Include robust COBOL-to-Java migration proof points in proposal"
+    ],
+    "confidence": 0.7
+  },
+  "solution_pricing": null,
+  "draft": null,
+  "verification": null,
+  "win_probability": 0.7,
+  "recommended_price": null,
+  "outcome": null,
+  "outcome_notes": null,
+  "auto_ingested": false,
+  "created_at": "2026-07-06T11:27:33.564197+00:00",
+  "updated_at": "2026-07-06T11:27:33.564211+00:00",
+  "error": null
+}

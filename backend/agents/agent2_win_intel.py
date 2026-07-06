@@ -171,7 +171,7 @@ def run_win_intel(decomposition: RFPDecomposition, vector_store_id: str) -> WinI
             )},
         ],
         response_format=WinIntelResult,
-        max_completion_tokens=16000,
+        max_completion_tokens=64000,
     )
 
     result: WinIntelResult = response.choices[0].message.parsed

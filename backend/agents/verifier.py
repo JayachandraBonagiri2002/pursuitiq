@@ -144,7 +144,7 @@ def verify_outputs(
             )},
         ],
         response_format=VerificationReport,
-        max_completion_tokens=16000,
+        max_completion_tokens=64000,
     )
 
     result: VerificationReport = response.choices[0].message.parsed

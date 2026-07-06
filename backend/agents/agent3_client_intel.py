@@ -106,7 +106,7 @@ def run_client_intel(decomposition: RFPDecomposition) -> ClientIntelligence:
             )},
         ],
         response_format=ClientIntelligence,
-        max_completion_tokens=16000,
+        max_completion_tokens=64000,
     )
 
     result: ClientIntelligence = synthesis_response.choices[0].message.parsed
