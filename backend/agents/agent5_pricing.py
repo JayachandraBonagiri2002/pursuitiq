@@ -117,9 +117,10 @@ def run_solution_and_pricing(
         logger.warning(f"Agent 5: procurement pricing fetch failed ({e})")
         procurement_pricing = "Public procurement pricing data unavailable."
 
-    # ── Source 3: Live cloud pricing (existing) ───────────────────────────────
-    logger.info(f"Agent 5: fetching real-time cloud pricing for {decomposition.geography}")
-    cloud_pricing = get_cloud_pricing_context(decomposition.geography)
+    # ── Source 3: Live cloud pricing (dynamic based on requirements) ────────
+    req_texts = [r.text for r in decomposition.requirements[:15]]
+    logger.info(f"Agent 5: fetching live cloud pricing for {decomposition.geography} based on {len(req_texts)} requirements")
+    cloud_pricing = get_cloud_pricing_context(decomposition.geography, requirements=req_texts)
 
     # ── Synthesis ─────────────────────────────────────────────────────────────
     response = client.beta.chat.completions.parse(

@@ -5,6 +5,13 @@ import { useParams } from "next/navigation";
 
 const API = "http://localhost:8000";
 
+function fmtPrice(usd: number): string {
+  if (usd >= 1e9) return `$${(usd / 1e9).toFixed(1)}B`;
+  if (usd >= 1e6) return `$${(usd / 1e6).toFixed(1)}M`;
+  if (usd >= 1e3) return `$${(usd / 1e3).toFixed(0)}K`;
+  return `$${usd.toFixed(0)}`;
+}
+
 const AGENTS = [
   { id: "agent1_decomposer",  name: "RFP Decomposer",    description: "Extracting all requirements & hidden disqualifiers" },
   { id: "agent2_win_intel",   name: "Win Intelligence",  description: "3-layer intel: knowledge base + procurement + deal corpus" },
@@ -185,7 +192,7 @@ export default function PursuitPage() {
           <MetricCard label="Requirements" value={decomp?.total_requirements ?? "—"} />
           <MetricCard label="Disqualifiers" value={decomp?.hard_disqualifiers?.length ?? "—"} accent="red" />
           <MetricCard label="Win Probability" value={win ? `${Math.round(win.win_probability > 1 ? win.win_probability : win.win_probability * 100)}%` : "—"} accent={(win?.win_probability > 1 ? win.win_probability : (win?.win_probability ?? 0) * 100) >= 40 ? "green" : "red"} />
-          <MetricCard label="Recommended Price" value={pricing ? `$${(pricing.pricing.recommended_price_usd / 1e6).toFixed(0)}M` : "—"} accent="purple" />
+          <MetricCard label="Recommended Price" value={pricing ? fmtPrice(pricing.pricing.recommended_price_usd) : "—"} accent="purple" />
           <MetricCard label="Confidence" value={pursuit.verification ? `${Math.round(pursuit.verification.overall_confidence * 100)}%` : "—"} accent={pursuit.verification?.overall_confidence >= 0.7 ? "green" : "red"} />
         </div>
       )}
@@ -382,12 +389,12 @@ function PricingTab({ pricing }: any) {
     <div className="space-y-6">
       <div className="card border-purple-700 bg-purple-950/20 text-center py-8">
         <p className="text-gray-500 text-sm mb-2">Recommended Bid Price</p>
-        <p className="text-5xl font-black text-purple-300">${(p.recommended_price_usd / 1e6).toFixed(1)}M</p>
+        <p className="text-5xl font-black text-purple-300">{fmtPrice(p.recommended_price_usd)}</p>
         <p className="text-gray-500 text-sm mt-2">{p.pricing_structure} &middot; {Math.round(p.margin_pct)}% margin &middot; {Math.round(p.confidence * 100)}% confidence</p>
         <div className="flex justify-center gap-8 mt-4">
-          <div><p className="text-xs text-gray-600">Low end</p><p className="text-gray-300 font-semibold">${(p.price_low_usd / 1e6).toFixed(1)}M</p></div>
-          <div><p className="text-xs text-gray-600">Price to win</p><p className="text-amber-300 font-semibold">${(p.price_to_win_usd / 1e6).toFixed(1)}M</p></div>
-          <div><p className="text-xs text-gray-600">High end</p><p className="text-gray-300 font-semibold">${(p.price_high_usd / 1e6).toFixed(1)}M</p></div>
+          <div><p className="text-xs text-gray-600">Low end</p><p className="text-gray-300 font-semibold">{fmtPrice(p.price_low_usd)}</p></div>
+          <div><p className="text-xs text-gray-600">Price to win</p><p className="text-amber-300 font-semibold">{fmtPrice(p.price_to_win_usd)}</p></div>
+          <div><p className="text-xs text-gray-600">High end</p><p className="text-gray-300 font-semibold">{fmtPrice(p.price_high_usd)}</p></div>
         </div>
       </div>
 
@@ -410,7 +417,7 @@ function PricingTab({ pricing }: any) {
             </div>
             <p className="text-gray-400 text-xs">{o.description}</p>
             <div className="border-t border-gray-800 pt-3">
-              <p className="text-2xl font-bold text-white">${(o.total_cost_usd / 1e6).toFixed(1)}M</p>
+              <p className="text-2xl font-bold text-white">{fmtPrice(o.total_cost_usd)}</p>
               <p className="text-xs text-gray-500">{o.delivery_months} months &middot; {Math.round(o.margin_pct)}% margin</p>
             </div>
             <p className="text-purple-300 text-xs italic">{o.rationale}</p>
