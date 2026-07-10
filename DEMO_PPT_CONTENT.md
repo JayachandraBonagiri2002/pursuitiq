@@ -1,196 +1,273 @@
-# PursuitIQ - Final Demo Presentation (3 Minutes, 4 Slides)
+# PursuitIQ — Final Demo Presentation (3 Minutes, 4 Slides)
 
 ---
 
-## SLIDE 1: Hook + Problem (30 seconds)
+## SLIDE 1 (0:00 - 0:30)
 
-**Title:** What If You Had 11 AI Researchers Working on Every Deal?
+**Title:** What If You Had 11 AI Researchers on Every Deal?
 
-**Visual idea:** Split screen — LEFT: one person drowning in tabs, PDFs, spreadsheets. RIGHT: PursuitIQ dashboard with all intelligence ready.
+**Visual:** Dark slide. Big bold text. No clutter.
 
-**3 lines only (big text, visual):**
+**On screen (3 lines only):**
 
-> Enterprise pursuit teams spend **3-5 days** gathering intelligence before they can even start writing.
+> Your pursuit team spends **3–5 days** on research before writing even one line.
 >
-> Client research. Competitor tracking. Pricing data. RFP analysis. All manual. All slow.
+> Client intel. Competitor tracking. Pricing. RFP decoding. All manual.
 >
-> **PursuitIQ gives your team 11 AI agents that do all of it in 12 minutes.**
+> **PursuitIQ: 11 AI agents. 12 minutes. Full pursuit intelligence.**
 
-**Speaker Notes:**
-"Imagine you're on a pursuit team. A new RFP drops — 80 pages. Before you can write a single line of your proposal, you need to research the client, figure out who you're competing against, gather current cloud pricing, and decode what the evaluators actually care about. That takes 3-5 days. PursuitIQ does all of that research in 12 minutes using 11 AI agents running in parallel on OpenAI. Let me show you."
-
----
-
-## SLIDE 2: What You Get in 12 Minutes (30 seconds)
-
-**Title:** 12 Minutes. Zero Manual Research. Full Intelligence.
-
-**Visual idea:** 6 cards/panels with icons — looks like a dashboard preview
-
-**Card 1 — RFP Decoded**
-Every requirement, disqualifier, evaluation weight, and deadline — extracted and structured. Nothing missed.
-
-**Card 2 — Client Signals (LIVE)**
-Agent searches the web RIGHT NOW — leadership changes, hiring patterns, earnings signals, tech strategy. Not last month's data.
-
-**Card 3 — Competitor Playbook**
-Who's bidding. What they've won recently. How they'll likely position. Simulated ghost bids showing their probable approach.
-
-**Card 4 — Live Pricing**
-Real-time Azure and AWS rates — pulled from APIs at the moment of analysis. 3 solution options with actual cost breakdowns.
-
-**Card 5 — Win Strategy**
-Where competitors are weak. What the client actually needs. Your killer differentiators. Suggested win themes.
-
-**Card 6 — Proposal Starting Point**
-All intelligence synthesized into a structured draft. Your writers start with substance, not a blank page.
-
-**Bottom line (on slide):**
-> "Your team still owns the strategy. Still writes the final proposal. But now they start with days of research already done."
-
-**Speaker Notes:**
-"In 12 minutes, your team gets six things. The RFP completely broken down — no hidden disqualifier missed. Client intelligence from the live web — not a static report, real-time signals. Competitor analysis with simulated approaches. Pricing built on today's Azure and AWS rates. A win strategy based on where competitors are weak. And a structured proposal starting point so your writers aren't starting from scratch. Your team still decides, still writes, still strategizes — they just start days ahead."
+**SAY THIS:**
+"When a new RFP lands, before your team can start writing, they need to research the client, figure out who they're competing against, pull current cloud pricing, and decode what evaluators actually care about. That takes 3 to 5 days of manual effort. PursuitIQ does all of that in 12 minutes — 11 AI agents running in parallel on OpenAI — searching the live web, analyzing competitors, pulling real pricing. Let me show you."
 
 ---
 
-## SLIDE 3: LIVE DEMO (90 seconds — THIS IS WHERE YOU WIN)
+## SLIDE 2 (0:30 - 1:00)
 
-**Title:** [Switch to browser — full screen]
+**Title:** 12 Minutes Later — Your Team Gets This
 
-**THE GOLDEN RULE: Don't explain the tech during demo. Show the VALUE. Let them feel the "wow."**
+**Visual:** 6 clean cards with icons. Think dashboard preview.
 
----
+| Intelligence | What It Is |
+|---|---|
+| **RFP Decoded** | Every requirement, hidden disqualifier, evaluation weight, deadline — nothing missed |
+| **Client Signals** | Live web search — leadership changes, hiring patterns, earnings signals, strategy moves |
+| **Competitor Playbook** | Who's bidding, their strengths, predicted positioning, simulated ghost bids |
+| **Real-Time Pricing** | Live Azure + AWS rates from APIs — 3 solution options with cost breakdowns |
+| **Win Strategy** | Killer differentiators, win themes, and how to beat each competitor |
+| **Proposal Starting Point** | All intelligence pulled into a structured draft — writers start with substance |
 
-### Demo Script (practice this with a timer):
+**Bottom line (small text):**
+> Your team still decides. Still strategizes. Still writes the final proposal. They just start with days of research already done.
 
-**0:00 - 0:10 | Open + Start**
-- Browser is already open on landing page
-- Say: "Let me run this on a real RFP."
-- Click "Run Demo" (or upload your prepared 2-page RFP)
-
-**0:10 - 0:30 | Agents Working (point at the pipeline tracker)**
-- "11 agents just started. Agent 1 is decomposing the RFP. Now 2, 3, 4 launched in parallel — that's three agents simultaneously searching our deal history, the live web for client news, and competitor intelligence."
-- "This is happening in real-time. No pre-cached results."
-- If it's still running, keep talking: "Each agent has its own tools — web search, file search, pricing APIs — they choose what to use."
-
-**0:30 - 0:50 | THE WOW MOMENT — Client Intelligence Tab**
-- Click Client Intel tab
-- "Look at this — the agent just searched the web and found: [read an actual finding from the output, e.g., 'Client hired a VP of Cloud from AWS three weeks ago. They have 5 open DevOps roles. Their CEO mentioned cost optimization in last earnings call.']"
-- "Your team would find this eventually. But this took 45 seconds."
-
-**0:50 - 1:10 | THE STRATEGY MOMENT — Competitor Tab**
-- Click Competitor tab
-- "Here's the competitive landscape. [Read top competitor name] — here's what they've won recently, their likely positioning, and here's a simulated ghost bid showing how they'd probably approach this."
-- "This isn't fantasy. It's based on their actual wins, hiring patterns, and public moves."
-
-**1:10 - 1:20 | Pricing Tab (quick)**
-- Click Pricing tab
-- "Three solution options. Pricing pulled from Azure and AWS APIs — these are today's rates, not last quarter's spreadsheet."
-
-**1:20 - 1:30 | Close Demo**
-- "All of this — 12 minutes. Your team now has a 3-day head start. They focus on strategy and winning, not researching."
+**SAY THIS:**
+"In 12 minutes, your team gets everything they need. The RFP fully decoded — including hidden disqualifiers buried on page 47 that competitors will miss. Client intelligence from the live web — not stale, pulled right now. A competitive playbook showing who's bidding and how to beat them. Pricing built on today's actual Azure and AWS rates. And a structured proposal starting point so writers don't start from blank. Let me show you this working live."
 
 ---
 
-### BACKUP PLAN (if live demo is slow):
-Have a COMPLETED pursuit already loaded. If agents take too long, say:
-"Let me show you one that just finished 2 minutes ago — same pipeline, same process."
-Then walk through the tabs.
+## SLIDE 3 — LIVE DEMO (1:00 - 2:30)
+
+### Switch to browser. Full screen. App is already open.
 
 ---
 
-## SLIDE 4: Under the Hood — OpenAI Agentic Architecture (30 seconds)
+### SECOND-BY-SECOND DEMO SCRIPT:
+
+---
+
+**[1:00 - 1:08] START THE PIPELINE**
+
+- Browser shows the PursuitIQ landing page (dark theme, purple gradient)
+- SAY: "Let me run this on a real RFP."
+- CLICK: "Run Demo" button (or drag-drop your prepared RFP PDF)
+- Page redirects to the Pursuit Dashboard
+
+---
+
+**[1:08 - 1:30] AGENTS WORKING — Pipeline Tracker**
+
+What's on screen: The "Agentic Pipeline" bar at the top — 10 circular nodes. They light up one by one (green = done, purple pulsing = running, gray = pending).
+
+- SAY: "Watch the pipeline — 11 agents just kicked off."
+- POINT at Agent 1 lighting up: "Agent 1 is decomposing the RFP — pulling out every requirement, every disqualifier."
+- POINT at Planner going purple: "The Planner Agent is autonomously deciding the strategy — which competitors to focus on, what to research."
+- POINT at Agents 2, 3, 4 lighting up together: "Now three agents launched in parallel — one is searching our database of 100 past deals, one is searching the live web for client news, one is tracking competitors — all at the same time."
+
+If still running, keep talking:
+- "Each agent has its own tools — web search, file search, vector stores — they choose what to use autonomously."
+
+---
+
+**[1:30 - 1:35] PIPELINE COMPLETES**
+
+What's on screen: All nodes turn green. Confetti fires. Metrics bar appears showing:
+- Total Requirements count
+- Hidden Risks count  
+- Win Probability percentage
+- Recommended Price
+- Pipeline duration (e.g., "8m 42s")
+- Estimated cost (e.g., "$3.41")
+
+- SAY: "Done. 8 minutes. Cost: $3.41. Let me show you what we got."
+
+If the pipeline is still running at 1:35, switch to backup:
+- SAY: "Let me show you one that just completed — same pipeline, same process."
+- Navigate to a pre-completed pursuit.
+
+---
+
+**[1:35 - 1:50] TAB 1: OVERVIEW — The "Holy Shit" Moment**
+
+CLICK: "Overview" tab (already active by default)
+
+What's on screen:
+- Big red box: "Hidden Risks Detected — X Found" with buried requirements that could disqualify the bid
+- Win Probability gauge (circular, with percentage)
+- Win Themes list
+- Capability Gaps (amber warnings)
+
+- POINT at the red Hidden Risks box: "Look at this — the agent found [READ ONE SPECIFIC HIDDEN RISK from the output, e.g., 'mandatory ISO 27001 certification buried in Appendix C, page 47']. Most competitors will miss this. Your team won't."
+- POINT at Win Probability: "[X]% win probability — based on pattern-matching against 100 historical deals in our vector store."
+
+---
+
+**[1:50 - 2:05] TAB 2: CLIENT INTEL — The "Live Web" Moment**
+
+CLICK: "Client Intel" tab
+
+What's on screen:
+- Green badge: "Intel sourced from live web search — earnings calls, press, LinkedIn, job postings"
+- "Unstated Needs" section (blue box) — what the client needs but didn't write in the RFP
+- "Key Intelligence Signals" — verified signals with sources
+- Grid: CTO Priorities / Budget Signals / Technology Debt / Recent Moves
+- "How to Position Your Proposal" (purple box)
+
+- POINT at green badge: "This is live — the agent searched the web just now."
+- READ one specific signal: "[Read an actual finding, e.g., 'Client posted 5 cloud architect roles on LinkedIn last week. Their CEO mentioned cost optimization in their Q2 earnings call. New CTO joined from AWS in March.']"
+- SAY: "Your team would find this eventually — this took 45 seconds."
+- POINT at Unstated Needs: "And these — things the client needs but didn't write in the RFP. Gold for your executive summary."
+
+---
+
+**[2:05 - 2:18] TAB 3: COMPETITION + GHOST BIDS — The "War Room" Moment**
+
+CLICK: "Competition" tab
+
+What's on screen:
+- "Killer Differentiator" card (green border) with price-to-win range
+- Competitor cards showing: name, likelihood to bid (high/medium/low), predicted positioning, predicted price range, their strengths, "How to Beat Them" list
+
+- POINT at Killer Differentiator: "Here's your single biggest differentiator — the agent identified it by cross-referencing client needs against competitor weaknesses."
+- POINT at a competitor card: "[Competitor name] — high likelihood to bid. Here's their predicted positioning, their price range, and exactly how to counter them."
+
+CLICK: "Ghost Bids" tab
+
+What's on screen: Simulated proposals showing what each competitor would likely submit.
+
+- SAY: "And here's the ghost bid — a simulated version of what [competitor] will probably submit. Their likely executive summary, their solution approach, their pricing. This is red-team intelligence."
+
+---
+
+**[2:18 - 2:28] TAB 4: PRICING (Quick)**
+
+CLICK: "Pricing" tab
+
+What's on screen: 3 solution options with detailed cost breakdowns, recommended price, margin calculations.
+
+- SAY: "Three solution options. Pricing pulled from Azure and AWS APIs — today's rates, not last quarter's spreadsheet. Recommended price: [read the number]. Your pricing team starts here instead of spending a day pulling rates."
+
+---
+
+**[2:28 - 2:30] CLOSE THE DEMO**
+
+- SAY: "All of this. 12 minutes. Under $4. Your team now has a 3-day head start."
+
+---
+
+### BACKUP PLAN
+
+If the live demo is slow or breaks:
+1. Have a COMPLETED pursuit already in the browser (separate tab)
+2. Say: "Let me show you one that completed a few minutes ago — exact same pipeline."
+3. Walk through the tabs the same way
+
+---
+
+## SLIDE 4 (2:30 - 3:00)
 
 **Title:** 11 Agents. 7 OpenAI Features. Fully Autonomous.
 
-**Visual: Clean architecture flow (use boxes + arrows in PowerPoint, NOT ASCII)**
+**Visual:** Clean architecture diagram (boxes + arrows in PowerPoint, NOT text art)
+
+**Layout for PowerPoint:**
 
 ```
-Design this in PowerPoint as colored boxes with arrows:
-
-[RFP Upload]
+[Upload RFP]
       ↓
-[Planner Agent] — "Decides how to approach this RFP"
+[Planner Agent — decides strategy]
       ↓
-[Agent 1: RFP Decomposer] — Structured Outputs, reasoning: HIGH
+[Agent 1: RFP Decomposer]
+  GPT-5.5 | Structured Outputs | reasoning: HIGH
       ↓
-┌─────────────┬─────────────┬─────────────┐
-↓             ↓             ↓             
-[Agent 2]     [Agent 3]     [Agent 4]     ← PARALLEL
-Win Intel     Client Intel  Competitor    
-file_search   web_search    web_search    
-(RAG)         (live web)    (live web)    
-└─────────────┴─────────────┴─────────────┘
-      ↓
-[Agent 5: Pricing] — Live Azure/AWS API + reasoning: HIGH
-      ↓
-[Agent 6: Draft] — Codex GPT-5 (zero cost)
-      ↓
-┌─────────────┬─────────────┬─────────────┐
-[Quality Gate] [Deal Pattern] [Ghost Bid]
- Reflection    Matching       Simulation
- Loop
-└─────────────┴─────────────┴─────────────┘
-      ↓
-[Intelligence Ready — Team Takes Over]
+┌──────────┬──────────┬──────────┐
+│ Agent 2  │ Agent 3  │ Agent 4  │  ← RUNNING IN PARALLEL
+│ Win Intel│ Client   │Competitor│
+│file_search│web_search│web_search│
+│  (RAG)   │(live web)│(live web)│
+└────┬─────┴────┬─────┴────┬─────┘
+     └──────────┼──────────┘
+                ↓
+[Agent 5: Pricing — Live Azure/AWS APIs]
+                ↓
+[Agent 6: Draft — Codex GPT-5, zero cost]
+                ↓
+┌──────────┬───────────┬──────────┐
+│ Quality  │   Deal    │  Ghost   │
+│  Gate    │Fingerprint│   Bid    │
+│+Reflect  │  Pattern  │Simulation│
+└──────────┴───────────┴──────────┘
+                ↓
+[Pursuit Intelligence → Your Team Takes Over]
 ```
 
-**OpenAI Tech Strip (bottom of slide, horizontal bar):**
+**OpenAI tech strip (bottom bar):**
 
-| Structured Outputs | Web Search | File Search + RAG | Vector Stores | Codex GPT-5 | Reasoning Control | Multi-Model |
-|---|---|---|---|---|---|---|
+Structured Outputs | Web Search | File Search | Vector Stores | Codex GPT-5 | Reasoning Control | Multi-Model
 
-**Speaker Notes:**
-"Under the hood — 11 agents on OpenAI. Planner sets the strategy. Agent 1 decomposes the RFP using structured outputs. Three agents run in parallel — one does RAG over 100 past deals using file search, two search the live web for client and competitor intelligence. Agent 5 builds pricing from real Azure and AWS API calls. Agent 6 uses Codex — that's GPT-5 at zero API cost — to generate the proposal structure. Then quality gate verifies claims, pattern matching compares against historical deals, and ghost bid simulates competitor approaches. Seven OpenAI platform features. Fully autonomous. Twelve minutes. Thank you."
+**SAY THIS:**
+"Under the hood — 11 agents, all on OpenAI. Planner decides strategy. Agent 1 decomposes with structured outputs. Three agents run in parallel — RAG over past deals with file search, live web search for client and competitor intel. Agent 5 prices using real cloud APIs. Agent 6 drafts with Codex — that's GPT-5 at zero cost. Quality gate verifies everything, deal fingerprint matches patterns, ghost bid simulates competitors. Seven OpenAI platform features. Fully autonomous. 12 minutes. Thank you."
 
 ---
 
-## TIMING SUMMARY
+## TIMING CHEAT SHEET (tape this to your laptop)
 
-| Slide | Time | What Judges Remember |
+| Time | What | Key Action |
 |---|---|---|
-| 1. Hook | 0:00 - 0:30 | "3-5 days → 12 minutes" |
-| 2. What You Get | 0:30 - 1:00 | "Live web intel, ghost bids, real pricing" |
-| 3. LIVE DEMO | 1:00 - 2:30 | **The client intel wow moment + ghost bid** |
-| 4. Architecture | 2:30 - 3:00 | "11 agents, 7 OpenAI features, autonomous" |
+| 0:00 | Slide 1: Hook | "3-5 days → 12 minutes" |
+| 0:30 | Slide 2: What You Get | "6 intelligence outputs" |
+| 1:00 | DEMO: Start pipeline | Click "Run Demo" |
+| 1:08 | DEMO: Agents working | Point at pipeline tracker |
+| 1:30 | DEMO: Complete | Note the time + cost |
+| 1:35 | DEMO: Overview tab | Hidden risks + win probability |
+| 1:50 | DEMO: Client Intel tab | Live web signal — THE WOW MOMENT |
+| 2:05 | DEMO: Competition + Ghost Bids | Killer differentiator + simulated competitor proposal |
+| 2:18 | DEMO: Pricing tab | Real-time rates, 3 options |
+| 2:28 | DEMO: Close | "12 minutes. Under $4." |
+| 2:30 | Slide 4: Architecture | Flash tech, say thank you |
+| 3:00 | DONE | |
 
 ---
 
-## WHAT WINS HACKATHONS (keep in mind)
+## PREP CHECKLIST
 
-1. **Live demo that works** — Nothing beats seeing real output. Practice until you can do it with your eyes closed.
-2. **One "wow" moment** — When you show live client intel that the agent JUST found from the web. That's your moment. Pause on it.
-3. **Honest framing** — "We accelerate research, your team still wins the deal" is more believable than "AI replaces your sales team."
-4. **Technical depth on demand** — Don't dump architecture in the main flow. Flash it. If judges ask "how," you have the answer.
-
----
-
-## DEMO PREP CHECKLIST
-
-- [ ] Pre-run a pursuit 5 min before slot (completed backup ready)
-- [ ] App running on localhost, browser full-screen on landing page
-- [ ] Dark mode ON (looks better on projector)
-- [ ] Zoom browser to 90% so full dashboard fits
-- [ ] Short RFP PDF ready (1-2 pages = faster processing)
+- [ ] Backend running: `cd backend && uvicorn main:app --port 8000`
+- [ ] Frontend running: `cd frontend && npm run dev`
+- [ ] Pre-run a demo pursuit 5 min before slot (have it COMPLETED as backup)
+- [ ] Open two browser tabs: (1) Landing page (2) Completed pursuit
+- [ ] Browser: dark mode, 90% zoom, full screen, no bookmarks bar
 - [ ] Internet tested and working (web search needs it)
-- [ ] All other tabs/apps/notifications CLOSED
-- [ ] **Practice 5 times with a timer. If you go over 3 min even once, cut words.**
+- [ ] All notifications OFF, all other apps CLOSED
+- [ ] Short RFP PDF ready if uploading instead of demo button
+- [ ] Practice with timer: if you EVER go over 3:00, cut words from Slide 2
+- [ ] Know which specific findings to point at (look at your backup completed pursuit and pick the best ones to read aloud)
 
 ---
 
-## JUDGE Q&A — SHORT, CONFIDENT ANSWERS
+## JUDGE Q&A — SHORT ANSWERS
 
 **"How is this different from ChatGPT?"**
-"ChatGPT is one model, one prompt. PursuitIQ is 11 specialized agents with their own tools — web search, file search, pricing APIs — running in parallel. The output is structured, verified by a quality gate, and grounded in live data. It's an engineering system, not a chat."
+"11 specialized agents with their own tools running in parallel — not one prompt. Web search for live data, file search for RAG over past deals, structured outputs between agents. It's an engineering system, not a conversation."
 
-**"Would companies actually use this?"**
-"Not to replace their team — to accelerate the research phase. Same way analysts use Bloomberg instead of manually reading SEC filings. The team still decides, still writes, still owns the relationship."
+**"Would companies use this?"**
+"Not to replace their team — to skip the research phase. Same way analysts use Bloomberg instead of reading SEC filings manually. The team still decides, still writes, still owns the relationships."
 
 **"What about hallucination?"**
-"Three layers: web search grounds claims in real data, quality gate verifies independently, reflection loop re-generates if it fails. Plus structured outputs between agents — no garbage in, no garbage out."
+"Three layers. Web search grounds everything in real data. Quality gate verifies claims independently. Reflection loop re-generates if it fails. Plus structured outputs — agents can't pass garbage to each other."
 
-**"What's the cost?"**
-"Under $5 per run for 11 agents doing full research. Compare that to 3-5 days of manual team effort."
+**"What's the cost per run?"**
+"Under $5. Eleven agents, full research pipeline. Compare that to 3-5 days of multiple people's time."
 
-**"Why 11 agents instead of one big prompt?"**
-"Speed — three agents searching in parallel. Specialization — each has the right tools and reasoning level. Reliability — structured outputs between agents means no parsing failures. And quality control — separate agents verify what other agents produce."
+**"Why 11 agents, not one big prompt?"**
+"Speed — three agents searching simultaneously. Specialization — each has the right tools. Reliability — structured data contracts between agents. Quality control — separate agent verifies what others produce."
+
+**"What OpenAI features are you using?"**
+"Seven: Structured Outputs, Responses API with web search and file search, Vector Stores for RAG, Codex for GPT-5 at zero cost, reasoning effort control, and multi-model routing — right model for each task."
