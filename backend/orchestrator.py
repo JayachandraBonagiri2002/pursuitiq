@@ -457,7 +457,7 @@ def run_full_pursuit(
 
         pipeline_duration = time.time() - pipeline_start
         pursuit_store[rfp_id]["pipeline_duration_seconds"] = round(pipeline_duration, 1)
-        pursuit_store[rfp_id]["pipeline_agents_used"] = 10
+        pursuit_store[rfp_id]["pipeline_agents_used"] = 11
         pursuit_store[rfp_id]["agentic_decisions"] = agentic_decisions
         estimated_cost = 5.50
         pursuit_store[rfp_id]["estimated_cost_usd"] = estimated_cost
