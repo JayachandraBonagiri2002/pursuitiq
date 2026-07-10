@@ -1,239 +1,168 @@
-# PursuitIQ - Demo Presentation (3 Minutes)
-
-## Positioning: Pursuit Intelligence Platform
-
-PursuitIQ is NOT a proposal generator. It's an **AI-powered decision intelligence platform** that tells you:
-- Should we bid? (Bid/No-bid with evidence)
-- Who are we up against and what will they do?
-- What's the client's real pain — not just what's in the RFP?
-- What's the price-to-win?
-- What strategy gives us the highest win probability?
-
-The proposal draft is a bonus output — the real value is the INTELLIGENCE that makes humans write better proposals and make smarter bid decisions.
+# PursuitIQ - Demo Presentation (3 Minutes, 4 Slides)
 
 ---
 
 ## SLIDE 1: The Problem (30 seconds)
 
-**Title:** Enterprise Sales Teams Are Flying Blind
+**Title:** RFP Research Takes Days. Strategy Time Gets Squeezed.
 
-**Content (3 bullets, keep it visual):**
+**Content (simple, honest):**
 
-- **"Should we even bid?"** — Teams waste weeks pursuing deals they'll lose. No data-driven bid/no-bid.
-- **"What will competitors do?"** — Zero visibility into rival positioning, pricing, or strategy until it's too late.
-- **"What does the client actually want?"** — RFPs say one thing. The client's real priorities are hidden in job posts, news, leadership changes, and procurement history.
+When a new RFP lands, the pursuit team needs to:
+- Research the client (news, leadership, priorities, hiring patterns)
+- Analyze competitors (who's bidding, what they've won recently, their strengths)
+- Build pricing (gather current cloud rates, estimate costs, set margins)
+- Understand the RFP (hidden requirements, evaluation weights, compliance needs)
 
-**Bottom line:** $100B/year wasted globally on uninformed bid decisions.
+**The problem:** This research takes **3-5 days** of manual work across multiple people. By the time research is done, there's little time left for **strategy and quality writing** — the things that actually win deals.
 
 **Speaker Notes:**
-"The biggest problem in enterprise sales isn't writing proposals — it's making smart decisions BEFORE you write. Should we bid? Who are we competing against? What does the client really want beyond what's in the RFP? Today, teams spend weeks doing manual research and still fly blind. PursuitIQ fixes this with 11 AI agents that deliver pursuit intelligence in 12 minutes."
+"When an enterprise RFP comes in, the first thing the team does is research — who's the client, who are we competing against, what should we price at, what are the hidden requirements. This research takes 3-5 days of manual effort — searching the web, reading procurement portals, pulling pricing sheets, reviewing past deals. The problem isn't that teams can't do it. They can. But it eats the time they should be spending on strategy and writing a compelling response."
 
 ---
 
-## SLIDE 2: What PursuitIQ Actually Delivers (15 seconds)
+## SLIDE 2: What PursuitIQ Does (30 seconds)
 
-**Title:** PursuitIQ — Pursuit Intelligence in 12 Minutes
+**Title:** PursuitIQ — Research Acceleration for Pursuit Teams
 
-**6 Intelligence Outputs (visual grid/icons):**
+**Tagline:** 11 AI agents do your research in 12 minutes. You focus on winning.
 
-| Output | What You Get |
-|--------|-------------|
-| **Bid/No-Bid Decision** | Data-driven recommendation based on 100+ historical deal patterns |
-| **Competitor War Room** | Predicted positioning, pricing floor, and ghost bid for each rival |
-| **Client Deep Intel** | CTO priorities, budget signals, tech debt, strategic moves — from live web |
-| **Price-to-Win** | Optimal bid range using real-time Azure/AWS rates + competitor margins |
-| **Win Strategy** | Killer differentiators, win themes, and traps to set for competitors |
-| **Risk Radar** | Hidden disqualifiers, compliance gaps, and evaluation criteria decoded |
+**What it delivers (be specific and honest):**
 
-**Tagline:** "The intelligence that helps you decide faster, position smarter, and win more."
+| What PursuitIQ Gives You | How It Helps |
+|---|---|
+| **RFP Breakdown** | Requirements, disqualifiers, evaluation criteria — structured and clear |
+| **Client Intelligence** | Recent news, leadership changes, hiring patterns, strategic signals — from live web |
+| **Competitor Analysis** | Who's likely bidding, what they've recently won, their predicted approach |
+| **Pricing Benchmark** | Real-time Azure/AWS cloud rates + cost models for solution options |
+| **Win Themes** | Suggested differentiators based on client needs vs. competitor weaknesses |
+| **Proposal Starting Point** | Structured draft pulling all intelligence together — a starting point, not final output |
+
+**What it does NOT do:**
+- Replace your team's judgment or relationships
+- Generate a submission-ready proposal
+- Make the bid decision for you
 
 **Speaker Notes:**
-"PursuitIQ doesn't just write a proposal — it gives you the intelligence to WIN. Bid or no-bid recommendation backed by data. Competitor ghost bids showing what rivals will submit. Client intelligence from the live web. Pricing calibrated to real cloud rates. And a strategic plan to beat the competition. The proposal draft is a bonus — the real product is intelligence."
+"PursuitIQ has 11 AI agents that do the research phase for you — in 12 minutes instead of days. It searches the live web for client signals and competitor moves. It pulls real-time cloud pricing from Azure and AWS. It reviews the RFP and surfaces hidden requirements you might miss. It gives you a structured starting point for your proposal. Your team still decides, still strategizes, still writes the final response — but now they start with intelligence instead of a blank page."
 
 ---
 
-## SLIDE 3: Agentic Architecture (15 seconds - flash it)
+## SLIDE 3: LIVE DEMO (90 seconds)
 
-**Title:** 11 Autonomous AI Agents — Built on OpenAI
+**Title:** [Switch to browser]
 
-**Architecture Visual:**
+**Demo Script:**
+
+**0:00 - 0:10 | Start**
+- Open app → "Let me show you what happens when an RFP comes in"
+- Click "Run Demo" (or upload a prepared short RFP)
+
+**0:10 - 0:30 | Show Agents Working**
+- Point to pipeline tracker: "11 agents are working in parallel — one is breaking down the RFP, one is searching the web for client news, one is analyzing competitors, one is pulling live cloud pricing..."
+- "This would normally take your team 3-5 days. Watch."
+
+**0:30 - 1:20 | Walk Through the Intelligence**
+
+Show each tab (spend time on the VALUE, not the tech):
+
+1. **Overview (10 sec):** "Here's the RFP broken down — key requirements, disqualifiers your team might have missed, evaluation criteria with weights."
+
+2. **Client Intel (15 sec):** "The agent searched the live web — found that the client just hired a new CTO from AWS, they have open cloud architect roles, their last earnings call mentioned cost optimization. Your team would find this eventually — but now they have it in minutes."
+
+3. **Competitor (20 sec):** "Here's the competitive landscape — who's likely bidding based on their recent wins and hiring patterns. And here's a simulated approach for each competitor — how they'd likely position. Not perfect, but useful for your strategy session."
+
+4. **Pricing (10 sec):** "Solution options with real Azure and AWS pricing pulled just now — not last quarter's spreadsheet. Your pricing team can start from here instead of spending a day gathering rates."
+
+5. **Draft (5 sec):** "And a proposal structure pulling all the intelligence together — your writers start with substance, not a blank page."
+
+**1:20 - 1:30 | Close Demo**
+- "12 minutes. Your team now has a head start of days."
+
+---
+
+## SLIDE 4: How It Works + OpenAI Tech (30 seconds)
+
+**Title:** Built on OpenAI — 11 Agents, 7 Platform Features
+
+**Architecture (simplified, judge-friendly):**
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                    PursuitIQ: Agentic Intelligence Pipeline                   │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                             │
-│  ┌──────────────────────────────────────────────────────────────────────┐  │
-│  │  PLANNER AGENT — Assesses RFP complexity, sets execution strategy     │  │
-│  └───────────────────────────────┬──────────────────────────────────────┘  │
-│                                  ▼                                          │
-│  ┌──────────────────────────────────────────────────────────────────────┐  │
-│  │  AGENT 1: RFP DECOMPOSER                                             │  │
-│  │  Extracts: Requirements | Disqualifiers | Eval Criteria | Deadlines   │  │
-│  │  Tech: GPT-5.5 + Structured Outputs + reasoning: HIGH                 │  │
-│  └───────────────────────────────┬──────────────────────────────────────┘  │
-│                                  ▼                                          │
-│         ┌────────────────────────┼────────────────────────┐                │
-│         ▼                        ▼                        ▼                │
-│  ┌─────────────┐      ┌──────────────────┐      ┌──────────────┐         │
-│  │ AGENT 2     │      │ AGENT 3          │      │ AGENT 4      │         │
-│  │ Win Intel   │      │ Client Intel     │      │ Competitor   │         │
-│  │             │      │                  │      │ Shadow       │         │
-│  │ file_search │      │ web_search       │      │ web_search   │         │
-│  │ (100+ deals)│      │ (live signals)   │      │ (live moves) │         │
-│  └──────┬──────┘      └────────┬─────────┘      └──────┬───────┘         │
-│         └────────────────────────┼──────────────────────┘                  │
-│                    PARALLEL       ▼                                         │
-│  ┌──────────────────────────────────────────────────────────────────────┐  │
-│  │  AGENT 5: SOLUTION ARCHITECT + PRICING ENGINE                         │  │
-│  │  3 Options | Live Azure/AWS Pricing | Margin Optimization             │  │
-│  │  Tech: GPT-5.5 + reasoning: HIGH + Real-Time Cloud APIs               │  │
-│  └───────────────────────────────┬──────────────────────────────────────┘  │
-│                                  ▼                                          │
-│  ┌──────────────────────────────────────────────────────────────────────┐  │
-│  │  AGENT 6: DRAFT GENERATOR (Codex GPT-5 — zero API cost)              │  │
-│  │  Synthesizes all intelligence into structured proposal starting point │  │
-│  └───────────────────────────────┬──────────────────────────────────────┘  │
-│                                  ▼                                          │
-│  ┌────────────────┐   ┌─────────────────┐   ┌────────────────────┐       │
-│  │ QUALITY GATE   │   │ DEAL FINGERPRINT │   │ GHOST BID ENGINE  │       │
-│  │ Verify claims  │   │ Win probability  │   │ Simulates what    │       │
-│  │ Catch halluc.  │   │ Bid/No-bid call  │   │ competitors will  │       │
-│  │ Reflection loop│   │ Pattern matching │   │ actually submit   │       │
-│  └────────────────┘   └─────────────────┘   └────────────────────┘       │
-│                                                                             │
-├─────────────────────────────────────────────────────────────────────────────┤
-│  OPENAI STACK: GPT-4.1 | GPT-5.5 | Codex GPT-5 | Structured Outputs      │
-│  | Responses API (web_search + file_search) | Vector Stores | Reasoning    │
-└─────────────────────────────────────────────────────────────────────────────┘
+Upload RFP
+    │
+    ▼
+┌─────────────────────────────────────────────────┐
+│  PLANNER AGENT — decides execution strategy      │
+└──────────────────────┬──────────────────────────┘
+                       ▼
+┌──────────────────────────────────────────────────┐
+│  AGENT 1: RFP Decomposer (Structured Outputs)    │
+└──────────────────────┬───────────────────────────┘
+                       ▼
+    ┌──────────────────┼──────────────────┐
+    ▼                  ▼                  ▼
+┌────────┐      ┌──────────┐      ┌───────────┐
+│Agent 2 │      │ Agent 3  │      │  Agent 4  │   ← PARALLEL
+│Win Intel│      │Client Web│      │Competitor │
+│RAG/file │      │ Search   │      │Web Search │
+│ search  │      │          │      │           │
+└────┬───┘      └─────┬────┘      └─────┬─────┘
+     └─────────────────┼─────────────────┘
+                       ▼
+┌──────────────────────────────────────────────────┐
+│  AGENT 5: Pricing (Live Azure/AWS API rates)      │
+└──────────────────────┬───────────────────────────┘
+                       ▼
+┌──────────────────────────────────────────────────┐
+│  AGENT 6: Draft Generator (Codex / GPT-5)         │
+└──────────────────────┬───────────────────────────┘
+                       ▼
+┌────────────┐  ┌─────────────┐  ┌─────────────┐
+│Quality Gate│  │Deal Pattern │  │ Ghost Bid   │
+│+ Reflection│  │  Matching   │  │ Simulation  │
+└────────────┘  └─────────────┘  └─────────────┘
+                       ▼
+              Pursuit Intelligence
+             Ready for Your Team
 ```
 
-**Speaker Notes:**
-"11 agents, each with specific tools and reasoning levels. The Planner decides strategy. Agent 1 decodes the RFP. Three agents run in parallel — one searches 100 past deals via vector store, one searches the live web for client signals, one tracks competitors. Agent 5 does pricing with real cloud API rates. Agent 6 drafts a proposal structure. Then the quality gate verifies, deal fingerprint gives bid/no-bid, and ghost bid simulates competitor submissions. All OpenAI, all autonomous."
+**OpenAI Features (bottom of slide as a strip):**
 
----
-
-## SLIDE 4: LIVE DEMO (90 seconds)
-
-**Title:** [Switch to browser — app running]
-
-**Demo Script (rehearse exactly this):**
-
-**0:00 - 0:10 | Setup**
-- Open app → "Let me show you PursuitIQ in action with a real RFP"
-- Click "Run Demo" or upload prepared RFP
-
-**0:10 - 0:40 | Agents Working**
-- Show pipeline tracker: "Watch — Agent 1 is decomposing the RFP... now Agents 2, 3, 4 running in parallel — that's live web search happening right now for competitor and client intelligence..."
-- While agents run: "Each agent has its own tools. Agent 3 is searching the web for client news, job posts, leadership changes. Agent 4 is tracking what competitors just won, who they're hiring."
-
-**0:40 - 1:00 | Show the Intelligence (THE MONEY SHOTS)**
-
-Tab through results — spend most time here:
-
-1. **Overview tab (5 sec):** "72% win probability. Bid recommendation: GO. Based on matching against 100 historical deals."
-
-2. **Client Intel tab (10 sec):** "Look — it found the client just hired a new CTO from AWS, they have 3 open cloud architect roles, their CEO mentioned digital transformation in earnings. This is LIVE intelligence."
-
-3. **Competitor tab (15 sec):** "Here's the killer feature — Ghost Bids. We've simulated what Infosys and TCS will likely submit. Their predicted pricing, their positioning, their weakness. This is the war room."
-
-4. **Pricing tab (10 sec):** "Price-to-win based on real Azure VM rates pulled right now, competitor margin analysis, three solution options with actual cost breakdowns."
-
-**1:00 - 1:30 | Close the Demo**
-- "And all of this — in 12 minutes. No analysts. No manual research. 11 AI agents collaborating autonomously."
-
----
-
-## SLIDE 5: OpenAI Platform — How We Use It (15 seconds)
-
-**Title:** Deep OpenAI Integration — Not Just a Wrapper
-
-**Visual: Show it's NOT a "prompt-in, text-out" wrapper**
-
-```
-┌────────────────────────────────────────────────────────────────┐
-│  "Thin Wrapper"               vs.     PursuitIQ               │
-│  ──────────────                       ──────────               │
-│  1 prompt → 1 response                11 agents cooperating    │
-│  No tools                             Web Search + File Search │
-│  Hallucinated data                    Live web-grounded intel  │
-│  No quality control                   Quality Gate + Reflection│
-│  One model                            Multi-model + Codex      │
-└────────────────────────────────────────────────────────────────┘
-```
-
-**OpenAI Features Used:**
-
-| Feature | Purpose |
-|---------|---------|
-| **Structured Outputs** | Type-safe agent-to-agent data passing (zero parsing errors) |
-| **Responses API + Web Search** | Real-time competitor & client intelligence |
-| **Responses API + File Search** | RAG over 100+ historical deals |
-| **Vector Stores** | Proposal knowledge base for pattern matching |
-| **Codex CLI (GPT-5)** | High-quality draft generation at zero API cost |
-| **Reasoning Control** | HIGH for pricing/analysis, MEDIUM for research breadth |
-| **Multi-Model** | GPT-4.1, GPT-5.5, GPT-5 — right model for each task |
+Structured Outputs | Web Search (Responses API) | File Search (RAG) | Vector Stores | Codex GPT-5 | Reasoning Control | Multi-Model Routing
 
 **Speaker Notes:**
-"This isn't a ChatGPT wrapper. We're using 7 different OpenAI platform capabilities. Structured outputs ensure agents talk to each other without parsing failures. Web search gives real-time intelligence. File search does RAG over past deals. Codex gives us GPT-5 for free. And reasoning control lets us go deep where it matters and fast where we need breadth."
-
----
-
-## SLIDE 6: Business Impact + Close (15 seconds)
-
-**Title:** The Pursuit Advantage
-
-**Before/After (make this visual — big numbers):**
-
-| | Without PursuitIQ | With PursuitIQ |
-|---|---|---|
-| **Decision Speed** | 3-5 days to assess a deal | 12 minutes |
-| **Competitor Visibility** | Guesswork | Predicted bids + ghost proposals |
-| **Pricing Accuracy** | Last year's rates | Live cloud pricing (today's rates) |
-| **Win Rate Impact** | ~30-40% | Target: 50%+ with intelligence advantage |
-| **Cost per Pursuit** | $50K+ (team time) | <$5 in API costs |
-
-**Closing (ONE sentence):**
-
-> "PursuitIQ gives sales teams the intelligence to decide smarter and win more — 11 AI agents, 12 minutes, built on OpenAI."
-
-**Speaker Notes:**
-"We cut decision time from days to minutes. We replace guesswork with predicted competitor bids. We use today's cloud prices, not last quarter's spreadsheet. And we do it for $5 instead of $50K in team time. PursuitIQ — 11 agents, 12 minutes, built entirely on OpenAI. Thank you."
+"11 agents built entirely on OpenAI. We use Structured Outputs for reliable agent-to-agent communication. The Responses API with web search for live intelligence. File search and vector stores for RAG over historical deals. Codex for GPT-5 proposal drafting at zero cost. And reasoning control — high effort for critical analysis, medium for research breadth. All autonomous, all in 12 minutes. Thank you."
 
 ---
 
 ## DEMO PREP CHECKLIST
 
-- [ ] Pre-run a pursuit 5 min before your slot (backup completed result)
-- [ ] App running on localhost, browser open to landing page
-- [ ] Prepare a 1-2 page RFP PDF for quick processing
-- [ ] Test internet (agents need web search access)
-- [ ] Browser: dark mode, 90% zoom, full dashboard visible
-- [ ] Close all other tabs/notifications/Slack
-- [ ] **Have a COMPLETED pursuit loaded** — if live demo is slow, switch to it saying "let me show you one that just finished"
-- [ ] Practice the 3-min flow at least 5 times with a timer
+- [ ] Pre-run a pursuit 5 min before slot (have completed results as backup)
+- [ ] App running, browser on landing page, dark mode, 90% zoom
+- [ ] Prepare a short RFP PDF (1-2 pages) for quick processing
+- [ ] Test internet (web search needs it)
+- [ ] Have a COMPLETED pursuit loaded — if live demo is slow, say "let me show one that just finished"
+- [ ] Practice with timer at least 5 times
+- [ ] Close all tabs/notifications
 
 ---
 
-## JUDGE Q&A — KEY ANSWERS
-
-**"How is this different from just using ChatGPT?"**
-"ChatGPT gives you one response from one prompt. PursuitIQ has 11 agents with different tools — web search, file search, vector stores — collaborating in a pipeline. The intelligence is grounded in live web data and 100 historical deals, not hallucinated. And we have a quality gate that catches hallucinations before output."
+## JUDGE Q&A — HONEST ANSWERS
 
 **"Would a company actually use this?"**
-"They wouldn't submit the AI draft directly — that's a starting point. The real value is the intelligence: bid/no-bid backed by data, competitor ghost bids, client signals from the live web, and price-to-win from real cloud rates. That intelligence saves weeks of analyst time and helps teams make better decisions."
+"Yes — not as a replacement for their team, but as research acceleration. The same way a financial analyst uses Bloomberg terminal instead of manually searching SEC filings. PursuitIQ gives the pursuit team a 3-5 day head start on research so they can focus on strategy and quality writing."
 
-**"Why not just use one model with a long prompt?"**
-"Three reasons. First, parallel execution — 3 agents searching simultaneously is faster than one sequential call. Second, tool specialization — each agent has its own tools and reasoning level. Third, structured communication — Pydantic schemas between agents means zero parsing failures and reliable pipelines."
+**"Isn't the proposal just hallucinated?"**
+"The proposal draft is a starting point, not a final submission. The real value is the intelligence — client signals from live web search, competitor analysis from real data, pricing from actual Azure and AWS rates. The quality gate also verifies claims against the source data."
+
+**"How is this different from ChatGPT?"**
+"Three things. First, 11 specialized agents running in parallel — not one generic prompt. Second, tool use — agents search the live web, query vector stores, pull real pricing APIs autonomously. Third, structured outputs ensure reliable data flow between agents — this is an engineering system, not a chat session."
 
 **"What OpenAI tech are you using?"**
-"Seven platform features: Structured Outputs, Responses API with web_search and file_search, Vector Stores, Codex CLI for GPT-5, reasoning effort control, and multi-model routing. This is not a wrapper — it's deep platform integration."
+"Seven platform features: Structured Outputs for type-safe agent communication, Responses API with web search and file search, Vector Stores for RAG, Codex CLI for GPT-5 at zero cost, reasoning effort control per agent, and multi-model routing."
 
-**"How do you prevent hallucination?"**
-"Three layers. First, web search grounds claims in real data. Second, the quality gate agent independently verifies every major claim. Third, the reflection loop re-generates sections that fail quality scoring. And structured outputs enforce valid data formats between agents."
+**"How do you handle hallucination?"**
+"Web search grounds claims in real data. The quality gate agent independently verifies major claims. The reflection loop re-generates if quality scoring fails. And structured outputs enforce valid formats — agents can't return garbage."
 
-**"What's the cost per run?"**
-"Under $5 in API costs for a full 11-agent pipeline run. Codex gives us GPT-5 inference at zero cost. That's compared to $50K+ in team time for manual pursuit preparation."
-
-**"Can this handle real enterprise RFPs?"**
-"Yes — we've tested with 50+ page RFPs. Agent 1 handles the decomposition regardless of length. The parallel architecture means longer RFPs don't proportionally slow down the intelligence gathering phase."
+**"What's the cost?"**
+"Under $5 per full run — 11 agents, all the research, all the analysis. Compare that to days of manual team effort."

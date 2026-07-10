@@ -1,8 +1,8 @@
 # PursuitIQ
 
-**Agentic Pursuit Intelligence Platform — Decide Smarter, Win More**
+**Agentic Research Acceleration for Enterprise Pursuit Teams**
 
-PursuitIQ is an 11-agent AI system that delivers **pursuit intelligence** — not just proposals. It tells you whether to bid, what competitors will do, what the client really wants, and the optimal price-to-win — all in 12 minutes, all grounded in live web data and 100+ historical deals.
+PursuitIQ is an 11-agent AI system that does the **research phase** of RFP pursuit in 12 minutes instead of 3-5 days. It searches the live web for client and competitor intelligence, pulls real-time cloud pricing, analyzes the RFP for hidden requirements, and gives your team a structured starting point — so they can focus on strategy and writing instead of data gathering.
 
 Built entirely on the **OpenAI platform**: GPT-4.1, GPT-5.5, Codex (GPT-5), Structured Outputs, Responses API (Web Search + File Search), Vector Stores, and Reasoning Control.
 
@@ -12,17 +12,16 @@ Built entirely on the **OpenAI platform**: GPT-4.1, GPT-5.5, Codex (GPT-5), Stru
 
 ## What PursuitIQ Delivers
 
-This is NOT a proposal generator. It's a **decision intelligence system** for enterprise sales:
+| Output | What You Get | How It Helps Your Team |
+|---|---|---|
+| **RFP Breakdown** | Requirements, disqualifiers, evaluation criteria — structured | Saves hours of reading + ensures nothing is missed |
+| **Client Intelligence** | Recent news, leadership changes, hiring patterns, strategic signals | Your team starts informed instead of searching manually |
+| **Competitor Analysis** | Who's likely bidding, recent wins, predicted approach, ghost bids | Better positioning in strategy sessions |
+| **Pricing Benchmark** | Real-time Azure/AWS cloud rates + cost models for 3 options | Pricing team starts with current data, not old spreadsheets |
+| **Win Themes** | Suggested differentiators based on gaps between client needs and competitor weaknesses | Sharper proposal narrative |
+| **Proposal Starting Point** | Structured draft pulling all intelligence together | Writers start with substance, not a blank page |
 
-| Intelligence Output | What You Get |
-|---|---|
-| **Bid/No-Bid Decision** | Data-driven recommendation based on pattern-matching against 100+ past deals |
-| **Competitor War Room** | Predicted positioning, pricing floor, and simulated ghost bids for each rival |
-| **Client Deep Intel** | CTO priorities, budget signals, hiring patterns, strategic moves — from live web |
-| **Price-to-Win** | Optimal bid range using real-time Azure/AWS cloud rates + competitor margins |
-| **Win Strategy** | Killer differentiators, win themes, and competitive traps |
-| **Risk Radar** | Hidden disqualifiers, compliance gaps, evaluation criteria decoded |
-| **Proposal Draft** | Structured starting point synthesizing all intelligence (bonus, not the product) |
+**What it does NOT do:** Replace your team's judgment, relationships, or domain expertise. Your team still decides, still strategizes, still writes the final response.
 
 ---
 
@@ -235,13 +234,13 @@ App available at `http://localhost:3000`
 
 ## Business Impact
 
-| Metric | Without PursuitIQ | With PursuitIQ |
+| Metric | Manual Research | With PursuitIQ |
 |---|---|---|
-| Decision Speed | 3-5 days to assess | 12 minutes |
-| Competitor Visibility | Guesswork | Predicted bids + ghost proposals |
-| Pricing Accuracy | Last quarter's rates | Real-time cloud pricing |
-| Cost per Pursuit | $50K+ (team time) | <$5 in API costs |
-| Win Rate | ~30-40% | Target: 50%+ with intelligence advantage |
+| Research Phase | 3-5 days across multiple people | 12 minutes (automated) |
+| Pricing Data | Last quarter's rates, manual lookup | Real-time Azure/AWS API rates |
+| Competitor Intel | Ad-hoc web searches, tribal knowledge | Structured analysis from live web |
+| Starting Point | Blank page | Structured draft with sourced intelligence |
+| Cost | Days of team effort per pursuit | <$5 in API costs per run |
 
 ---
 
