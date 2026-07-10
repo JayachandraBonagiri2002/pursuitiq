@@ -2,7 +2,7 @@
 
 **Agentic AI Platform for Enterprise Pursuit Intelligence**
 
-PursuitIQ is a fully agentic AI system that transforms RFP documents into winning proposals using a multi-agent pipeline built entirely on the **OpenAI platform**. Six specialized AI agents collaborate autonomously — decomposing requirements, gathering real-time intelligence from the web, analyzing competitors, optimizing pricing with live cloud data, and generating complete proposal drafts — all orchestrated without human intervention.
+PursuitIQ is a fully agentic AI system that transforms RFP documents into winning proposals using an **11-agent pipeline** built entirely on the **OpenAI platform**. Specialized AI agents collaborate autonomously — decomposing requirements, gathering real-time intelligence from the web, analyzing competitors, simulating ghost bids, optimizing pricing with live cloud data, and generating complete proposal drafts — all orchestrated without human intervention.
 
 > **HCLTech Sales Operations** | Track 2: Sales Operations | OpenAI Hackathon 2025
 
@@ -10,13 +10,15 @@ PursuitIQ is a fully agentic AI system that transforms RFP documents into winnin
 
 ## Why This Is Truly Agentic
 
-This is not a wrapper around a single LLM call. PursuitIQ implements a **multi-agent orchestration pattern** where:
+This is not a wrapper around a single LLM call. PursuitIQ implements a **multi-agent orchestration pattern** with **11 specialized agents**:
 
-- **6 autonomous agents** each have distinct roles, tools, and reasoning strategies
+- **11 autonomous agents** — each with distinct roles, tools, and reasoning strategies
 - **Agents collaborate** — each agent's output feeds into the next, building cumulative intelligence
 - **Parallel execution** — Agents 2, 3, and 4 run simultaneously for speed
 - **Tool use** — Agents autonomously invoke web search, file search, and structured output tools
-- **Reflection loop** — A quality gate agent reviews outputs and triggers re-generation if quality is below threshold
+- **Ghost bid simulation** — Red-team agent writes competitor proposals before they do
+- **Deal fingerprinting** — Pattern-matches incoming RFPs against historical wins to recommend bid/no-bid
+- **Reflection loop** — Quality gate agent reviews outputs and triggers re-generation if below threshold
 - **Planner agent** — Dynamically determines optimal execution strategy based on RFP complexity
 - **Zero human intervention** — Upload an RFP, get a complete proposal back in ~12 minutes
 
@@ -90,6 +92,16 @@ This is not a wrapper around a single LLM call. PursuitIQ implements a **multi-a
                     │    Triggers reflection loop    │
                     └───────────────┬───────────────┘
                                     │
+              ┌─────────────────────┼─────────────────────┐
+              │                                           │
+   ┌──────────▼──────────┐                    ┌──────────▼──────────┐
+   │  DEAL FINGERPRINT    │                    │    GHOST BID         │
+   │  Pattern matching    │                    │  Simulates competitor │
+   │  Bid/No-bid decision │                    │  proposals (red-team) │
+   └──────────┬──────────┘                    └──────────┬──────────┘
+              │                                           │
+              └─────────────────────┬─────────────────────┘
+                                    │
                          ┌──────────▼───────────┐
                          │   COMPLETE PROPOSAL   │
                          │   Ready for export    │
@@ -100,7 +112,7 @@ This is not a wrapper around a single LLM call. PursuitIQ implements a **multi-a
 
 ## Key Features
 
-- **Autonomous Multi-Agent Pipeline** — 6 agents + planner + quality gate working together
+- **Autonomous Multi-Agent Pipeline** — 11 specialized agents orchestrated end-to-end
 - **Real-Time Web Intelligence** — Agents search live web for competitor signals, client news, hiring patterns
 - **RAG with Vector Stores** — Historical deal corpus of 100+ proposals for win pattern matching
 - **Live Cloud Pricing** — Real-time Azure Retail Prices API + AWS pricing for accurate cost modeling
@@ -117,7 +129,7 @@ This is not a wrapper around a single LLM call. PursuitIQ implements a **multi-a
 ```
 pursuitiq/
 ├── backend/
-│   ├── agents/                 # Multi-agent system
+│   ├── agents/                 # 11-agent system
 │   │   ├── agent1_decomposer.py    # RFP parsing + requirement extraction
 │   │   ├── agent2_win_intel.py     # RAG over historical deals (file_search)
 │   │   ├── agent3_client_intel.py  # Live web search for client signals
@@ -126,7 +138,9 @@ pursuitiq/
 │   │   ├── agent6_draft.py        # Proposal generation (Codex/GPT-5)
 │   │   ├── planner_agent.py       # Dynamic execution planning
 │   │   ├── quality_gate.py        # Output verification + scoring
-│   │   └── reflection_loop.py     # Re-generation on quality failure
+│   │   ├── reflection_loop.py     # Re-generation on quality failure
+│   │   ├── deal_fingerprint.py    # Bid/no-bid pattern matching
+│   │   └── ghost_bid.py           # Red-team competitor proposal simulation
 │   ├── corpus/                 # Vector store seeding (100 historical deals)
 │   ├── knowledge_base/         # Document ingestion + Azure AI Search
 │   ├── procurement/            # Live procurement source integrations
@@ -239,13 +253,15 @@ The app will be available at `http://localhost:3000`.
 
 | Pattern | Implementation |
 |---------|---------------|
-| **Multi-Agent Orchestration** | 6 specialized agents with distinct system prompts, tools, and reasoning levels |
+| **Multi-Agent Orchestration** | 11 specialized agents with distinct system prompts, tools, and reasoning levels |
 | **Parallel Execution** | Agents 2, 3, 4 run concurrently via `asyncio.gather()` |
 | **Tool Use** | Agents autonomously invoke `web_search_preview`, `file_search`, structured outputs |
 | **RAG (Retrieval-Augmented Generation)** | Vector store of 100+ historical deals + Azure AI Search over past proposals |
 | **Reflection Loop** | Quality gate evaluates output → triggers re-generation if below threshold |
 | **Dynamic Planning** | Planner agent adjusts pipeline strategy based on RFP characteristics |
 | **Structured Agent Communication** | Pydantic schemas enforce type-safe data flow between agents |
+| **Ghost Bid Simulation** | Red-team agent writes competitor proposals to expose their likely strategy |
+| **Deal Fingerprinting** | Pattern-matches RFPs against historical wins/losses for bid/no-bid recommendation |
 | **Graceful Degradation** | Codex (GPT-5) → API fallback; web search failure → cached intel |
 
 ---
