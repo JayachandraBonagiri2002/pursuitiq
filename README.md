@@ -1,126 +1,128 @@
 # PursuitIQ
 
-**Agentic AI Platform for Enterprise Pursuit Intelligence**
+**Agentic Pursuit Intelligence Platform — Decide Smarter, Win More**
 
-PursuitIQ is a fully agentic AI system that transforms RFP documents into winning proposals using an **11-agent pipeline** built entirely on the **OpenAI platform**. Specialized AI agents collaborate autonomously — decomposing requirements, gathering real-time intelligence from the web, analyzing competitors, simulating ghost bids, optimizing pricing with live cloud data, and generating complete proposal drafts — all orchestrated without human intervention.
+PursuitIQ is an 11-agent AI system that delivers **pursuit intelligence** — not just proposals. It tells you whether to bid, what competitors will do, what the client really wants, and the optimal price-to-win — all in 12 minutes, all grounded in live web data and 100+ historical deals.
 
-> **HCLTech Sales Operations** | Track 2: Sales Operations | OpenAI Hackathon 2025
+Built entirely on the **OpenAI platform**: GPT-4.1, GPT-5.5, Codex (GPT-5), Structured Outputs, Responses API (Web Search + File Search), Vector Stores, and Reasoning Control.
+
+> **HCLTech Sales Operations** | Track 2 | OpenAI Hackathon 2025
+
+---
+
+## What PursuitIQ Delivers
+
+This is NOT a proposal generator. It's a **decision intelligence system** for enterprise sales:
+
+| Intelligence Output | What You Get |
+|---|---|
+| **Bid/No-Bid Decision** | Data-driven recommendation based on pattern-matching against 100+ past deals |
+| **Competitor War Room** | Predicted positioning, pricing floor, and simulated ghost bids for each rival |
+| **Client Deep Intel** | CTO priorities, budget signals, hiring patterns, strategic moves — from live web |
+| **Price-to-Win** | Optimal bid range using real-time Azure/AWS cloud rates + competitor margins |
+| **Win Strategy** | Killer differentiators, win themes, and competitive traps |
+| **Risk Radar** | Hidden disqualifiers, compliance gaps, evaluation criteria decoded |
+| **Proposal Draft** | Structured starting point synthesizing all intelligence (bonus, not the product) |
 
 ---
 
 ## Why This Is Truly Agentic
 
-This is not a wrapper around a single LLM call. PursuitIQ implements a **multi-agent orchestration pattern** with **11 specialized agents**:
+This is not a ChatGPT wrapper. PursuitIQ implements **multi-agent orchestration** with **11 specialized agents**:
 
 - **11 autonomous agents** — each with distinct roles, tools, and reasoning strategies
 - **Agents collaborate** — each agent's output feeds into the next, building cumulative intelligence
 - **Parallel execution** — Agents 2, 3, and 4 run simultaneously for speed
 - **Tool use** — Agents autonomously invoke web search, file search, and structured output tools
 - **Ghost bid simulation** — Red-team agent writes competitor proposals before they do
-- **Deal fingerprinting** — Pattern-matches incoming RFPs against historical wins to recommend bid/no-bid
-- **Reflection loop** — Quality gate agent reviews outputs and triggers re-generation if below threshold
-- **Planner agent** — Dynamically determines optimal execution strategy based on RFP complexity
-- **Zero human intervention** — Upload an RFP, get a complete proposal back in ~12 minutes
-
----
-
-## OpenAI Tech Stack (Deep Integration)
-
-| Component | OpenAI Technology | How We Use It |
-|-----------|------------------|---------------|
-| **Agent Intelligence** | GPT-4.1 + GPT-5.5 | Structured reasoning with varying effort levels (HIGH/MEDIUM) per agent |
-| **Structured Outputs** | `response_format` with Pydantic schemas | Every agent returns type-safe, validated JSON — no regex parsing |
-| **Web Search** | Responses API `web_search_preview` tool | Agents 3 & 4 autonomously search the live web for competitor moves, client news, job postings |
-| **File Search (RAG)** | Responses API `file_search` tool + Vector Stores | Agent 2 searches 100+ historical deals for win pattern matching |
-| **Vector Stores** | OpenAI Vector Store API | Proposal knowledge base — past wins embedded and retrievable |
-| **Codex CLI** | OpenAI Codex (GPT-5 via ChatGPT) | Agent 6 uses Codex for zero-cost, high-quality long-form proposal drafting |
-| **Reasoning Control** | `reasoning_effort` parameter | HIGH for critical analysis (Agent 1, 5), MEDIUM for breadth tasks (Agent 3, 4) |
-| **Streaming** | Codex exec streaming mode | Live demo mode — watch GPT-5 write the proposal in real-time |
+- **Deal fingerprinting** — Pattern-matches RFPs against historical wins for bid/no-bid recommendation
+- **Reflection loop** — Quality gate reviews outputs and triggers re-generation if below threshold
+- **Planner agent** — Dynamically determines execution strategy based on RFP complexity
+- **Zero human intervention** — Upload an RFP, get full pursuit intelligence in 12 minutes
 
 ---
 
 ## Agentic Architecture
 
 ```
-                         ┌─────────────────────┐
-                         │   RFP Document       │
-                         │   (PDF/DOCX/PPTX)    │
-                         └──────────┬───────────┘
-                                    │
-                         ┌──────────▼───────────┐
-                         │   PLANNER AGENT       │
-                         │   Analyzes complexity  │
-                         │   Sets agent strategy  │
-                         └──────────┬───────────┘
-                                    │
-                    ┌───────────────▼───────────────┐
-                    │         AGENT 1                │
-                    │    RFP Decomposer             │
-                    │    GPT-5.5 | reasoning: HIGH   │
-                    │    Tool: Structured Outputs    │
-                    └───────────────┬───────────────┘
-                                    │
-              ┌─────────────────────┼─────────────────────┐
-              │                     │                     │
-   ┌──────────▼──────────┐ ┌───────▼────────┐ ┌─────────▼─────────┐
-   │      AGENT 2         │ │    AGENT 3      │ │     AGENT 4        │
-   │  Win Intelligence    │ │ Client Intel    │ │ Competitor Shadow  │
-   │  GPT-5.5 | file_search│ │ GPT-5.5 | web   │ │ GPT-5.5 | web      │
-   │  + Vector Store RAG  │ │ search_preview  │ │ search_preview     │
-   └──────────┬──────────┘ └───────┬────────┘ └─────────┬─────────┘
-              │        (PARALLEL)   │                     │
-              └─────────────────────┼─────────────────────┘
-                                    │
-                    ┌───────────────▼───────────────┐
-                    │         AGENT 5                │
-                    │    Solution + Pricing          │
-                    │    GPT-5.5 | reasoning: HIGH   │
-                    │    + Live Azure/AWS pricing    │
-                    └───────────────┬───────────────┘
-                                    │
-                    ┌───────────────▼───────────────┐
-                    │         AGENT 6                │
-                    │    Proposal Draft Generator    │
-                    │    Codex GPT-5 (preferred)     │
-                    │    Fallback: GPT-4.1 API       │
-                    └───────────────┬───────────────┘
-                                    │
-                    ┌───────────────▼───────────────┐
-                    │       QUALITY GATE             │
-                    │    Verifies claims & facts     │
-                    │    Scores output quality       │
-                    │    Triggers reflection loop    │
-                    └───────────────┬───────────────┘
-                                    │
-              ┌─────────────────────┼─────────────────────┐
-              │                                           │
-   ┌──────────▼──────────┐                    ┌──────────▼──────────┐
-   │  DEAL FINGERPRINT    │                    │    GHOST BID         │
-   │  Pattern matching    │                    │  Simulates competitor │
-   │  Bid/No-bid decision │                    │  proposals (red-team) │
-   └──────────┬──────────┘                    └──────────┬──────────┘
-              │                                           │
-              └─────────────────────┬─────────────────────┘
-                                    │
-                         ┌──────────▼───────────┐
-                         │   COMPLETE PROPOSAL   │
-                         │   Ready for export    │
-                         └──────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    PursuitIQ: Agentic Intelligence Pipeline                   │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  ┌──────────────────────────────────────────────────────────────────────┐  │
+│  │  PLANNER AGENT — Assesses RFP complexity, sets execution strategy     │  │
+│  └───────────────────────────────┬──────────────────────────────────────┘  │
+│                                  ▼                                          │
+│  ┌──────────────────────────────────────────────────────────────────────┐  │
+│  │  AGENT 1: RFP DECOMPOSER                                             │  │
+│  │  Extracts: Requirements | Disqualifiers | Eval Criteria | Deadlines   │  │
+│  │  Tech: GPT-5.5 + Structured Outputs + reasoning: HIGH                 │  │
+│  └───────────────────────────────┬──────────────────────────────────────┘  │
+│                                  ▼                                          │
+│         ┌────────────────────────┼────────────────────────┐                │
+│         ▼                        ▼                        ▼                │
+│  ┌─────────────┐      ┌──────────────────┐      ┌──────────────┐         │
+│  │ AGENT 2     │      │ AGENT 3          │      │ AGENT 4      │         │
+│  │ Win Intel   │      │ Client Intel     │      │ Competitor   │         │
+│  │ file_search │      │ web_search       │      │ web_search   │         │
+│  │ (100+ deals)│      │ (live signals)   │      │ (live moves) │         │
+│  └──────┬──────┘      └────────┬─────────┘      └──────┬───────┘         │
+│         └────────────────────────┼──────────────────────┘                  │
+│                    PARALLEL       ▼                                         │
+│  ┌──────────────────────────────────────────────────────────────────────┐  │
+│  │  AGENT 5: SOLUTION ARCHITECT + PRICING ENGINE                         │  │
+│  │  3 Options | Live Azure/AWS Pricing | Margin Optimization             │  │
+│  │  Tech: GPT-5.5 + reasoning: HIGH + Real-Time Cloud APIs               │  │
+│  └───────────────────────────────┬──────────────────────────────────────┘  │
+│                                  ▼                                          │
+│  ┌──────────────────────────────────────────────────────────────────────┐  │
+│  │  AGENT 6: DRAFT GENERATOR (Codex GPT-5)                              │  │
+│  │  Synthesizes all intelligence into structured proposal starting point │  │
+│  └───────────────────────────────┬──────────────────────────────────────┘  │
+│                                  ▼                                          │
+│  ┌────────────────┐   ┌─────────────────┐   ┌────────────────────┐       │
+│  │ QUALITY GATE   │   │ DEAL FINGERPRINT │   │ GHOST BID ENGINE  │       │
+│  │ Verify claims  │   │ Win probability  │   │ Simulates what    │       │
+│  │ Catch halluc.  │   │ Bid/No-bid call  │   │ competitors will  │       │
+│  │ Reflection loop│   │ Pattern matching │   │ actually submit   │       │
+│  └────────────────┘   └─────────────────┘   └────────────────────┘       │
+│                                                                             │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  OPENAI STACK: GPT-4.1 | GPT-5.5 | Codex GPT-5 | Structured Outputs      │
+│  | Responses API (web_search + file_search) | Vector Stores | Reasoning    │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Key Features
+## OpenAI Platform — Deep Integration
 
-- **Autonomous Multi-Agent Pipeline** — 11 specialized agents orchestrated end-to-end
-- **Real-Time Web Intelligence** — Agents search live web for competitor signals, client news, hiring patterns
-- **RAG with Vector Stores** — Historical deal corpus of 100+ proposals for win pattern matching
-- **Live Cloud Pricing** — Real-time Azure Retail Prices API + AWS pricing for accurate cost modeling
-- **Reflection Loop** — Quality gate triggers re-analysis if output doesn't meet threshold
-- **Codex Integration** — GPT-5 via Codex CLI for high-quality, zero-cost proposal generation
-- **Structured Outputs Everywhere** — Type-safe Pydantic schemas ensure reliable agent-to-agent communication
-- **Proposal Export** — One-click DOCX export of the final proposal
-- **Knowledge Base** — Upload past proposals to build institutional memory (Azure AI Search)
+| OpenAI Feature | How PursuitIQ Uses It |
+|---|---|
+| **Structured Outputs** | Type-safe agent-to-agent communication — Pydantic schemas, zero parsing errors |
+| **Responses API + Web Search** | Agents 3 & 4 search live web for competitor moves, client news, job posts |
+| **Responses API + File Search** | Agent 2 searches 100+ historical deals for win pattern matching |
+| **Vector Stores** | Proposal knowledge base with semantic retrieval over past wins |
+| **Codex CLI (GPT-5)** | Zero-cost, high-quality long-form generation with streaming |
+| **Reasoning Control** | `reasoning_effort: HIGH` for pricing/analysis, `MEDIUM` for research breadth |
+| **Multi-Model Routing** | GPT-4.1 for speed, GPT-5.5 for analysis, GPT-5 (Codex) for drafting |
+
+---
+
+## Advanced Agentic Patterns
+
+| Pattern | Implementation |
+|---|---|
+| **Multi-Agent Orchestration** | 11 agents with distinct system prompts, tools, and reasoning levels |
+| **Parallel Execution** | Agents 2, 3, 4 run concurrently via `asyncio.gather()` |
+| **Autonomous Tool Use** | Agents invoke `web_search_preview`, `file_search`, structured outputs |
+| **RAG** | Vector store of 100+ deals + Azure AI Search over past proposals |
+| **Ghost Bid Simulation** | Red-team agent writes competitor proposals to expose their strategy |
+| **Deal Fingerprinting** | Pattern-matches RFPs against wins/losses for bid/no-bid |
+| **Reflection Loop** | Quality gate evaluates → triggers re-generation if below threshold |
+| **Dynamic Planning** | Planner agent adjusts strategy based on RFP characteristics |
+| **Structured Communication** | Pydantic schemas enforce type-safe data flow between all agents |
+| **Graceful Degradation** | Codex → API fallback; web search failure → cached intel |
 
 ---
 
@@ -140,8 +142,8 @@ pursuitiq/
 │   │   ├── quality_gate.py        # Output verification + scoring
 │   │   ├── reflection_loop.py     # Re-generation on quality failure
 │   │   ├── deal_fingerprint.py    # Bid/no-bid pattern matching
-│   │   └── ghost_bid.py           # Red-team competitor proposal simulation
-│   ├── corpus/                 # Vector store seeding (100 historical deals)
+│   │   └── ghost_bid.py           # Red-team competitor simulation
+│   ├── corpus/                 # Historical deal vector store (100+ deals)
 │   ├── knowledge_base/         # Document ingestion + Azure AI Search
 │   ├── procurement/            # Live procurement source integrations
 │   │   ├── sam_gov.py              # USA (SAM.gov)
@@ -149,10 +151,10 @@ pursuitiq/
 │   │   ├── contracts_finder.py    # UK
 │   │   ├── austender.py           # Australia
 │   │   └── gebiz.py               # Singapore
-│   ├── data/pursuits/          # Stored analysis results
+│   ├── data/pursuits/          # Stored intelligence outputs
 │   ├── main.py                 # FastAPI entry point
 │   ├── orchestrator.py         # Agent pipeline orchestration
-│   ├── openai_client.py        # OpenAI SDK client setup
+│   ├── openai_client.py        # OpenAI SDK client
 │   ├── codex_client.py         # Codex CLI integration (GPT-5)
 │   ├── cloud_pricing.py        # Azure/AWS live pricing APIs
 │   ├── config.py               # Model + environment config
@@ -160,11 +162,11 @@ pursuitiq/
 ├── frontend/
 │   ├── src/app/
 │   │   ├── page.tsx                # Landing page + RFP upload
-│   │   ├── pursuit/[rfp_id]/      # Real-time pursuit dashboard
+│   │   ├── pursuit/[rfp_id]/      # Real-time pursuit intelligence dashboard
 │   │   └── knowledge/             # Knowledge base management
 │   ├── package.json
 │   └── tsconfig.json
-├── Architecture.md             # Detailed system architecture doc
+├── Architecture.md             # Detailed system architecture
 └── .env.example                # Environment variable template
 ```
 
@@ -173,7 +175,7 @@ pursuitiq/
 ## Tech Stack
 
 | Layer | Technology |
-|-------|-----------|
+|---|---|
 | AI Engine | OpenAI GPT-4.1, GPT-5.5, Codex (GPT-5) |
 | Agent Framework | Custom multi-agent orchestrator with parallel execution |
 | Agent Tools | Web Search, File Search, Structured Outputs, Vector Stores |
@@ -192,26 +194,21 @@ pursuitiq/
 - Python 3.11+
 - Node.js 20+
 - OpenAI API key (with Responses API access)
-- Codex CLI installed (`npm install -g @openai/codex`)
+- Codex CLI (`npm install -g @openai/codex`)
 - Azure Storage + AI Search (optional, for knowledge base)
 
-### 1. Backend Setup
+### 1. Backend
 
 ```bash
 cd backend
 python -m venv venv
 source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install -r requirements.txt
-
-# Configure environment
-cp ../.env.example .env
-# Edit .env with your OpenAI API key and Azure credentials
-
-# Run the server
+cp ../.env.example .env         # Add your OpenAI API key
 uvicorn main:app --reload --port 8000
 ```
 
-### 2. Frontend Setup
+### 2. Frontend
 
 ```bash
 cd frontend
@@ -219,50 +216,32 @@ npm install
 npm run dev
 ```
 
-The app will be available at `http://localhost:3000`.
-
----
-
-## How It Works
-
-1. **Upload RFP** — Drag and drop a PDF/DOCX/PPTX or run the built-in demo
-2. **Planner Agent** — Analyzes RFP complexity, sets execution strategy
-3. **Agent 1 (Decomposer)** — Extracts requirements, disqualifiers, evaluation criteria using Structured Outputs
-4. **Agents 2-4 (Parallel)** — Win intel searches vector store (file_search), client intel + competitor analysis search live web (web_search_preview)
-5. **Agent 5 (Pricing)** — Designs 3 solution options with real-time Azure/AWS cloud pricing
-6. **Agent 6 (Draft)** — Codex/GPT-5 synthesizes all intelligence into a complete proposal with Mermaid architecture diagrams
-7. **Quality Gate** — Verifies claims, catches hallucinations, scores quality; triggers reflection loop if needed
-8. **Export** — Download the final proposal as formatted DOCX
+App available at `http://localhost:3000`
 
 ---
 
 ## API Endpoints
 
 | Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/rfp/upload` | Upload RFP document and start agentic pipeline |
+|---|---|---|
+| POST | `/api/rfp/upload` | Upload RFP and start intelligence pipeline |
 | POST | `/api/pursuit/demo` | Run demo with sample RFP |
-| GET | `/api/pursuit/{id}` | Get pursuit status and agent results |
-| GET | `/api/pursuit/{id}/export` | Export proposal as DOCX |
+| GET | `/api/pursuit/{id}` | Get pursuit status and intelligence results |
+| GET | `/api/pursuit/{id}/export` | Export proposal draft as DOCX |
 | POST | `/api/knowledge/upload` | Upload documents to knowledge base |
 | GET | `/api/knowledge/documents` | List knowledge base documents |
 
 ---
 
-## Advanced Agentic Patterns Used
+## Business Impact
 
-| Pattern | Implementation |
-|---------|---------------|
-| **Multi-Agent Orchestration** | 11 specialized agents with distinct system prompts, tools, and reasoning levels |
-| **Parallel Execution** | Agents 2, 3, 4 run concurrently via `asyncio.gather()` |
-| **Tool Use** | Agents autonomously invoke `web_search_preview`, `file_search`, structured outputs |
-| **RAG (Retrieval-Augmented Generation)** | Vector store of 100+ historical deals + Azure AI Search over past proposals |
-| **Reflection Loop** | Quality gate evaluates output → triggers re-generation if below threshold |
-| **Dynamic Planning** | Planner agent adjusts pipeline strategy based on RFP characteristics |
-| **Structured Agent Communication** | Pydantic schemas enforce type-safe data flow between agents |
-| **Ghost Bid Simulation** | Red-team agent writes competitor proposals to expose their likely strategy |
-| **Deal Fingerprinting** | Pattern-matches RFPs against historical wins/losses for bid/no-bid recommendation |
-| **Graceful Degradation** | Codex (GPT-5) → API fallback; web search failure → cached intel |
+| Metric | Without PursuitIQ | With PursuitIQ |
+|---|---|---|
+| Decision Speed | 3-5 days to assess | 12 minutes |
+| Competitor Visibility | Guesswork | Predicted bids + ghost proposals |
+| Pricing Accuracy | Last quarter's rates | Real-time cloud pricing |
+| Cost per Pursuit | $50K+ (team time) | <$5 in API costs |
+| Win Rate | ~30-40% | Target: 50%+ with intelligence advantage |
 
 ---
 
