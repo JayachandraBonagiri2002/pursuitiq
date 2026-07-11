@@ -2,9 +2,9 @@
 
 # PursuitIQ
 
-### Agentic Pursuit Intelligence — turn any RFP into a win-ready proposal in minutes.
+### Agentic Pursuit Intelligence — know how to win the deal before you bid.
 
-*Eleven coordinated AI agents that read an RFP, gather live market intelligence, price a solution, draft the proposal, and verify every claim — autonomously.*
+*Eleven coordinated AI agents that read an RFP and hand your bid team a live win strategy: hidden disqualifiers, unstated client needs, competitor intel, and exactly how to beat them.*
 
 </div>
 
@@ -12,9 +12,9 @@
 
 ## Overview
 
-PursuitIQ is a multi-agent system that transforms a raw RFP into a win-ready proposal. It reads the document, hunts for hidden disqualifiers, gathers live client and competitor intelligence, designs a priced solution grounded in real market data, and drafts the proposal in the voice of your past winners — then verifies its own claims before handing off.
+PursuitIQ is a multi-agent **win-strategy engine** for bid teams. Feed it an RFP and it tells you *how to win the deal* — not by writing the proposal for you, but by handing you the intelligence and strategy the best bid teams spend weeks assembling: the hidden disqualifiers buried in the document, what the client actually wants but didn't say, who else is likely bidding, how they'll price and position, and the specific moves that beat them.
 
-Most "AI proposal" tools are a prompt wrapped around a template. PursuitIQ is **genuinely agentic**: a planner decides *how* to pursue each deal, agents reflect on and correct their own output, and a final verifier cross-checks every claim against its source. Intelligence is **real-time, not hardcoded** — competitor, client, and market data come from live web search and public procurement records, so the analysis is never stale.
+Most "AI proposal" tools are a prompt wrapped around a template that spits out generic text. PursuitIQ is **genuinely agentic and strategy-first**: a planner decides *how* to pursue each deal, agents gather live market intelligence, red-team your competitors, and pressure-test their own conclusions before handing off. Intelligence is **real-time, not hardcoded** — competitor, client, and market data come from live web search and public procurement records, so your strategy is always current.
 
 Built for HCLTech's OpenAI hackathon (Track 2: Sales Operations).
 
@@ -22,19 +22,19 @@ Built for HCLTech's OpenAI hackathon (Track 2: Sales Operations).
 
 ## The Pipeline
 
-Eleven coordinated agents, running in parallel wherever possible — a full pursuit completes in roughly **5–8 minutes**.
+Eleven coordinated agents, running in parallel wherever possible — a full pursuit completes in roughly **5–8 minutes** and hands your team a complete win strategy.
 
 | Agent | Role |
 |-------|------|
 | **Planner** | Autonomously decides which agents to run, what to focus on, and which competitors to research. |
-| **1 · RFP Decomposer** | Extracts every requirement, with a focus on the hidden disqualifiers other tools miss. |
-| **2 · Win Intelligence** | Grounds strategy in your past proposals, public procurement awards, and a deal corpus. |
-| **3 · Client Intelligence** | Live web search across earnings calls, exec signals, and job posts to surface unstated needs. |
-| **4 · Competitor War Room** | Four-source competitor read: news, real contract prices, hiring signals, and financial filings. |
-| **Deal Fingerprint** | Classifies the deal into an archetype and makes a bid / no-bid call. |
-| **5 · Solution & Pricing** | Prices against real competitor contracts and live cloud pricing — every number traceable to a source. |
-| **Ghost Bid** | Simulates each competitor's likely proposal before they write it. |
-| **6 · Proposal Generator** | Drafts in the tone and structure of your proven winners. |
+| **1 · RFP Decomposer** | Extracts every requirement and surfaces the hidden disqualifiers that quietly kill bids. |
+| **2 · Win Intelligence** | Builds the win strategy from your past proposals, public procurement awards, and a deal corpus. |
+| **3 · Client Intelligence** | Live web search across earnings calls, exec signals, and job posts to surface what the client *really* wants. |
+| **4 · Competitor War Room** | Four-source competitor read — news, real contract prices, hiring signals, and financial filings. |
+| **Deal Fingerprint** | Classifies the deal into an archetype and makes a bid / no-bid recommendation. |
+| **5 · Solution & Pricing** | A pricing strategy benchmarked against real competitor contracts and live cloud pricing — every number traceable. |
+| **Ghost Bid** | Simulates each competitor's likely bid *before they write it* — so you know how to beat them. |
+| **6 · Strategy Brief** | Assembles the intelligence into a clear, actionable win-strategy brief for the bid team. |
 | **Quality Gate + Reflection** | Agents evaluate their own output and autonomously retry or deepen research. |
 | **Verifier** | Anti-hallucination layer — cross-checks every claim against its data source and adjusts confidence. |
 
@@ -60,8 +60,9 @@ Eleven coordinated agents, running in parallel wherever possible — a full purs
 ## What You Can Do
 
 - Upload an RFP PDF, or run the built-in banking-RFP demo.
-- Watch the agents work in real time, then export a proposal as DOCX.
-- Manage a searchable knowledge base of your past proposals.
+- Watch the agents build your win strategy in real time, then export the strategy brief as DOCX.
+- See exactly who you're up against and how to beat them — competitor moves, pricing, and positioning.
+- Manage a searchable knowledge base of your past proposals to sharpen every new strategy.
 - Mark pursuits **WON / LOST** — outcomes re-ingest so the system learns from every bid.
 
 ---
