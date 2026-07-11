@@ -157,7 +157,7 @@
       },
       {
         "req_id": "REQ-014",
-        "text": "Idea 2 \u2013 VulnAutoFix requires Claude Sonnet 4.6 API.",
+        "text": "Idea 2 \u2013 VulnAutoFix requires an enterprise LLM API.",
         "category": "technical",
         "priority": "must_have",
         "page_ref": "Slide 5",
@@ -178,7 +178,7 @@
     "hard_disqualifiers": [],
     "compliance_red_flags": [
       "No explicit hard disqualifiers found in the provided document.",
-      "Use of a named third-party AI API, \"Claude Sonnet 4.6 API,\" is explicitly listed as a required resource for VulnAutoFix and may require procurement, security, or data-handling review, but the document does not state it as an eligibility disqualifier."
+      "Use of a named third-party AI API, \"an enterprise LLM API,\" is explicitly listed as a required resource for VulnAutoFix and may require procurement, security, or data-handling review, but the document does not state it as an eligibility disqualifier."
     ],
     "total_requirements": 14,
     "eliminatory_count": 0
@@ -267,7 +267,7 @@
       }
     ],
     "win_probability": 0.3,
-    "win_probability_rationale": "Estimated win probability is 30%. This is intentionally conservative. Evidence supporting a bid exists only at the pattern level: the deal corpus shows wins in broader Azure-aligned IT transformation, cybersecurity, and automation contexts, especially where accelerators, fast mobilisation, and cloud-operations credibility were emphasized. However, the proposal knowledge base contains no matching prior proposal sections for the exact requirements: Azure Monitor alert listener, Azure tag-based owner resolution, Teams @General broadcast, Teams owner @mentions, Qualys Excel ingestion, SSH/WinRM remediation, approval gates, verification, rollback, or Claude Sonnet 4.6 API integration. Public procurement data is unavailable, so there is no ground-truth validation of competitor win rates, award pricing, or incumbent strength. Procurement data therefore does not raise or lower the score, but the absence of market evidence increases uncertainty. The RFP is technically feasible, but the current evidence base does not prove we have delivered this exact solution before. Win probability should increase only if we can produce a working prototype, confirm Teams/Graph and Azure-tag permissions, validate Claude API acceptability, and identify no entrenched incumbent. Confidence in this probability is low-to-medium because it relies mainly on the deal corpus plus negative evidence from the proposal library, with no public procurement benchmark.",
+    "win_probability_rationale": "Estimated win probability is 30%. This is intentionally conservative. Evidence supporting a bid exists only at the pattern level: the deal corpus shows wins in broader Azure-aligned IT transformation, cybersecurity, and automation contexts, especially where accelerators, fast mobilisation, and cloud-operations credibility were emphasized. However, the proposal knowledge base contains no matching prior proposal sections for the exact requirements: Azure Monitor alert listener, Azure tag-based owner resolution, Teams @General broadcast, Teams owner @mentions, Qualys Excel ingestion, SSH/WinRM remediation, approval gates, verification, rollback, or an enterprise LLM API integration. Public procurement data is unavailable, so there is no ground-truth validation of competitor win rates, award pricing, or incumbent strength. Procurement data therefore does not raise or lower the score, but the absence of market evidence increases uncertainty. The RFP is technically feasible, but the current evidence base does not prove we have delivered this exact solution before. Win probability should increase only if we can produce a working prototype, confirm Teams/Graph and Azure-tag permissions, validate the LLM API acceptability, and identify no entrenched incumbent. Confidence in this probability is low-to-medium because it relies mainly on the deal corpus plus negative evidence from the proposal library, with no public procurement benchmark.",
     "capability_gaps": [
       "No verified past-proposal evidence for the MUST_HAVE requirement that the Azure Alert Bot listens to all Azure Monitor alerts for all servers using a Logic App on a Consumption plan.",
       "No verified past-proposal evidence for dynamic Azure tag lookup covering Role, Owners, and Environment, or for using tags as the non-hardcoded onboarding mechanism for new servers.",
@@ -275,7 +275,7 @@
       "No verified past-proposal evidence for VulnAutoFix ingesting Qualys Excel vulnerability scan output and classifying findings as Critical, High, or Medium.",
       "No verified past-proposal evidence for automated remediation over SSH for Linux and WinRM for Windows with human approval before each fix.",
       "No verified past-proposal evidence for post-fix verification and automatic rollback when a vulnerability fix fails.",
-      "No verified past-proposal evidence for integration with the required Claude Sonnet 4.6 API, including security approval, data-handling model, and deterministic remediation guardrails."
+      "No verified past-proposal evidence for integration with the required an enterprise LLM API, including security approval, data-handling model, and deterministic remediation guardrails."
     ],
     "recommended_win_themes": [
       "Tag-driven operations: new servers are onboarded by applying Azure tags, not by changing code, routing tables, or static configuration. This directly addresses the no-hardcoding and multi-owner requirements.",
@@ -292,14 +292,14 @@
       "Teams @General broadcasts and individual @mentions may be constrained by Microsoft Teams governance, Graph permissions, channel policies, or tenant security controls.",
       "The Owners Azure tag may not map cleanly to Teams identities, especially with multiple owners, distribution lists, external users, service accounts, or inconsistent tag hygiene.",
       "Automated vulnerability remediation carries operational risk: SSH/WinRM access, privilege escalation, patch compatibility, rollback feasibility, outage windows, and audit requirements may materially increase scope.",
-      "Claude Sonnet 4.6 API is a mandatory requirement but there is no provided evidence that the client permits vulnerability data to be sent to this API or that the API has been approved for remediation planning."
+      "an enterprise LLM API is a mandatory requirement but there is no provided evidence that the client permits vulnerability data to be sent to this API or that the API has been approved for remediation planning."
     ],
     "must_fix_before_bidding": [
       "Build and demonstrate a small working prototype before submission: Azure Monitor alert ingestion, Azure tag lookup, Teams channel broadcast, and dynamic owner mention without hardcoded server-owner mappings.",
       "Confirm Microsoft Teams and Microsoft Graph permissions: ability to post to the required channel, use @General or equivalent channel-wide notification, and mention individual owners based on Azure tag values.",
       "Confirm the client\u2019s Azure tagging standard: exact format for Role, Owners, and Environment tags; how multiple owners are represented; how tag values map to Teams identities; and how untagged or incorrectly tagged servers are handled.",
       "Create a credible VulnAutoFix design with explicit human approval gates, SSH/WinRM credential handling, pre-checks, post-fix verification, rollback logic, audit logging, and exclusion rules for risky patches.",
-      "Validate the Claude Sonnet 4.6 API requirement: API availability, approved use case, data residency, vulnerability-data handling, prompt/log retention, and fallback process if the API is unavailable or not approved.",
+      "Validate the an enterprise LLM API requirement: API availability, approved use case, data residency, vulnerability-data handling, prompt/log retention, and fallback process if the API is unavailable or not approved.",
       "Develop bid evidence because the proposal knowledge base contains no matching past proposal sections for Azure Monitor, Teams @mentions, Qualys Excel ingestion, or automated vulnerability remediation."
     ]
   },
@@ -447,7 +447,7 @@
     "ghost_bids": [
       {
         "competitor_name": "TCS",
-        "likely_solution_approach": "TCS would likely bid a 'Cognix-enabled CloudOps and Vulnerability Remediation Accelerator.' For Idea 1, they would implement an Azure Monitor Action Group that triggers an Azure Logic App on a Consumption plan. The Logic App would use managed identity to query Azure Resource Graph/ARM for server tags Role, Owners, and Environment, normalize comma-separated owner values, resolve owners to Azure AD/Entra users through Microsoft Graph, and post a Teams channel message with @General plus individual owner mentions. For Idea 2, TCS would propose a remediation orchestrator, likely Python plus PowerShell/Ansible scripts, that ingests Qualys Excel output, maps CVSS/severity to Critical/High/Medium, calls Claude Sonnet 4.6 API to draft remediation plans, then routes each proposed fix for approval through Teams adaptive cards or email. Approved fixes would execute over SSH for Linux and WinRM for Windows, verify using package/service/configuration checks, and run snapshot/package rollback scripts if verification fails. TCS would try to attach optional enterprise vulnerability management governance, dashboards, and a managed operations handover.",
+        "likely_solution_approach": "TCS would likely bid a 'Cognix-enabled CloudOps and Vulnerability Remediation Accelerator.' For Idea 1, they would implement an Azure Monitor Action Group that triggers an Azure Logic App on a Consumption plan. The Logic App would use managed identity to query Azure Resource Graph/ARM for server tags Role, Owners, and Environment, normalize comma-separated owner values, resolve owners to Azure AD/Entra users through Microsoft Graph, and post a Teams channel message with @General plus individual owner mentions. For Idea 2, TCS would propose a remediation orchestrator, likely Python plus PowerShell/Ansible scripts, that ingests Qualys Excel output, maps CVSS/severity to Critical/High/Medium, calls an enterprise LLM API to draft remediation plans, then routes each proposed fix for approval through Teams adaptive cards or email. Approved fixes would execute over SSH for Linux and WinRM for Windows, verify using package/service/configuration checks, and run snapshot/package rollback scripts if verification fails. TCS would try to attach optional enterprise vulnerability management governance, dashboards, and a managed operations handover.",
         "predicted_pricing_range_usd": "Predicted TCS bid: US$218,000 fixed price for a 10-week MVP. Estimated delivery cost: US$145,000. Margin-maintenance floor using 25.0% operating margin: US$193,333. Likely optional run/support add-on: US$12,000 per month.",
         "predicted_win_themes": [
           "AI-led operations using TCS Cognix",
@@ -463,7 +463,7 @@
           "Likely to over-package the work as AI-led managed operations, Cognix-enabled command center, or broader vulnerability management service.",
           "TCS has the highest margin-maintenance hurdle among the named firms using the provided data: 25.0% operating margin implies a 1.333x cost-to-price multiplier.",
           "May be less attractive for a small idea-proposal RFP if they push multi-year operations, SIAM, SOC, or service desk expansion.",
-          "Claude Sonnet 4.6 API requirement may be awkward if TCS tries to steer toward proprietary AI tooling or enterprise governance layers."
+          "an enterprise LLM API requirement may be awkward if TCS tries to steer toward proprietary AI tooling or enterprise governance layers."
         ],
         "how_we_beat_this_bid": [
           "Lead with a working proof-of-concept instead of a transformation narrative: show Azure Monitor alert ingestion, Azure tag lookup for Role/Owners/Environment, @General Teams broadcast, and multiple owner mentions in the demo environment.",
@@ -476,7 +476,7 @@
       },
       {
         "competitor_name": "Capgemini",
-        "likely_solution_approach": "Capgemini would likely propose a 'Cloud Security Automation QuickStart' under its managed cloud and Continuous Vigilance story. Idea 1 would be delivered as an Azure-native Logic App Consumption workflow connected to Azure Monitor Action Groups. It would read Role, Owners, and Environment tags via Azure Resource Graph, parse multiple owners from tags, resolve them through Entra ID/Microsoft Graph, and post a Teams channel message with @General and owner @mentions. They would likely include Terraform/Bicep templates, Key Vault integration, and a configuration table for Teams channel IDs. Idea 2 would be positioned as a lightweight vulnerability remediation cockpit. It would ingest Qualys Excel files into a parser, classify Critical/High/Medium using CVSS/QID rules, use Claude Sonnet 4.6 API to draft fix steps and rollback steps, present a per-finding approval workflow, execute approved actions by SSH or WinRM, verify state after execution, and automatically rollback on failed verification. Capgemini would likely include dashboards, runbooks, and a transition-to-managed-operations option.",
+        "likely_solution_approach": "Capgemini would likely propose a 'Cloud Security Automation QuickStart' under its managed cloud and Continuous Vigilance story. Idea 1 would be delivered as an Azure-native Logic App Consumption workflow connected to Azure Monitor Action Groups. It would read Role, Owners, and Environment tags via Azure Resource Graph, parse multiple owners from tags, resolve them through Entra ID/Microsoft Graph, and post a Teams channel message with @General and owner @mentions. They would likely include Terraform/Bicep templates, Key Vault integration, and a configuration table for Teams channel IDs. Idea 2 would be positioned as a lightweight vulnerability remediation cockpit. It would ingest Qualys Excel files into a parser, classify Critical/High/Medium using CVSS/QID rules, use an enterprise LLM API to draft fix steps and rollback steps, present a per-finding approval workflow, execute approved actions by SSH or WinRM, verify state after execution, and automatically rollback on failed verification. Capgemini would likely include dashboards, runbooks, and a transition-to-managed-operations option.",
         "predicted_pricing_range_usd": "Predicted Capgemini bid: US$198,000 fixed price for an 8-week MVP. Estimated delivery cost: US$170,000. Margin-maintenance floor using 13.6%-13.8% operating margin: US$196,759-US$197,216. Likely optional support add-on: US$9,500 per month.",
         "predicted_win_themes": [
           "Lowest-cost credible global SI bid",
@@ -499,13 +499,13 @@
           "Beat them on exactness and speed: propose a 6-week build versus their likely 8-week delivery, with a day-10 clickable demo of Teams @General plus owner mentions from Azure tags.",
           "Require no new managed security service, sovereign cloud, or Continuous Vigilance onboarding. Keep all components in the client tenant with source-code handover.",
           "Use a sharper acceptance matrix than Capgemini\u2019s likely managed-cloud framing: every RFP bullet becomes a test case with evidence logs, screenshots, and rollback proof.",
-          "Offer a price of US$189,000 only if our cost base supports it; otherwise differentiate through lower implementation risk, no platform lock-in, and stronger Claude Sonnet 4.6 remediation guardrails."
+          "Offer a price of US$189,000 only if our cost base supports it; otherwise differentiate through lower implementation risk, no platform lock-in, and stronger an enterprise LLM remediation guardrails."
         ],
         "confidence_level": "Medium-high. Capgemini has the best specific staffing signal, including Qualys/remediation and Azure Vulnerability & Remediation Architect postings, but geography is unspecified so confidence remains below high."
       },
       {
         "competitor_name": "Infosys",
-        "likely_solution_approach": "Infosys would likely propose a 'Topaz/Cobalt Cyber Remediation Assistant.' For Azure Alert Bot, they would deploy an Azure Logic App on Consumption plan triggered by Azure Monitor Action Groups across servers. The workflow would use managed identity to retrieve the server resource ID, read Azure tags Role, Owners, and Environment, resolve multiple owners through Entra ID, and send a Teams message to the operations channel with @General plus individual owner mentions. For VulnAutoFix, Infosys would create a secure remediation pipeline that uploads Qualys Excel output, classifies findings into Critical/High/Medium, uses Claude Sonnet 4.6 API for remediation-plan generation, and presents an approval gate before execution. Approved Linux remediations would run through SSH and approved Windows remediations through WinRM. Each fix would have pre-checks, command execution, post-check verification, audit logs, and rollback scripts. Infosys would likely include a Cyber Next-style dashboard and recommend future integration with Cyber Defense Centers or continuous threat exposure management.",
+        "likely_solution_approach": "Infosys would likely propose a 'Topaz/Cobalt Cyber Remediation Assistant.' For Azure Alert Bot, they would deploy an Azure Logic App on Consumption plan triggered by Azure Monitor Action Groups across servers. The workflow would use managed identity to retrieve the server resource ID, read Azure tags Role, Owners, and Environment, resolve multiple owners through Entra ID, and send a Teams message to the operations channel with @General plus individual owner mentions. For VulnAutoFix, Infosys would create a secure remediation pipeline that uploads Qualys Excel output, classifies findings into Critical/High/Medium, uses an enterprise LLM API for remediation-plan generation, and presents an approval gate before execution. Approved Linux remediations would run through SSH and approved Windows remediations through WinRM. Each fix would have pre-checks, command execution, post-check verification, audit logs, and rollback scripts. Infosys would likely include a Cyber Next-style dashboard and recommend future integration with Cyber Defense Centers or continuous threat exposure management.",
         "predicted_pricing_range_usd": "Predicted Infosys bid: US$229,000 fixed price for a 10-week MVP. Estimated delivery cost: US$130,000. Margin-maintenance floor using the provided 37.22% operating margin: US$207,073. Likely optional managed remediation governance: US$10,000 per month.",
         "predicted_win_themes": [
           "AI-first operations with Infosys Topaz and Cobalt",
@@ -526,7 +526,7 @@
         "how_we_beat_this_bid": [
           "Attack the gap between vulnerability governance and real auto-fix execution: require live proof of SSH and WinRM execution, verification, and rollback from Qualys Excel-derived findings.",
           "Price below their likely US$207,000 margin-maintenance floor if using the provided 37.22% operating margin and an assumed US$130,000 delivery cost. A US$189,000 fixed price would force them to choose between margin and competitiveness.",
-          "Make Claude Sonnet 4.6 API non-negotiable and require prompt/control documentation. Infosys may prefer Topaz/Cobalt AI framing; we should show the exact required API integration.",
+          "Make an enterprise LLM API non-negotiable and require prompt/control documentation. Infosys may prefer Topaz/Cobalt AI framing; we should show the exact required API integration.",
           "Offer source-code handover and client-tenant deployment, not an Infosys Cyber Next or Cyber Defense Center dependency.",
           "Use rapid delivery as a wedge: propose 6-7 weeks with defined sprint demos versus Infosys\u2019 likely 10-week governance-heavy plan."
         ],
@@ -534,7 +534,7 @@
       },
       {
         "competitor_name": "Accenture",
-        "likely_solution_approach": "Accenture would likely bid an 'Agentic CloudOps and Vulnerability Remediation Pilot' aligned to Cloud First, Cyber.AI, Microsoft security operations, and possibly ServiceNow managed security. For Idea 1, Accenture would use Azure Monitor Action Groups to trigger a Logic App Consumption workflow. The workflow would use managed identity and Azure Resource Graph to read Role, Owners, and Environment tags, resolve multiple owners through Microsoft Graph, and post a Teams incident notification with @General plus specific owner @mentions. They would likely add observability dashboards and recommend future Sentinel or ServiceNow incident creation. For Idea 2, Accenture would build a vulnerability remediation workbench that imports Qualys Excel files, classifies Critical/High/Medium findings, calls Claude Sonnet 4.6 API to generate recommended fix and rollback plans, enforces per-fix approval through Teams/ServiceNow, executes approved actions via SSH or WinRM, verifies through command/package/config checks, and rolls back automatically on failed verification. Accenture would likely emphasize governance, security controls, AI safety, and enterprise scalability.",
+        "likely_solution_approach": "Accenture would likely bid an 'Agentic CloudOps and Vulnerability Remediation Pilot' aligned to Cloud First, Cyber.AI, Microsoft security operations, and possibly ServiceNow managed security. For Idea 1, Accenture would use Azure Monitor Action Groups to trigger a Logic App Consumption workflow. The workflow would use managed identity and Azure Resource Graph to read Role, Owners, and Environment tags, resolve multiple owners through Microsoft Graph, and post a Teams incident notification with @General plus specific owner @mentions. They would likely add observability dashboards and recommend future Sentinel or ServiceNow incident creation. For Idea 2, Accenture would build a vulnerability remediation workbench that imports Qualys Excel files, classifies Critical/High/Medium findings, calls an enterprise LLM API to generate recommended fix and rollback plans, enforces per-fix approval through Teams/ServiceNow, executes approved actions via SSH or WinRM, verifies through command/package/config checks, and rolls back automatically on failed verification. Accenture would likely emphasize governance, security controls, AI safety, and enterprise scalability.",
         "predicted_pricing_range_usd": "Predicted Accenture bid: US$295,000 fixed price for a 12-week MVP. Estimated delivery cost: US$245,000. Margin-maintenance floor using prior 17.0% operating margin intelligence: US$295,181. Latest supplied financial context lists Accenture financial data as unavailable. Likely optional managed security operations add-on: US$18,000 per month.",
         "predicted_win_themes": [
           "Agentic security operations and Cyber.AI",
@@ -564,7 +564,7 @@
     ],
     "overall_competitive_position": "Capgemini is the price threat, Accenture is the brand/platform threat, Infosys is the offshore AI/cyber governance threat, and TCS is the managed-operations transformation threat. The most winnable position is a narrow, fixed-scope, client-owned Azure-native MVP that satisfies every RFP bullet without introducing a proprietary platform or managed-service dependency. A commercially aggressive target of US$189,000 fixed price is strong because it sits below the predicted bids for all four competitors and below or near their inferred margin-maintenance constraints, especially TCS, Infosys, and Accenture.",
     "single_biggest_risk": "Capgemini can credibly undercut or match price because its implied operating-margin floor is the lowest and its job-posting signal is the strongest for Qualys and Azure remediation; if they keep the proposal tightly scoped instead of platform-led, they are the hardest ghost bid to beat.",
-    "recommended_counter_strategy": "Bid a 6-7 week fixed-price implementation at US$189,000 with two production-ready automations: Azure Alert Bot and VulnAutoFix. Include Logic App Consumption deployment, Azure tag-driven onboarding, Teams @General broadcast, multiple owner @mentions through Microsoft Graph, Qualys Excel parsing, Critical/High/Medium classification, Claude Sonnet 4.6 API remediation-plan generation, approval before every fix, SSH/WinRM execution, verification, rollback, audit logs, and source-code handover. Make the proposal acceptance-test-led: every must-have requirement becomes a demo script and contract acceptance criterion. Offer optional 30-day hypercare included, then US$7,500 per month support as an option only."
+    "recommended_counter_strategy": "Bid a 6-7 week fixed-price implementation at US$189,000 with two production-ready automations: Azure Alert Bot and VulnAutoFix. Include Logic App Consumption deployment, Azure tag-driven onboarding, Teams @General broadcast, multiple owner @mentions through Microsoft Graph, Qualys Excel parsing, Critical/High/Medium classification, an enterprise LLM API remediation-plan generation, approval before every fix, SSH/WinRM execution, verification, rollback, audit logs, and source-code handover. Make the proposal acceptance-test-led: every must-have requirement becomes a demo script and contract acceptance criterion. Offer optional 30-day hypercare included, then US$7,500 per month support as an option only."
   },
   "deal_fingerprint": {
     "fingerprint_id": "FP-AZURE-QUALYS-AUTOOPS-POC-001",
@@ -590,12 +590,12 @@
       "A working proof-of-concept for Azure Alert Bot using Azure Monitor alerts, Azure tags, Logic App Consumption plan, Teams/Graph integration, and dynamic owner mentions.",
       "Clear treatment of identity mapping: how tag values such as Owners resolve to real Teams users, groups, or channels, including multiple owners per server.",
       "Safe remediation design for VulnAutoFix: parse Qualys Excel, classify severity, map findings to approved fix playbooks, present a plan, require approval, execute via SSH/WinRM, verify, and rollback or stop safely.",
-      "Security architecture: least-privilege Azure permissions, managed identities where possible, Key Vault or equivalent secrets handling, audit logs, no credential sprawl, and controlled outbound data to Claude API.",
+      "Security architecture: least-privilege Azure permissions, managed identities where possible, Key Vault or equivalent secrets handling, audit logs, no credential sprawl, and controlled outbound data to the LLM API.",
       "Realistic scope boundaries. The bidder must distinguish between easy package/config fixes and complex vulnerabilities requiring vendor patches, app testing, reboots, or manual remediation.",
       "Demonstrated operational value: reduced alert routing delay, fewer missed owners, faster vulnerability triage, lower manual effort, and measurable before/after KPIs.",
-      "Compliance and data-handling approval for Claude Sonnet 4.6 API, especially if vulnerability data, hostnames, environment labels, or remediation commands are sent externally.",
+      "Compliance and data-handling approval for an enterprise LLM API, especially if vulnerability data, hostnames, environment labels, or remediation commands are sent externally.",
       "A pilot-first delivery plan with rollback criteria, success metrics, runbooks, and handover to the client\u2019s cloud/security operations team.",
-      "Commercial clarity: monthly Azure Logic App/API costs, Claude API consumption costs, support model, and who owns ongoing rule/playbook maintenance."
+      "Commercial clarity: monthly Azure Logic App/API costs, the LLM API consumption costs, support model, and who owns ongoing rule/playbook maintenance."
     ],
     "common_failure_modes": [
       "Overpromising autonomous vulnerability remediation across all Linux and Windows systems. Many findings require app-specific fixes, reboots, dependency checks, or manual validation that cannot be safely generalized.",
@@ -614,7 +614,7 @@
       "Treat this as a paid discovery/PoC opportunity, not a fixed-price production automation build, until client, scope, environment size, success criteria, acceptance tests, and contract terms are defined.",
       "Require access confirmation for Azure Monitor, Azure Resource Graph/tags, Teams/Graph API, Entra ID identity mapping, Qualys exports, SSH/WinRM endpoints, credential vaulting, and test/non-production servers.",
       "Do not accept unlimited auto-remediation liability. Limit VulnAutoFix initially to a controlled catalog of approved fixes, pilot assets, and defined rollback patterns.",
-      "Client must approve the use of Claude Sonnet 4.6 API, including procurement, data residency, vulnerability data handling, logging, retention, and security review. If not approved, the solution must allow a non-AI or private-model fallback.",
+      "Client must approve the use of an enterprise LLM API, including procurement, data residency, vulnerability data handling, logging, retention, and security review. If not approved, the solution must allow a non-AI or private-model fallback.",
       "Require clear change-management workflow: human approval before each fix, maintenance windows, CAB alignment where needed, and named responsibility for failed patches or downtime.",
       "Require the client to normalize Azure tags and owner metadata before rollout; Role, Owners, and Environment tags must map reliably to Teams users/channels.",
       "Price separately for Idea 1 and Idea 2. Azure Alert Bot is low-to-medium complexity; VulnAutoFix is materially higher-risk and should not be bundled as a simple script.",
@@ -633,7 +633,7 @@
           "Azure Alert Bot using Azure Monitor action groups into a Logic App on a Consumption plan, with dynamic Azure Resource Graph or ARM tag lookup for Role, Owners, and Environment",
           "Teams integration using Microsoft Graph or approved Teams connector pattern to broadcast to the channel with @General and per-server multi-owner mentions, subject to tenant policy support",
           "Tag-driven onboarding so new servers are added by Role, Owners, and Environment tags without hardcoding",
-          "VulnAutoFix ingestion of Qualys Excel output, Critical/High/Medium classification, Claude Sonnet 4.6-assisted fix-plan generation, deterministic command guardrails, and human approval before each fix",
+          "VulnAutoFix ingestion of Qualys Excel output, Critical/High/Medium classification, enterprise-LLM-assisted fix-plan generation, deterministic command guardrails, and human approval before each fix",
           "SSH for Linux and WinRM for Windows execution, post-fix verification, automatic rollback using pre-fix state capture where technically feasible, and audit evidence",
           "Premium acceptance-test suite covering every listed must-have, plus operational KPIs for acknowledgement time, remediation SLA, rollback success, and exception handling"
         ],
@@ -643,7 +643,7 @@
         "margin_pct": 18.0,
         "risk_level": "Low",
         "recommended": false,
-        "rationale": "Bottom-up price: people cost $216,000 using 12.0 FTE-months x $18,000 fallback blended loaded delivery cost; known Azure infrastructure $2,628 using 3 x Azure App Service S1 at $0.1000/hour x 8760 hours/year; contingency $32,794.20 at 15% of people plus known infrastructure; pre-margin cost $251,422.20; 18.0% margin gives total price $306,612. This is above the recommended price-to-win band but buys down delivery and acceptance risk. Excludes Logic App Consumption and Claude API usage as pass-through because real unit pricing was not provided."
+        "rationale": "Bottom-up price: people cost $216,000 using 12.0 FTE-months x $18,000 fallback blended loaded delivery cost; known Azure infrastructure $2,628 using 3 x Azure App Service S1 at $0.1000/hour x 8760 hours/year; contingency $32,794.20 at 15% of people plus known infrastructure; pre-margin cost $251,422.20; 18.0% margin gives total price $306,612. This is above the recommended price-to-win band but buys down delivery and acceptance risk. Excludes Logic App Consumption and the LLM API usage as pass-through because real unit pricing was not provided."
       },
       {
         "option_id": "B",
@@ -655,7 +655,7 @@
           "Dynamic lookup of server tags Role, Owners, and Environment; comma- or group-based multiple-owner support; no hardcoded server-owner mapping",
           "Teams channel broadcast including @General plus individual owner mentions, with fallback behavior documented if Teams tenant policy blocks channel-wide mentions",
           "VulnAutoFix parser for Qualys Excel output with Critical, High, and Medium classification and remediation queue",
-          "Claude Sonnet 4.6 API used for assisted fix-plan drafting, constrained by allow-listed remediation templates and mandatory human approval before execution",
+          "an enterprise LLM API used for assisted fix-plan drafting, constrained by allow-listed remediation templates and mandatory human approval before execution",
           "SSH and WinRM executors, verification checks after each fix, rollback actions on failure, audit log, runbook, and source-code handover"
         ],
         "delivery_months": 3,
@@ -664,7 +664,7 @@
         "margin_pct": 16.0,
         "risk_level": "Medium",
         "recommended": true,
-        "rationale": "Recommended because it meets the functional scope while staying inside the competitor-informed price-to-win band. Bottom-up price: people cost $135,000 using 7.5 FTE-months x $18,000 fallback blended loaded delivery cost; known Azure infrastructure $1,752 using 2 x Azure App Service S1 at $0.1000/hour x 8760 hours/year; contingency $16,410.24 at 12% of people plus known infrastructure; pre-margin cost $153,162.24; 16.0% margin gives total price $182,336, or 1.19x pre-margin cost. Excludes Logic App Consumption and Claude API usage as pass-through because real unit pricing was not provided."
+        "rationale": "Recommended because it meets the functional scope while staying inside the competitor-informed price-to-win band. Bottom-up price: people cost $135,000 using 7.5 FTE-months x $18,000 fallback blended loaded delivery cost; known Azure infrastructure $1,752 using 2 x Azure App Service S1 at $0.1000/hour x 8760 hours/year; contingency $16,410.24 at 12% of people plus known infrastructure; pre-margin cost $153,162.24; 16.0% margin gives total price $182,336, or 1.19x pre-margin cost. Excludes Logic App Consumption and the LLM API usage as pass-through because real unit pricing was not provided."
       },
       {
         "option_id": "C",
@@ -675,7 +675,7 @@
           "Logic App Consumption-based Azure Alert Bot for a limited pilot scope, using dynamic Role, Owners, and Environment tags rather than hardcoded server mappings",
           "Teams @General broadcast and individual multi-owner mentions where tenant policy permits, with documented manual fallback for blocked mention behavior",
           "Qualys Excel ingestion and Critical/High/Medium classification for a limited set of agreed vulnerability patterns",
-          "Claude Sonnet 4.6-assisted fix-plan drafting with mandatory approval, but fewer guardrail templates and less edge-case coverage than Options A or B",
+          "enterprise-LLM-assisted fix-plan drafting with mandatory approval, but fewer guardrail templates and less edge-case coverage than Options A or B",
           "SSH/WinRM execution, post-fix verification, and rollback for supported fix types only; exceptions handled manually",
           "Basic handover notes and acceptance tests for the listed must-haves in the controlled pilot environment"
         ],
@@ -685,7 +685,7 @@
         "margin_pct": 14.0,
         "risk_level": "High",
         "recommended": false,
-        "rationale": "Bottom-up price: people cost $81,000 using 4.5 FTE-months x $18,000 fallback blended loaded delivery cost; known Azure infrastructure $876 using 1 x Azure App Service S1 at $0.1000/hour x 8760 hours/year; contingency $8,187.60 at 10% of people plus known infrastructure; pre-margin cost $90,063.60; 14.0% margin gives total price $104,725, or 1.16x pre-margin cost. This is lowest cost but carries higher risk because hardening, remediation-template breadth, rollback validation, audit depth, and scale testing are constrained. Excludes Logic App Consumption and Claude API usage as pass-through because real unit pricing was not provided."
+        "rationale": "Bottom-up price: people cost $81,000 using 4.5 FTE-months x $18,000 fallback blended loaded delivery cost; known Azure infrastructure $876 using 1 x Azure App Service S1 at $0.1000/hour x 8760 hours/year; contingency $8,187.60 at 10% of people plus known infrastructure; pre-margin cost $90,063.60; 14.0% margin gives total price $104,725, or 1.16x pre-margin cost. This is lowest cost but carries higher risk because hardening, remediation-template breadth, rollback validation, audit depth, and scale testing are constrained. Excludes Logic App Consumption and the LLM API usage as pass-through because real unit pricing was not provided."
       }
     ],
     "pricing": {
@@ -693,7 +693,7 @@
       "price_low_usd": 104725.0,
       "price_high_usd": 306612.0,
       "price_to_win_usd": 182336.0,
-      "pricing_structure": "Fixed-price MVP implementation with client-owned source-code handover. Price includes people, contingency, margin, and known first-year Azure App Service S1 cost calculated from the provided live Azure price. Price assumes existing Azure Monitor, Azure tags, Microsoft Teams/M365/Graph permissions, Qualys licensing, SSH/WinRM access, and client-provided Claude Sonnet 4.6 API access. Logic App Consumption transaction charges, Claude Sonnet 4.6 API consumption, storage, Key Vault, Microsoft Graph/Teams licensing, and any client workload infrastructure are pass-through at actuals because no real unit pricing was supplied for those items.",
+      "pricing_structure": "Fixed-price MVP implementation with client-owned source-code handover. Price includes people, contingency, margin, and known first-year Azure App Service S1 cost calculated from the provided live Azure price. Price assumes existing Azure Monitor, Azure tags, Microsoft Teams/M365/Graph permissions, Qualys licensing, SSH/WinRM access, and client-provided an enterprise LLM API access. Logic App Consumption transaction charges, an enterprise LLM API consumption, storage, Key Vault, Microsoft Graph/Teams licensing, and any client workload infrastructure are pass-through at actuals because no real unit pricing was supplied for those items.",
       "margin_pct": 16.0,
       "cost_drivers": [
         {
@@ -702,7 +702,7 @@
           "percentage": 74.04
         },
         {
-          "category": "Known Azure infrastructure for recommended Option B: 2 x Azure App Service S1 at real Azure price $0.1000/hour x 8760 hours/year. Logic App Consumption charges and Claude Sonnet 4.6 API usage are excluded/pass-through because no real unit pricing was provided",
+          "category": "Known Azure infrastructure for recommended Option B: 2 x Azure App Service S1 at real Azure price $0.1000/hour x 8760 hours/year. Logic App Consumption charges and an enterprise LLM API usage are excluded/pass-through because no real unit pricing was provided",
           "cost_usd": 1752.0,
           "percentage": 0.96
         },
@@ -717,14 +717,14 @@
           "percentage": 16.0
         }
       ],
-      "competitive_rationale": "No past-proposal rate card and no public contract award anchors were provided, so pricing confidence is low and the commercial anchor is the competitor margin intelligence: price-to-win should be about 1.16x-1.20x delivery cost. Option B is priced at 1.19x pre-margin delivery cost, equivalent to a 16.0% margin, which is inside the indicated price-to-win band and below higher-margin competitors. The differentiator is a client-owned, source-code-handover MVP running in the client Azure tenant rather than a proprietary managed-service platform. Public market validation is unavailable, so the numbers must be revalidated after discovery of server count, alert volume, Qualys file size, remediation volumes, Teams policy constraints, and Claude Sonnet 4.6 API usage.",
+      "competitive_rationale": "No past-proposal rate card and no public contract award anchors were provided, so pricing confidence is low and the commercial anchor is the competitor margin intelligence: price-to-win should be about 1.16x-1.20x delivery cost. Option B is priced at 1.19x pre-margin delivery cost, equivalent to a 16.0% margin, which is inside the indicated price-to-win band and below higher-margin competitors. The differentiator is a client-owned, source-code-handover MVP running in the client Azure tenant rather than a proprietary managed-service platform. Public market validation is unavailable, so the numbers must be revalidated after discovery of server count, alert volume, Qualys file size, remediation volumes, Teams policy constraints, and an enterprise LLM API usage.",
       "confidence": 0.34
     },
     "recommended_option": "B"
   },
   "draft": {
     "rfp_id": "Idea Proposals: Two operational improvements for Azure monitoring + vulnerability management",
-    "executive_summary": "Because the client name and environment details were not provided, HCLTech will not ask you to accept assumptions as facts. The RFP asks for two operational improvements spanning Azure monitoring and vulnerability management; the available client intelligence therefore points to an evidence-led path: establish a short baseline, prove the improvements in your tenant, and leave you with client-owned automation rather than a proprietary dependency.\n\nWe propose a three-month, $182,336 Balanced MVP covering an Azure Alert-to-Teams Automation Accelerator and a controlled VulnAutoFix workflow. The first improvement converts Azure Monitor alerts into actionable Microsoft Teams notifications by reading Azure tags for Role, Owners, and Environment, supporting multiple owners without hardcoded mappings. New servers are onboarded by applying tags, not changing code or static configuration. The second improvement ingests Qualys Excel outputs, classifies Critical, High, and Medium findings, drafts fix plans with Claude Sonnet 4.6 under allow-listed templates, and executes SSH or WinRM remediation only after human approval, verification, rollback planning, and full audit logging.\n\nThis proposal is deliberately practical. In the first sprint, we will demonstrate alert ingestion, tag lookup, Teams broadcast, and owner mentions. We will then harden governance, acceptance tests, and source-code handover so the Azure Alert Bot and VulnAutoFix run inside your Azure tenant using existing Azure Monitor, Azure tags, Microsoft Teams/Graph, Qualys files, approval workflows, SSH, and WinRM. This creates fast proof of value while preserving human control, auditability, and long-term ownership.",
+    "executive_summary": "Because the client name and environment details were not provided, HCLTech will not ask you to accept assumptions as facts. The RFP asks for two operational improvements spanning Azure monitoring and vulnerability management; the available client intelligence therefore points to an evidence-led path: establish a short baseline, prove the improvements in your tenant, and leave you with client-owned automation rather than a proprietary dependency.\n\nWe propose a three-month, $182,336 Balanced MVP covering an Azure Alert-to-Teams Automation Accelerator and a controlled VulnAutoFix workflow. The first improvement converts Azure Monitor alerts into actionable Microsoft Teams notifications by reading Azure tags for Role, Owners, and Environment, supporting multiple owners without hardcoded mappings. New servers are onboarded by applying tags, not changing code or static configuration. The second improvement ingests Qualys Excel outputs, classifies Critical, High, and Medium findings, drafts fix plans with an enterprise LLM under allow-listed templates, and executes SSH or WinRM remediation only after human approval, verification, rollback planning, and full audit logging.\n\nThis proposal is deliberately practical. In the first sprint, we will demonstrate alert ingestion, tag lookup, Teams broadcast, and owner mentions. We will then harden governance, acceptance tests, and source-code handover so the Azure Alert Bot and VulnAutoFix run inside your Azure tenant using existing Azure Monitor, Azure tags, Microsoft Teams/Graph, Qualys files, approval workflows, SSH, and WinRM. This creates fast proof of value while preserving human control, auditability, and long-term ownership.",
     "win_themes": [
       "Tag-driven operations: new servers are onboarded by applying Azure tags, not by changing code, routing tables, or static configuration.",
       "Working accelerator over custom-build promise: Azure Alert-to-Teams Automation Accelerator plus controlled VulnAutoFix remediation workflow.",
@@ -741,7 +741,7 @@
       },
       {
         "section_title": "Our Proposed Solution",
-        "content": "HCLTech proposes a three-month Balanced MVP priced at $182,336, delivered as client-owned source code running in your Azure tenant. The solution avoids mandatory managed-service lock-in and avoids proprietary platforms; it uses Azure Monitor, Azure tags, Microsoft Teams/Graph, Qualys Excel files, approval workflows, SSH, and WinRM.\n\nImprovement one is the Azure Alert-to-Teams Automation Accelerator. Azure Monitor action groups send alert payloads to a Logic App on a Consumption plan. The Logic App reads the affected server\u2019s Role, Owners, and Environment tags, supports comma-based or group-based multiple owners, and posts to the agreed Teams channel with @General and individual owner mentions. If tenant policy blocks channel-wide mentions, the fallback behavior is documented and acceptance-tested. New servers are onboarded by applying tags only.\n\nImprovement two is VulnAutoFix. The workflow parses Qualys Excel outputs, queues Critical, High, and Medium findings, uses Claude Sonnet 4.6 to assist fix-plan drafting within allow-listed remediation templates, and requires human approval before execution. SSH and WinRM executors apply approved changes, verify outcomes, trigger rollback on failure, and record an audit trail. This balances fast proof of value with safe automation and security accountability.",
+        "content": "HCLTech proposes a three-month Balanced MVP priced at $182,336, delivered as client-owned source code running in your Azure tenant. The solution avoids mandatory managed-service lock-in and avoids proprietary platforms; it uses Azure Monitor, Azure tags, Microsoft Teams/Graph, Qualys Excel files, approval workflows, SSH, and WinRM.\n\nImprovement one is the Azure Alert-to-Teams Automation Accelerator. Azure Monitor action groups send alert payloads to a Logic App on a Consumption plan. The Logic App reads the affected server\u2019s Role, Owners, and Environment tags, supports comma-based or group-based multiple owners, and posts to the agreed Teams channel with @General and individual owner mentions. If tenant policy blocks channel-wide mentions, the fallback behavior is documented and acceptance-tested. New servers are onboarded by applying tags only.\n\nImprovement two is VulnAutoFix. The workflow parses Qualys Excel outputs, queues Critical, High, and Medium findings, uses an enterprise LLM to assist fix-plan drafting within allow-listed remediation templates, and requires human approval before execution. SSH and WinRM executors apply approved changes, verify outcomes, trigger rollback on failure, and record an audit trail. This balances fast proof of value with safe automation and security accountability.",
         "word_count": 184
       },
       {
@@ -760,7 +760,7 @@
         "word_count": 198
       }
     ],
-    "architecture_diagram": "graph TD\nA[Azure Monitor Alerts] --> B[Azure Monitor Action Group]\nB --> C[Azure Logic App on Consumption Plan]\nC --> D[Azure Resource Tag Lookup]\nD --> E[Tags: Role, Owners, Environment]\nE --> F[Notification Composer]\nF --> G[Microsoft Teams via Microsoft Graph]\nG --> H[Teams Channel Broadcast: @General]\nG --> I[Individual Owner Mentions]\nG --> J[Documented Fallback if Tenant Policy Blocks Mentions]\nK[Qualys Excel Export] --> L[VulnAutoFix Parser]\nL --> M[Severity Classification: Critical, High, Medium]\nM --> N[Remediation Queue]\nN --> O[Claude Sonnet 4.6 Assisted Fix Plan Drafting]\nO --> P[Allow-listed Remediation Templates]\nP --> Q[Human Approval Workflow]\nQ --> R{Approved?}\nR -- No --> S[Hold, Exception, or Rework]\nR -- Yes --> T[Blast-radius Controls: Scope, Window, Commands]\nT --> U[SSH Executor]\nT --> V[WinRM Executor]\nU --> W[Verification Checks]\nV --> W\nW --> X{Fix Verified?}\nX -- Yes --> Y[Audit Log and KPI Reporting]\nX -- No --> Z[Automatic Rollback]\nZ --> Y\nC --> Y\nS --> Y\nAA[Source Code Handover and Runbooks] --> C\nAA --> L",
+    "architecture_diagram": "graph TD\nA[Azure Monitor Alerts] --> B[Azure Monitor Action Group]\nB --> C[Azure Logic App on Consumption Plan]\nC --> D[Azure Resource Tag Lookup]\nD --> E[Tags: Role, Owners, Environment]\nE --> F[Notification Composer]\nF --> G[Microsoft Teams via Microsoft Graph]\nG --> H[Teams Channel Broadcast: @General]\nG --> I[Individual Owner Mentions]\nG --> J[Documented Fallback if Tenant Policy Blocks Mentions]\nK[Qualys Excel Export] --> L[VulnAutoFix Parser]\nL --> M[Severity Classification: Critical, High, Medium]\nM --> N[Remediation Queue]\nN --> O[an enterprise LLM Assisted Fix Plan Drafting]\nO --> P[Allow-listed Remediation Templates]\nP --> Q[Human Approval Workflow]\nQ --> R{Approved?}\nR -- No --> S[Hold, Exception, or Rework]\nR -- Yes --> T[Blast-radius Controls: Scope, Window, Commands]\nT --> U[SSH Executor]\nT --> V[WinRM Executor]\nU --> W[Verification Checks]\nV --> W\nW --> X{Fix Verified?}\nX -- Yes --> Y[Audit Log and KPI Reporting]\nX -- No --> Z[Automatic Rollback]\nZ --> Y\nC --> Y\nS --> Y\nAA[Source Code Handover and Runbooks] --> C\nAA --> L",
     "total_word_count": 1111
   },
   "verification": {
@@ -804,7 +804,7 @@
       "The raw knowledge base supports negative evidence only: it shows no relevant uploaded proposal content. It does not prove the bidder has no real-world capability or delivery history outside the uploaded documents.",
       "The raw cloud pricing section only says pricing was validated via Azure/AWS APIs; it provides no API outputs, SKU details, volumes, or calculations, so pricing cannot be independently verified.",
       "The raw financial data includes Infosys and IBM, lists Accenture as unavailable, and does not include TCS or Capgemini. Competitor margin comparisons should be removed or sourced elsewhere.",
-      "The exact RFP requirements are not included as a separate raw source. Requirement-specific statements about Azure Monitor, Teams mentions, Qualys Excel, SSH/WinRM, rollback, and Claude Sonnet 4.6 can only be verified as absent from the proposal knowledge base, not as confirmed RFP requirements.",
+      "The exact RFP requirements are not included as a separate raw source. Requirement-specific statements about Azure Monitor, Teams mentions, Qualys Excel, SSH/WinRM, rollback, and an enterprise LLM can only be verified as absent from the proposal knowledge base, not as confirmed RFP requirements.",
       "Because the analysis is based mostly on absence of evidence and unsupported competitor intelligence, the 30% win probability should be reduced to approximately 15% until a prototype, RFP scope details, permissions validation, incumbent information, and real benchmark data are available."
     ]
   },

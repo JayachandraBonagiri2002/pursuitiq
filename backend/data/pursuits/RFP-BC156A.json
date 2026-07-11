@@ -1,0 +1,1291 @@
+{
+  "rfp_id": "RFP-BC156A",
+  "filename": "example RFP.pdf",
+  "status": "complete",
+  "current_agent": "verifier",
+  "decomposition": {
+    "rfp_id": "RFP-BC156A",
+    "title": "RFP - Project Polaris: Evaluation of Hosting Options (Cloud, DCaaS & Hybrid)",
+    "client_name": "Kohler Co.",
+    "industry": "Manufacturing, enterprise IT, hospitality, wellness, digital innovation",
+    "estimated_deal_size_usd": "Not explicitly stated. Inferred potential opportunity approximately USD $15M-$75M over 3-5 years based on enterprise-scale hosting options for a large Wisconsin data center, SAP ecosystem, VMware estate, Windows/Linux servers, databases, storage, backup/DR, network connectivity, security tooling, and possible DCaaS/cloud/hybrid transition. Phase 0 advisory-only portion would be materially smaller, likely USD $250K-$1.5M if contracted separately.",
+    "contract_duration": "Not explicitly stated. The document is for a Phase 0 evaluation exercise; inferred commercial planning horizon is likely 3-5 years for hosting/TCO comparison based on enterprise data-center exit, hosting, SAP/non-SAP workload pricing, managed services cost views, and efficiency-over-time requirements.",
+    "geography": [
+      "United States",
+      "Wisconsin",
+      "Global / multiple regions"
+    ],
+    "requirements": [
+      {
+        "req_id": "REQ-001",
+        "text": "Proposals must be submitted within the defined timeline via the designated communication channel; RFP responses/proposals are due to Kohler on 26 June, and all communication must be directed to Nicholas.Groh@Kohler.com with copy to RFP-Responses-Polaris@kohler.com.",
+        "category": "operational",
+        "priority": "eliminatory",
+        "page_ref": "[PAGE 8], [PAGE 9]",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "Late or misdirected submission can make the proposal non-compliant before evaluation; the required submission channel is outside the proposal section and tied to contact details.",
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-002",
+        "text": "Vendors are required to submit responses using the Vendor Response template and complete the response template in detail; simple \u2018Yes/No\u2019 answers will not be considered sufficient.",
+        "category": "operational",
+        "priority": "eliminatory",
+        "page_ref": "[PAGE 8], [PAGE 9]",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "A superficially completed template or Yes/No-only response is expressly stated to be insufficient, creating a response-format disqualification risk.",
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-003",
+        "text": "Vendors must demonstrate capability to host workloads in compliance with applicable industry/regional standards. Evidence of certifications required.",
+        "category": "compliance",
+        "priority": "eliminatory",
+        "page_ref": "[PAGE 7]",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "This mandatory certification-evidence requirement is located in the Compliance & Regulatory Requirements section and the exact certification list may be in an external template not provided.",
+        "jurisdiction_note": "Applicable industry/regional standards; specific regions/standards not stated.",
+        "cert_required": "Evidence of certifications required; specific certifications not named in the provided document."
+      },
+      {
+        "req_id": "REQ-004",
+        "text": "DCaaS providers must explicitly provide compliance attestations as per industry standards.",
+        "category": "compliance",
+        "priority": "eliminatory",
+        "page_ref": "[PAGE 7]",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "Conditional hard gate for DCaaS providers; the document points to the Vendor Response template for more information, which is not included.",
+        "jurisdiction_note": "Applicable to DCaaS providers; industry standards not specified.",
+        "cert_required": "Compliance attestations as per industry standards for DCaaS providers; exact attestations not named in the provided document."
+      },
+      {
+        "req_id": "REQ-005",
+        "text": "All commercial values and pricing submissions must be quoted in United States Dollars (USD).",
+        "category": "commercial",
+        "priority": "eliminatory",
+        "page_ref": "[PAGE 9]",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "Currency compliance is an easy-to-miss pricing instruction; non-USD pricing could make the commercial response non-comparable or non-compliant.",
+        "jurisdiction_note": "United States Dollars required.",
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-006",
+        "text": "Vendors must clearly articulate the proposed solution covering target-state architecture aligned to multi-account / multi-subscription landing zone principles.",
+        "category": "technical",
+        "priority": "must_have",
+        "page_ref": "[PAGE 6]",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-007",
+        "text": "Vendors must cover landing zone deployment model and application deployment model.",
+        "category": "technical",
+        "priority": "must_have",
+        "page_ref": "[PAGE 6]",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-008",
+        "text": "Vendors must cover environment segregation for Prod / Test / Dev.",
+        "category": "technical",
+        "priority": "must_have",
+        "page_ref": "[PAGE 6]",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-009",
+        "text": "Vendors must cover identity integration with enterprise identity providers.",
+        "category": "technical",
+        "priority": "must_have",
+        "page_ref": "[PAGE 6]",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-010",
+        "text": "Vendors must cover hybrid connectivity approach.",
+        "category": "technical",
+        "priority": "must_have",
+        "page_ref": "[PAGE 6]",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-011",
+        "text": "Vendors must cover region strategy and data residency approach.",
+        "category": "compliance",
+        "priority": "must_have",
+        "page_ref": "[PAGE 6]",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "Data residency is explicitly required as part of the solution response but no acceptable locations are stated; the missing detail may be in external templates or subsequent phases.",
+        "jurisdiction_note": "Region strategy and data residency approach required; no specific allowed/prohibited jurisdictions stated.",
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-012",
+        "text": "Vendors must cover disaster recovery, high availability and scalability patterns.",
+        "category": "technical",
+        "priority": "must_have",
+        "page_ref": "[PAGE 6]",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-013",
+        "text": "Architecture diagrams, reference designs and supporting documentation are strongly encouraged.",
+        "category": "technical",
+        "priority": "scored",
+        "page_ref": "[PAGE 6]",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-014",
+        "text": "Vendors must respond for relevant scenarios, including Cloud, DCaaS, and Hybrid where applicable, and clearly state assumptions.",
+        "category": "technical",
+        "priority": "must_have",
+        "page_ref": "[PAGE 6]",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-015",
+        "text": "In-scope services include enterprise applications currently hosted in the Kohler Wisconsin Data Center; COTS and internally developed applications; Windows and Linux virtual machines; databases including SQL Server, Oracle, SAP HANA, MySQL, PostgreSQL and other supported platforms; middleware and integration platforms; file storage systems and shared infrastructure services; backup and disaster recovery solutions; identity and access management integrations; network connectivity services across enterprise and manufacturing environments; monitoring, logging and security tooling; and selected OT-adjacent workloads limited to read-only or controlled integration scenarios.",
+        "category": "technical",
+        "priority": "must_have",
+        "page_ref": "[PAGE 6]",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": "Current data center is Wisconsin-based.",
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-016",
+        "text": "Vendors are expected to base their response on the provided inventory dataset and use it as the baseline for sizing, solution design, and indicative pricing.",
+        "category": "operational",
+        "priority": "must_have",
+        "page_ref": "[PAGE 6], [PAGE 8]",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "The inventory baseline is external to the provided document; failure to use it correctly may invalidate sizing and pricing.",
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-017",
+        "text": "Vendors must highlight any data gaps or assumptions made due to incomplete information and clearly state assumptions used for sizing and costing.",
+        "category": "operational",
+        "priority": "must_have",
+        "page_ref": "[PAGE 8]",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "Data gaps must be surfaced rather than silently assumed, which can affect pricing defensibility and evaluation.",
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-018",
+        "text": "Vendors must clearly state all assumptions, dependencies, constraints, deviations, and additional assumptions associated with their response.",
+        "category": "operational",
+        "priority": "must_have",
+        "page_ref": "[PAGE 7], [PAGE 8]",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-019",
+        "text": "Any optional services or additional capabilities not covered under the scope must be explicitly identified separately.",
+        "category": "operational",
+        "priority": "must_have",
+        "page_ref": "[PAGE 8]",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-020",
+        "text": "Vendors must provide high-level indicative solution designs and supporting explanations where relevant.",
+        "category": "technical",
+        "priority": "must_have",
+        "page_ref": "[PAGE 8]",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-021",
+        "text": "Pricing must be transparent, structured and clearly itemized, aligned to the requirements of the RFP and the inventory baseline provided.",
+        "category": "commercial",
+        "priority": "must_have",
+        "page_ref": "[PAGE 9]",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-022",
+        "text": "Vendors must provide comprehensive cost breakup, including foundational setup costs; application and infrastructure hosting costs; migration / implementation costs if applicable; and any consulting, support, or managed services costs.",
+        "category": "commercial",
+        "priority": "must_have",
+        "page_ref": "[PAGE 9]",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-023",
+        "text": "Vendors must provide separate cost views for SAP and non-SAP workloads, ensuring clear visibility into cost drivers across application categories.",
+        "category": "commercial",
+        "priority": "must_have",
+        "page_ref": "[PAGE 9]",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "SAP/non-SAP cost separation is a specific commercial-format requirement that can be missed if pricing is rolled up at platform level.",
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-024",
+        "text": "Proposals should include cost increase protections and efficiency gains that lead to a reduction or no more than a reasonable increase over time, based on prices being paid and not general discounts off list price.",
+        "category": "commercial",
+        "priority": "must_have",
+        "page_ref": "[PAGE 9], [PAGE 10]",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "Kohler requires efficiency gains and protections based on actual prices paid, not generic list-price discounts; this may conflict with standard vendor commercial models.",
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-025",
+        "text": "Payment terms are an important part of the proposal, and the proposal should contemplate no less than net 90 payment terms; anything less than net 90 payment terms will not be considered competitive.",
+        "category": "commercial",
+        "priority": "must_have",
+        "page_ref": "[PAGE 10]",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "Payment terms below net 90 are explicitly stated to be not competitive; this is a major hidden commercial risk even if not worded as automatic rejection.",
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-026",
+        "text": "Vendors are expected to propose a target operating model including roles and responsibilities, shared responsibility framework, governance, security, compliance approach, and operations and support model.",
+        "category": "operational",
+        "priority": "must_have",
+        "page_ref": "[PAGE 5]",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-027",
+        "text": "Proposed models should demonstrate support for a progressive transition away from the current Data Center footprint while maintaining business continuity and operational stability.",
+        "category": "operational",
+        "priority": "must_have",
+        "page_ref": "[PAGE 5]",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-028",
+        "text": "Vendors are expected to provide a high-level overview of the proposed program governance model, including indicative governance structure and engagement model, reporting and review mechanisms, escalation framework, and key roles and responsibilities.",
+        "category": "operational",
+        "priority": "must_have",
+        "page_ref": "[PAGE 10]",
+        "is_hidden_risk": false,
+        "hidden_risk_reason": null,
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-029",
+        "text": "All information shared as part of the RFP is confidential; vendors must use Kohler information solely for responding to the RFP and must not disclose, distribute, or share information with third parties without prior written consent from Kohler.",
+        "category": "legal",
+        "priority": "must_have",
+        "page_ref": "[PAGE 11]",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "Confidentiality terms are in the appendix and restrict sharing with third parties; vendors using subcontractors, hyperscalers, or offshore solution teams may need prior written consent before disclosure.",
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-030",
+        "text": "Vendors are expected to ensure that proposed solutions are capable of complying with applicable industry standards, regulatory requirements and data protection obligations relevant to enterprise IT and manufacturing environments.",
+        "category": "compliance",
+        "priority": "must_have",
+        "page_ref": "[PAGE 11]",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "This broad compliance obligation appears in the Legal & Compliance appendix and may incorporate enterprise IT, manufacturing, regulatory, and data protection obligations not enumerated in the main RFP.",
+        "jurisdiction_note": "Applicable industry standards, regulatory requirements and data protection obligations relevant to enterprise IT and manufacturing environments.",
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-031",
+        "text": "Responses are expected to support solution feasibility, approach, and business case development, not detailed implementation commitments.",
+        "category": "operational",
+        "priority": "must_have",
+        "page_ref": "[PAGE 7]",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "The RFP is Phase 0 only and expressly excludes execution commitments; proposing full execution as if in scope may misalign the bid.",
+        "jurisdiction_note": null,
+        "cert_required": null
+      },
+      {
+        "req_id": "REQ-032",
+        "text": "Vendors should treat the listed execution activities as out of scope for this RFP phase and factor them in when the contract is in place.",
+        "category": "operational",
+        "priority": "must_have",
+        "page_ref": "[PAGE 7]",
+        "is_hidden_risk": true,
+        "hidden_risk_reason": "Detailed migration execution, implementation, cutover, refactoring, low-level design, steady-state managed services delivery commitments, execution of security controls/audits, tool implementation, training, data cleansing, and testing execution are out of scope for this Phase 0 response unless only approach/methodology or illustrative capability is requested.",
+        "jurisdiction_note": null,
+        "cert_required": null
+      }
+    ],
+    "evaluation_criteria": [
+      {
+        "name": "Target state architecture, security and governance capabilities",
+        "weight_pct": null,
+        "description": "Target state architecture, security and governance capabilities."
+      },
+      {
+        "name": "Migration approach, risk considerations and transition strategy",
+        "weight_pct": null,
+        "description": "Migration approach, risk considerations and transition strategy."
+      },
+      {
+        "name": "Networking and connectivity capabilities",
+        "weight_pct": null,
+        "description": "Networking and connectivity capabilities."
+      },
+      {
+        "name": "Availability, resilience and disaster recovery approach",
+        "weight_pct": null,
+        "description": "Availability, resilience and disaster recovery approach."
+      },
+      {
+        "name": "Cost and commercial transparency",
+        "weight_pct": null,
+        "description": "Cost and commercial transparency."
+      },
+      {
+        "name": "Operating model and support capabilities",
+        "weight_pct": null,
+        "description": "Operating model and support capabilities."
+      },
+      {
+        "name": "Tools, ecosystem and platform maturity",
+        "weight_pct": null,
+        "description": "Tools, ecosystem and platform maturity."
+      },
+      {
+        "name": "Alignment to expected deliverables",
+        "weight_pct": null,
+        "description": "Alignment to expected deliverables."
+      },
+      {
+        "name": "External Evaluation Template scoring model",
+        "weight_pct": null,
+        "description": "The RFP states that indicative weightages, detailed evaluation criteria, sub-categories, scoring structure, and response assessment model are defined in the Evaluation Template (Excel), which is not included in the provided document."
+      }
+    ],
+    "key_dates": [
+      {
+        "event": "RFP Publication",
+        "date": "29 May"
+      },
+      {
+        "event": "RFP initial questions due from Suppliers",
+        "date": "10 June"
+      },
+      {
+        "event": "Q&A Responses from Kohler to Suppliers due",
+        "date": "15 June"
+      },
+      {
+        "event": "Supplier Meetings to discuss project and address questions",
+        "date": "16-18 June"
+      },
+      {
+        "event": "RFP Responses/Proposals due to Kohler",
+        "date": "26 June"
+      },
+      {
+        "event": "Supplier Presentations",
+        "date": "Week of 6 July"
+      },
+      {
+        "event": "RFP version date / cover date",
+        "date": "29-05-2026"
+      }
+    ],
+    "ambiguities": [
+      "The detailed Evaluation Template (Excel), Vendor Response template, and inventory baseline dataset are repeatedly referenced but not included in the provided document; they may contain additional mandatory requirements, scoring weightages, compliance details, inventory counts, and hidden disqualifiers not visible here.",
+      "The RFP states that evidence of certifications is required, but does not specify which certifications or standards are mandatory in the provided document.",
+      "The RFP states DCaaS providers must provide compliance attestations as per industry standards, but the exact attestations are referenced as being in the Vendor Response template, which is not included.",
+      "The timeline lists dates without a year, although the RFP cover/version date is 29-05-2026; key dates are therefore recorded as shown in the document with the likely 2026 context noted only where relevant.",
+      "No explicit contract term or award duration is stated. The document describes this as a Phase 0 evaluation exercise, with detailed contracting to be finalized in subsequent phases.",
+      "No explicit budget, estimated contract value, or current spend is stated. Deal size is inferred from scope only, including enterprise hosting options, SAP/non-SAP workloads, large VMware estate, databases, DR, backup, network, security, and potential DC exit scenarios."
+    ],
+    "hard_disqualifiers": [
+      "Proposal submission must be within the defined timeline via the designated communication channel; proposals are due to Kohler by 26 June and communications must go to Nicholas.Groh@Kohler.com with copy to RFP-Responses-Polaris@kohler.com. Exact text: \u201cProposals must be submitted within the defined timeline via the designated communication channel\u201d and \u201cRFP Responses/Proposals due to Kohler 26 June.\u201d [PAGE 8], [PAGE 9]",
+      "Vendors are required to complete the Vendor Response template; simple Yes/No answers are explicitly insufficient. Exact text: \u201cVendors are required to complete the response template in detail; simple \u2018Yes/No\u2019 answers will not be considered sufficient.\u201d [PAGE 8]",
+      "Certification evidence is mandatory for compliance capability. Exact text: \u201cVendors must demonstrate capability to host workloads in compliance with applicable industry/regional standards. Evidence of certifications required.\u201d [PAGE 7]",
+      "DCaaS providers have a specific mandatory compliance-attestation obligation. Exact text: \u201cDCaaS providers must explicitly provide compliance attestations as per industry standards.\u201d [PAGE 7]",
+      "All commercial values and pricing submissions must be in USD. Exact text: \u201cAll commercial values and pricing submissions must be quoted in United States Dollars (USD).\u201d [PAGE 9]"
+    ],
+    "compliance_red_flags": [
+      "Mandatory certification evidence is required but the exact certifications are not specified in the provided document; risk of undisclosed mandatory certifications in the Vendor Response template. [PAGE 7]",
+      "DCaaS providers have a specific mandatory compliance-attestation obligation referenced to Section 4 / Vendor Response template, which is not included in the provided text. [PAGE 7]",
+      "Region strategy and data residency approach must be addressed, but no allowed/prohibited jurisdictions are stated in the document. [PAGE 6]",
+      "All RFP information is confidential, may be used solely for responding to the RFP, and cannot be shared with third parties without Kohler\u2019s prior written consent. [PAGE 11]",
+      "Payment terms below net 90 are stated to be not competitive, creating a material commercial risk even though it is not expressly stated as an automatic rejection. [PAGE 10]",
+      "Detailed legal terms, contractual conditions, compliance requirements, and SLAs will be defined only in subsequent phases, leaving downstream contractual risk unresolved at RFP response stage. [PAGE 11]"
+    ],
+    "total_requirements": 32,
+    "eliminatory_count": 5
+  },
+  "win_intel": {
+    "similar_deals": [
+      {
+        "deal_id": "DEAL-003",
+        "title": "SAP S/4HANA Global Rollout",
+        "industry": "Manufacturing",
+        "deal_size_usd": "$71M over 4 years",
+        "outcome": "WON",
+        "similarity_pct": 86.0,
+        "why_relevant": "Closest historical win: manufacturing, USA plus global footprint, SAP ecosystem, enterprise scale, and similar 3-5 year transformation profile. Relevant to Kohler's SAP hosting, migration, and operating-continuity concerns.",
+        "key_lesson": "Executive sponsor alignment and credible SAP scale were decisive; manufacturing SAP references, zero-downtime methodology, and global delivery helped win."
+      },
+      {
+        "deal_id": "DEAL-056",
+        "title": "Manufacturing IT Transformation",
+        "industry": "Manufacturing",
+        "deal_size_usd": "$31M over 5 years",
+        "outcome": "LOST",
+        "similarity_pct": 78.0,
+        "why_relevant": "Similar manufacturing IT transformation size and duration, with ISO 27001 and SOC 2 Type II requirements. Directly relevant because Polaris has mandatory submission, certification, DCaaS-attestation, and response-template requirements.",
+        "key_lesson": "Lost because a local entity requirement was missed in the compliance appendix; mandatory compliance evidence must be treated as a bid gate."
+      },
+      {
+        "deal_id": "DEAL-100",
+        "title": "Manufacturing IT Transformation",
+        "industry": "Manufacturing",
+        "deal_size_usd": "$22M over 4 years",
+        "outcome": "LOST",
+        "similarity_pct": 72.0,
+        "why_relevant": "Manufacturing enterprise IT transformation with similar commercial scale and duration. Reinforces that compliance mechanics can override technical strength.",
+        "key_lesson": "Repeated loss pattern: missed local/entity compliance requirement. A red-team compliance review is mandatory before submission."
+      },
+      {
+        "deal_id": "DEAL-007",
+        "title": "Supply Chain AI Platform",
+        "industry": "Retail & FMCG",
+        "deal_size_usd": "$63M over 4 years",
+        "outcome": "WON",
+        "similarity_pct": 69.0,
+        "why_relevant": "Relevant to Kohler's digital innovation, enterprise integration, multi-region operations, SAP/Oracle ecosystem, and need to differentiate beyond generic hosting capability.",
+        "key_lesson": "Proprietary accelerators, pre-built SAP/Oracle connectors, and measurable timeline reduction beat lower hourly rates."
+      },
+      {
+        "deal_id": "DEAL-020",
+        "title": "Telecom Network Automation",
+        "industry": "Telecom",
+        "deal_size_usd": "$55M over 4 years",
+        "outcome": "WON",
+        "similarity_pct": 58.0,
+        "why_relevant": "Industry differs, but it is relevant to US enterprise infrastructure, network connectivity, managed operations, and the need for strong US references for a Wisconsin data-center/hybrid-hosting decision.",
+        "key_lesson": "US enterprise buyers valued direct peer references and strong infrastructure/network credentials."
+      },
+      {
+        "deal_id": "DEAL-043",
+        "title": "Healthcare IT Transformation",
+        "industry": "Healthcare",
+        "deal_size_usd": "$44M over 5 years",
+        "outcome": "LOST",
+        "similarity_pct": 55.0,
+        "why_relevant": "Useful pricing-risk comparator for Polaris because the RFP emphasizes transparent, structured, itemized pricing and TCO comparison across hosting options.",
+        "key_lesson": "A better technical solution lost because pricing was 20% above the winning bid; commercial sharpness matters as much as architecture."
+      }
+    ],
+    "win_probability": 0.46,
+    "win_probability_rationale": "Estimated win probability is 46% with medium-low confidence. The positive evidence is strong but not sufficient for a majority probability: past proposal intelligence contains an almost exact Kohler Project Polaris solution pattern, including a 12-week Hosting Decision Lab, vendor-neutral cloud/DCaaS/hybrid comparison, SAP/VMware/database/DR/network/security coverage, USD TCO, and downstream pricing patterns around $24.75M-$30.67M for 36 months. The deal corpus also contains a highly relevant manufacturing SAP win, DEAL-003, at $71M over 4 years, showing that SAP scale, manufacturing credibility, and global delivery can win comparable enterprise transformations. However, there is no public procurement data, so there is no ground-truth competitor pricing or award trend to validate assumptions. The strongest proposal intelligence is WIP content for this same RFP, not proof of a prior Kohler win. The deal corpus also contains two relevant manufacturing IT losses, DEAL-056 and DEAL-100, caused by missed compliance requirements, which directly maps to Polaris eliminators around template completion, certification evidence, DCaaS attestations, USD pricing, and submission mechanics. DEAL-043 adds pricing downside because technically superior enterprise IT bids can lose when 20% overpriced. No evidence confirms a Kohler relationship, executive sponsor, incumbent advantage, or detailed evaluation weighting. Therefore the opportunity is winnable if compliance, references, architecture evidence, and commercial transparency are fixed, but the honest probability remains below 50% absent procurement validation or buyer-access evidence.",
+    "capability_gaps": [
+      "Mandatory certification evidence is not present in the supplied intelligence. The RFP requires vendors to demonstrate capability to host workloads in compliance with applicable industry/regional standards with certification evidence; this must be supplied, not asserted.",
+      "If proposing DCaaS, explicit compliance attestations from the DCaaS provider are required. The current intelligence describes a compliance-attestation matrix but does not provide signed/provider-specific DCaaS attestations.",
+      "The detailed Vendor Response / Evaluation Template is not available in the supplied intelligence. Because the RFP states simple Yes/No answers are insufficient, failure to map narrative answers, evidence, diagrams, and assumptions into the required template is a pass/fail risk.",
+      "Current-state Kohler workload inventory, dependency maps, RTO/RPOs, run costs, contracts, and incumbent responsibilities are not available. This creates a gap against the requirement to provide credible cloud, DCaaS, and hybrid assumptions and defensible 3-5 year TCO.",
+      "Architecture evidence must be completed. Past proposal content references landing-zone blueprints and target-state diagrams, but the submitted response must include concrete multi-account/multi-subscription landing zone, environment segregation, IAM integration, hybrid connectivity, region/data residency, DR/HA, monitoring/logging, and security reference designs.",
+      "No evidence was provided of a direct Kohler executive sponsor relationship or incumbent advantage. DEAL-003 shows sponsor alignment mattered in a comparable win, so this is a competitive gap rather than a technical gap."
+    ],
+    "recommended_win_themes": [
+      "Vendor-neutral Polaris Hosting Decision Lab: position Phase 0 as a Kohler-owned, evidence-based decision factory that compares cloud, DCaaS, retained data center, hybrid, plant/edge, and SaaS integration workload by workload rather than forcing a cloud-first answer.",
+      "SAP-first manufacturing continuity: lead with credible SAP workload hosting, migration-risk control, RTO/RPO discipline, zero/low-downtime migration planning, and manufacturing/hospitality operational continuity, grounded in the comparable DEAL-003 manufacturing SAP win.",
+      "Open-book USD TCO and FinOps transparency: present unit assumptions, transition costs, run costs, storage, backup, DR, network, security tooling, labor, savings trajectory, and scenario comparison clearly to avoid the DEAL-043 failure pattern where a stronger solution lost on price.",
+      "Compliance-by-design and no-disqualification governance: make certifications, DCaaS attestations, response-template completion, USD pricing, submission channel, and red-team compliance review a visible feature of the proposal, directly addressing losses in DEAL-056 and DEAL-100.",
+      "Accelerated, low-risk transition using reusable assets: emphasize workload placement scorecards, discovery accelerators, SAP/Oracle/database sizing models, VMware migration playbooks, landing-zone patterns, DR/security/observability blueprints, migration waves, rollback gates, and hypercare, reflecting win lessons from DEAL-007 and DEAL-060."
+    ],
+    "risk_factors": [
+      "No public procurement data is available, so there is no ground-truth award-price benchmark or verified competitor win pattern for Kohler or comparable hosting/DCaaS awards. This lowers confidence and prevents an optimistic probability.",
+      "The strongest past proposal intelligence is from Kohler Project Polaris itself and appears to be WIP/generated proposal content, not evidence of a prior win. It is highly reusable but does not prove buyer preference or incumbent relationship.",
+      "The RFP has several eliminatory mechanics: due date/channel, mandatory Vendor Response template, certification evidence, DCaaS attestations, and USD pricing. Historical losses DEAL-056 and DEAL-100 show this organization has lost comparable manufacturing IT bids by missing compliance appendix requirements.",
+      "Pricing risk is material. DEAL-043 shows a technically stronger enterprise IT proposal lost when priced 20% above the winner. For Polaris, a complex hybrid/cloud/DCaaS TCO could be vulnerable if assumptions are opaque or cost is not benchmarked.",
+      "Possible incumbent or ecosystem-provider advantage is unresolved. Past proposal language references vendor coexistence and incumbent accountabilities, but no intelligence confirms whether an incumbent, hyperscaler, DCaaS provider, or advisory firm has privileged access.",
+      "The scope spans Phase 0 advisory and potential downstream $15M-$75M hosting/managed services. Kohler may select a neutral advisor for Phase 0 and later compete implementation separately, limiting near-term revenue capture.",
+      "Detailed evaluation weights are not available. The extracted intelligence says scoring/weightage may be in a separate Evaluation Template/Excel, so win strategy could be misweighted unless that file is obtained and response is tailored to it."
+    ],
+    "must_fix_before_bidding": [
+      "Create a mandatory compliance matrix mapping every eliminatory and must-have requirement to the exact response-template location, named owner, evidence artifact, and submission check. This directly addresses loss patterns from DEAL-056 and DEAL-100 where compliance appendix requirements were missed.",
+      "Attach current ISO 27001, SOC 2 Type II, cloud partner certifications, data center certifications, security attestations, and any DCaaS-provider compliance attestations required for the proposed scenarios.",
+      "Complete the Kohler Vendor Response template in detail with narrative answers, assumptions, evidence references, pricing in USD, and no unsupported Yes/No responses.",
+      "Build a USD-only commercial model separating Phase 0 advisory, landing-zone/setup, transition/migration, hosting/run, managed services, backup/DR, network connectivity, tooling, security, and optional cloud/DCaaS/hybrid scenarios over a 3-5 year horizon.",
+      "Include architecture diagrams and reference designs for public cloud, DCaaS, and hybrid options, including SAP, VMware, Windows/Linux, SQL Server, Oracle, SAP HANA, MySQL/PostgreSQL, storage, backup/DR, IAM, monitoring/logging, and OT-adjacent read-only/controlled integrations.",
+      "Secure at least two direct US peer references, preferably manufacturing/SAP/data-center-exit or complex infrastructure references, because DEAL-020 shows US enterprise infrastructure buyers value direct peer validation."
+    ]
+  },
+  "client_intel": {
+    "client_name": "Kohler Co.",
+    "industry": "Manufacturing, enterprise IT, hospitality, wellness, digital innovation",
+    "intel_source": "web_search",
+    "cto_stated_priorities": [
+      "Operational and business excellence through technology (Eric Tabor, Cognizant release Jan 2026)",
+      "Productivity gains and faster response to business needs (Eric Tabor, Cognizant release Jan 2026)",
+      "Customer value via digital engineering and domain expertise (Eric Tabor, Cognizant release Jan 2026)",
+      "Privacy and security as trust markers for connected products (Paul Ryan, Microsoft story)"
+    ],
+    "cfo_budget_signals": [
+      "Multi-year Cognizant expansion signals committed funding for AI/cloud modernization.",
+      "Productivity, automation and operational excellence are explicit value drivers.",
+      "Private company; no Kohler earnings-call budget commentary found."
+    ],
+    "technology_debt_signals": [
+      "Data center modernization needed \u2014 DC ops and cloud platforms are in renewed transformation scope.",
+      "Observability gaps \u2014 AI-driven security and observability are named next-gen priorities.",
+      "Hybrid ops complexity \u2014 Neuro IT Ops is positioned for self-healing hybrid environments.",
+      "Global platform maturity gap \u2014 modernized infrastructure and agility are explicit program goals.",
+      "Cyber control uplift needed \u2014 cybersecurity is in CDO remit and Cognizant scope."
+    ],
+    "recent_strategic_moves": [
+      "Expanded Cognizant partnership for AI/cloud digital foundation (Jan 2026)",
+      "Launched Kohler Health and Dekoda connected wellness venture (Oct 2025)",
+      "Appointed Eric Tabor as CDO over data, AI, platforms and cyber (Aug 2025)",
+      "Expanded India Technical Center with Smart Products Hub (2026)",
+      "Showcased Anthem+ and connected wellness products at KBIS (Feb 2025)"
+    ],
+    "unstated_needs": [
+      "High confidence: Hybrid-cloud decision framework \u2014 because DC ops and cloud platforms sit inside the Cognizant scope",
+      "High confidence: AIOps observability layer \u2014 because Neuro IT Ops is named to improve reliability and observability",
+      "High confidence: Security-by-design hosting controls \u2014 because cyber spans CDO remit, Cognizant scope and connected products",
+      "High confidence: Cognizant coexistence plan \u2014 because Cognizant already owns broad AI, cloud and operations scope",
+      "Medium confidence: FinOps/TBM model \u2014 because cloud management and productivity are explicit transformation goals",
+      "Medium confidence: IoT edge/cloud architecture \u2014 because Dekoda, smart products and Smart Products Hub are scaling",
+      "Medium confidence: Data privacy governance \u2014 because bathroom health data creates sensitive consumer data flows"
+    ],
+    "signals": [
+      {
+        "source": "Cognizant investor release, Jan 29 2026",
+        "signal": "Cognizant scope spans enterprise systems, cloud, DC ops and cyber",
+        "implication": "Hosting choices must support broad enterprise transformation."
+      },
+      {
+        "source": "Cognizant investor release, Jan 29 2026",
+        "signal": "Neuro IT Ops named for reliability, observability and agility",
+        "implication": "Reliability and observability are board-level IT outcomes."
+      },
+      {
+        "source": "Cognizant Q4 2025 earnings call, Feb 4 2026",
+        "signal": "Cognizant cited cloud management and AI solutions for Kohler",
+        "implication": "AI operations should be part of the hosting case."
+      },
+      {
+        "source": "The Org executive profile, 2026",
+        "signal": "CDO remit includes platforms, data, AI and cybersecurity",
+        "implication": "Security architecture will influence platform selection."
+      },
+      {
+        "source": "The Org executive profile, 2026",
+        "signal": "Eric Tabor appointed CDO in Aug 2025",
+        "implication": "Leadership transition may reset governance and priorities."
+      },
+      {
+        "source": "PRNewswire, Oct 15 2025",
+        "signal": "Kohler Health and Dekoda launched connected bathroom health",
+        "implication": "Smart-product data increases privacy and edge/cloud demands."
+      },
+      {
+        "source": "Sameer Bondre LinkedIn post, 2026",
+        "signal": "India Technical Center added Smart Products Hub with 750+ team",
+        "implication": "Distributed engineering and IoT scale need stable platforms."
+      },
+      {
+        "source": "Cognizant investor release, Jan 29 2026",
+        "signal": "Kohler.com and digital experiences are in Cognizant scope",
+        "implication": "Digital foundation must serve commerce and customer journeys."
+      },
+      {
+        "source": "Microsoft customer story PDF",
+        "signal": "Ryan said customers need confidence personal data is protected",
+        "implication": "Cyber/privacy is tied to brand trust in connected products."
+      },
+      {
+        "source": "Kohler Ventures site, 2026",
+        "signal": "Kohler Ventures targets AI, ML, software and hardware talent",
+        "implication": "Kohler is building software, AI and hardware capabilities."
+      }
+    ],
+    "recommended_narrative": "Position Polaris as a risk-managed hosting strategy, not a commodity infrastructure choice. Emphasize hybrid-cloud governance, AIOps observability, cybersecurity, and cost transparency while fitting Cognizant\u2019s existing operating model."
+  },
+  "competitor": {
+    "competitors": [
+      {
+        "competitor_name": "HCLTech",
+        "likelihood_to_bid": "medium \u2014 Confidence: medium. HCLTech has strong U.S./global delivery capability and directly relevant VMware, DCaaS, SAP HyRISE, infrastructure, security and hybrid-cloud offerings [web], but no verified Wisconsin-specific job posting or recent Wisconsin contract win was found [job posting/web]. Public procurement data for this RFP/region was unavailable [public contract].",
+        "predicted_positioning": "Likely angle: 'global hybrid-cloud transformation partner for SAP, VMware and DCaaS, with AI-enabled operations.' Evidence: HCLTech reports FY26 revenue of $14.7B, FY26 new-deal TCV of $9.3B, EBIT margin of 17.2%, AI Factory and AI infrastructure momentum, VMware DCaaS capability, Shared Data Center as a Service with IBM, SAP HyRISE, and enterprise infrastructure/cyber/network services [financial/web]. No recent public contract wins in Wisconsin found [web/public contract].",
+        "predicted_price_range_usd": "Full program: likely $18M-$55M over 3-5 years; Phase 0: likely $400K-$1.1M. Confidence: medium-low because no public procurement award values were available. Calculation anchor: FY26 revenue/employee = $14.7B / 227,000 = about $64,800 per employee [financial/web]. EBIT margin = 17.2%, so pricing floor = cost / (1 - 0.172) = cost / 0.828 = 1.208x cost [financial]. Therefore a $18M bid implies an internal cost ceiling of about $14.9M, and a $55M bid implies cost ceiling of about $45.5M. Range is constrained by the user-provided enterprise hosting estimate of $15M-$75M and HCLTech's lower revenue/employee offshore/global delivery model; no public contract award anchor was available [RFP/public contract].",
+        "their_strengths": [
+          "Proven scale: FY26 revenue $14.7B, 227,000+ people across 60 countries, 23,000+ U.S. professionals, and $9.3B FY26 new-deal TCV [financial/web].",
+          "Direct VMware and DCaaS relevance: dedicated VMware business unit, 9,000+ trained/certified VMware consultants, VMware Cloud on AWS, and Shared Data Center as a Service model [web].",
+          "SAP modernization relevance through HyRISE and enterprise applications transformation across finance, HR, supply chain and manufacturing [web].",
+          "Manufacturing relevance through digital manufacturing offerings integrating IT, OT and engineering systems, plus June 2026 automotive software partnership with e.solutions [web].",
+          "Recent AI/cloud momentum: AI Factory program over $100M, Red Hat AI infrastructure collaboration, ServiceNow/Google Cloud AI announcement, and Dell Americas partner recognition [web]."
+        ],
+        "their_weaknesses": [
+          "No verified Wisconsin-specific job posting or recent Wisconsin client/deal evidence found [job posting/web].",
+          "No public procurement award values were available for this opportunity, so their exact U.S./Wisconsin pricing behavior is not evidenced [public contract].",
+          "FY27 revenue guidance of only 1.0%-4.0% constant-currency growth may make them selective and margin-protective rather than purely price-aggressive [financial].",
+          "Their strongest public story is platform/alliance-led DCaaS, VMware, SAP and AI; Kohler can test whether they are truly neutral across DCaaS, hyperscaler, retain/modernize, and VMware-exit scenarios [web]."
+        ],
+        "how_to_beat_them": [
+          "Force the evaluation onto Wisconsin-local discovery quality, named Phase 0 team availability, and on-site workshops: source evidence shows HCLTech has 23,000+ U.S. professionals but no verified Wisconsin-specific job postings or Wisconsin client win found [job posting/web].",
+          "Exploit their likely platform-led VMware/SAP/DCaaS story by requiring a vendor-neutral decision model across retain, DCaaS, hyperscaler, SAP hosting, and VMware exit options; HCLTech evidence is strongest around its own VMware business unit, Shared DCaaS with IBM, HyRISE SAP modernization, and hybrid-cloud offerings [web].",
+          "Require detailed certification evidence and compliance attestations in the Kohler response template; HCLTech can likely provide global certifications, but the RFP disqualifier punishes generic yes/no responses and weak evidence [RFP].",
+          "Differentiate with local executive accountability and a Kohler-owned TCO/workload model; HCLTech has no public Wisconsin deal proof and will likely lean on global scale rather than local intimacy [web/job posting]."
+        ]
+      },
+      {
+        "competitor_name": "Kyndryl",
+        "likelihood_to_bid": "high \u2014 Confidence: medium-high. Kyndryl has U.S. job-posting signals for SAP and VMware/cloud infrastructure roles and recent U.S. state/local modernization wins with Arizona MVD, North Carolina DMV and Texas Department of Information Resources [job posting/web]. No recent public Wisconsin contract win found [web/public contract].",
+        "predicted_positioning": "Likely angle: 'mission-critical hybrid infrastructure modernization with SAP, VMware, resiliency, distributed cloud and hyperscaler partnerships.' Evidence: Kyndryl FY2026 revenue $15.092B, Consult revenue $3.5B up 18%, hyperscaler-related revenue $1.9B up 59%, 675k+ VMs managed, 3,600+ VMware certifications/accreditations, 14,000+ SAP instances, and 2026 expansions with AWS, Microsoft and Google Cloud [financial/web].",
+        "predicted_price_range_usd": "Full program: likely $22M-$65M over 3-5 years; Phase 0: likely $500K-$1.3M. Confidence: medium. Revenue/employee could not be computed from the provided sources because no current employee count was supplied; do not infer it. Margin anchor: FY2026 adjusted EBITDA margin = $2.672B / $15.092B = 17.7%, so pricing floor using EBITDA proxy = cost / (1 - 0.177) = cost / 0.823 = 1.215x cost [financial]. Pretax margin = $414M / $15.092B = 2.7%, implying a bare accounting floor of cost / 0.973 = 1.028x cost [financial]. A $22M bid at 17.7% EBITDA margin implies cost ceiling of about $18.1M; a $65M bid implies cost ceiling of about $53.5M. No public procurement award anchor was available [public contract].",
+        "their_strengths": [
+          "Very strong fit to data-center, hybrid cloud, core enterprise, security/resiliency, network/edge and managed infrastructure scope [web/10-K].",
+          "Deep VMware and SAP proof points: manages 675k+ VMs, has 3,600+ VMware certifications/accreditations, and manages 14,000+ SAP instances [web/job posting].",
+          "Strong hyperscaler momentum: FY2026 hyperscaler-related revenue $1.9B, up 59%, plus expanded AWS, Microsoft and Google Cloud partnerships in 2026 [financial/web].",
+          "Recent U.S. public-sector modernization proof points: Arizona MVD extension, North Carolina DMV modernization, and Texas DIR technology-services contract vehicle [web].",
+          "Consult momentum: FY2026 Kyndryl Consult revenue $3.5B, up 18%, with $4B of Consult signings [financial]."
+        ],
+        "their_weaknesses": [
+          "No verified Wisconsin-specific job posting or recent Wisconsin deal found [job posting/web].",
+          "Lower GAAP profitability than some global peers: FY2026 pretax margin was only 2.7%, even though adjusted EBITDA margin was 17.7% [financial].",
+          "May over-index on infrastructure/run operations versus Kohler-specific business innovation for hospitality, wellness and digital products; no recent named hospitality/wellness deal was found [web].",
+          "Pricing may carry transformation-risk premiums because Kyndryl is positioning around mission-critical resilience, sovereignty and distributed cloud, not lowest-cost hosting [web/financial]."
+        ],
+        "how_to_beat_them": [
+          "Attack their likely 'run the world\u2019s mission-critical infrastructure' narrative with faster Phase 0 deliverables, clearer business-case ownership, and a more modern application/workload rationalization model; Kyndryl is strongest in core infrastructure operations, VMware, SAP and resiliency [web/financial].",
+          "Require binding transformation economics, not just roadmap language. Kyndryl disclosed FY2026 projected pretax margin on signings in the high-single-digit range and pretax margin of only 2.7%, so they may protect downside with change orders and scope controls [financial].",
+          "Emphasize Kohler-specific manufacturing, hospitality and wellness outcomes. Kyndryl has strong horizontal infrastructure credentials but no recent named hospitality/wellness deal found in the provided evidence [web].",
+          "Probe for Wisconsin-local named resources. Kyndryl has U.S. SAP and VMware hiring signals but no verified Wisconsin-specific job posting or Wisconsin contract win found [job posting/web]."
+        ]
+      },
+      {
+        "competitor_name": "Deloitte",
+        "likelihood_to_bid": "high \u2014 Confidence: medium-high. Deloitte has a relevant Milwaukee, Wisconsin job signal for Manager - Cloud/AIX Engineer requiring Linux/AIX, cloud, VMware and ITSM/ServiceNow experience, plus U.S. cloud/AI managed-services hiring signals [job posting]. No recent public Wisconsin contract win found [web/public contract].",
+        "predicted_positioning": "Likely angle: 'trusted strategic advisor and transformation integrator for SAP, hybrid cloud, cyber resilience, digital innovation and operating-model change.' Evidence: Deloitte launched SAP INTEGRATE on SAP Cloud ERP in Jan. 2026, promotes SAP Operate and Cloud Managed Services, announced IBM/Red Hat software supply-chain security collaboration in June 2026, and serves as Games Technology Integration Partner for Olympic/Paralympic events through Brisbane 2032 [web].",
+        "predicted_price_range_usd": "No defensible margin-grounded competitor-specific range beyond the RFP-inferred $15M-$75M full-program range and $250K-$1.5M Phase 0 range. Confidence: low for price. Deloitte is privately held through member firms, does not publish public-company quarterly earnings, and Deloitte Global does not disclose operating margin [financial]. Revenue/employee and pricing-floor math cannot be computed from the provided sources without an employee count and margin. Qualitatively, expect Deloitte to bid in the upper half if scope emphasizes advisory, SAP, cyber, governance and transformation leadership, but that premium is not margin-grounded [web/financial].",
+        "their_strengths": [
+          "Strong Wisconsin hiring signal: Milwaukee-listed Cloud/AIX Engineer role with Linux/AIX, cloud, VMware and ITSM/ServiceNow relevance [job posting].",
+          "Strong SAP and Operate credentials: SAP INTEGRATE on SAP Cloud ERP, SAP Operate services, cloud managed services and IT managed services across SAP/non-SAP estates [web].",
+          "Strong cyber and hybrid-cloud security positioning via Deloitte/IBM/Red Hat software supply-chain trust collaboration announced June 26, 2026 [web].",
+          "Global technology-integration proof point: Games Technology Integration Partner from Milano Cortina 2026 through Brisbane 2032 [web].",
+          "Hospitality/digital fit through Deloitte Digital transportation, hospitality and services practice and Marriott/Ritz-Carlton digital experience references [web]."
+        ],
+        "their_weaknesses": [
+          "Financial opacity: no public Deloitte Global quarterly earnings or operating margin; pricing floor cannot be calculated from the provided sources [financial].",
+          "No recent public Wisconsin contract win found [web/public contract].",
+          "May be more expensive if the scope is mostly run/operate hosting rather than transformation strategy, SAP, cyber and governance [web/financial].",
+          "As a member-firm network, delivery accountability and subcontracting/operate boundaries should be tested carefully in the RFP response [web]."
+        ],
+        "how_to_beat_them": [
+          "Make price and operational accountability the battleground. Deloitte can tell a strong advisory/SAP/cloud/cyber story, but Deloitte Global does not disclose operating margin, making its pricing floor opaque [financial].",
+          "Require a Phase 0 output that is executable by any provider and not a consulting-to-operate pull-through. Deloitte\u2019s public materials emphasize advisory plus Operate, SAP Operate, cloud managed services and technology integration [web].",
+          "Push for named infrastructure operators, not just strategy partners. This RFP is hosting/DCaaS/hybrid-heavy; Deloitte is strongest when the buyer values strategy, SAP, cyber, transformation and integration governance [web].",
+          "Use the RFP template to demand detailed certification evidence, compliance attestations, landing-zone design, identity integration, environment segregation and hybrid connectivity specifics; generic consulting narratives should score poorly [RFP]."
+        ]
+      },
+      {
+        "competitor_name": "Accenture",
+        "likelihood_to_bid": "high \u2014 Confidence: high. Accenture has Milwaukee, WI job signals for SAP Platform Security Consultant and SAP Supply Chain Consultant/private-cloud roles, plus U.S. infrastructure/cloud roles [job posting]. It also has very recent large secure cloud infrastructure momentum, including the NATO Protected Business Network contract announced July 7, 2026 [web]. No recent public Wisconsin contract win found [web/public contract].",
+        "predicted_positioning": "Likely angle: 'end-to-end reinvention: secure hybrid cloud, SAP modernization, AI-ready data center, manufacturing digital innovation, network intelligence and managed operations.' Evidence: Q3 FY2026 revenue $18.7B, operating margin 17.0%, new bookings $19.3B, 104 $100M+ bookings YTD, NATO secure multi-cloud program about \u20ac200M over seven years, SAP Forward Deployed Engineering with SAP, Stellantis/NVIDIA manufacturing digital twin plans, Microsoft/Avanade agentic factory, DLB data-center engineering acquisition, Ookla network intelligence acquisition and Ascott hospitality AI-ready infrastructure collaboration [financial/web].",
+        "predicted_price_range_usd": "Full program: likely $25M-$75M over 3-5 years; Phase 0: likely $750K-$1.5M. Confidence: medium-high. Calculation anchor: annualized Q3 FY2026 revenue = $18.7B x 4 = $74.8B; revenue/employee = $74.8B / 799,000 = about $93,600 per employee [financial/web]. Q3 operating margin = 17.0%, so pricing floor = cost / (1 - 0.17) = cost / 0.83 = 1.205x cost [financial]. A $25M bid implies cost ceiling of about $20.8M; a $75M bid implies cost ceiling of about $62.3M. Public value anchor: NATO Protected Business Network was announced at approximately \u20ac200M over seven years, proving Accenture pursues long-term secure cloud infrastructure programs, but no USD public procurement value for Kohler/Wisconsin was available [web/public contract].",
+        "their_strengths": [
+          "Strongest large-deal evidence among the set: Q3 FY2026 bookings $19.3B and 104 $100M+ client bookings year-to-date [financial].",
+          "Recent secure infrastructure proof point: NATO Protected Business Network, approximately \u20ac200M over seven years, covering secure cloud-enabled digital enterprise and multi-cloud operations for about 29,000 users [web].",
+          "Strong manufacturing relevance: Stellantis/NVIDIA digital twin initiative, Microsoft/Avanade agentic factory, and Industries eXcellence Group acquisition for Siemens Digital Industries capabilities [web].",
+          "Strong SAP relevance: SAP Forward Deployed Engineering program with SAP Business AI Platform and S/4HANA Cloud Private references [web].",
+          "Data-center and network differentiation: DLB data-center engineering acquisition closed Jan. 2026 and Ookla acquisition closed June 2026 [web].",
+          "Milwaukee/Wisconsin job signals in SAP security and SAP private-cloud/supply-chain roles [job posting]."
+        ],
+        "their_weaknesses": [
+          "Likely premium bidder because of 17.0% operating margin, large-deal orientation and high-value transformation positioning [financial/web].",
+          "No recent public Wisconsin contract win found [web/public contract].",
+          "Recent evidence is broad and powerful but less explicitly VMware-estate-specific than Kyndryl's 675k+ VMs, HCLTech's 9,000+ VMware consultants, or Rackspace's VMware Cloud Engineer hiring signal [web/job posting].",
+          "If Kohler wants an unbiased Phase 0 hosting-options evaluation, Accenture\u2019s many platform acquisitions and alliances may create perceived pull toward Accenture-led transformation and managed services [web]."
+        ],
+        "how_to_beat_them": [
+          "Neutralize their scale story by demanding a Kohler-owned, vendor-neutral TCO and workload-placement model; Accenture\u2019s public momentum is heavily tied to large transformation, SAP AI, Microsoft/Azure manufacturing, DLB data-center engineering, Ookla network intelligence and major platform ecosystems [web].",
+          "Exploit likely premium pricing. Accenture Q3 FY2026 operating margin was 17.0%, and it reported 104 client bookings over $100M year-to-date, indicating appetite for large, profitable transformation deals rather than low-cost Phase 0 advisory [financial].",
+          "Challenge VMware specificity. Accenture has broad infrastructure and data-center capability, but the provided recent evidence is less VMware-specific than Kyndryl, HCLTech or Rackspace [web/job posting].",
+          "Win on Kohler-specific local intimacy and practical transition sequencing: Accenture has Milwaukee job signals, but no public Wisconsin contract win found; require named local resources and a transition plan for SAP, VMware, Windows/Linux, database, storage, backup/DR and security tooling [job posting/web]."
+        ]
+      },
+      {
+        "competitor_name": "Ensono",
+        "likelihood_to_bid": "medium \u2014 Confidence: medium. Ensono has relevant U.S. remote job postings for security architecture, AI/ML managed-service architecture, mainframe and go-to-market roles, and its jobs-board taxonomy includes Wisconsin and Madison, WI filters [job posting]. However, no clearly open Wisconsin-specific role and no recent Wisconsin contract win were found [job posting/web].",
+        "predicted_positioning": "Likely angle: 'specialist hybrid IT, private cloud, mainframe, hosted services, cloud migration and AI-enabled managed services with stronger intimacy than mega-SIs.' Evidence: Ensono says it grew to $1.1B revenue, 4,000+ associates and 250+ clients; operates across the U.S., Europe, India, Brazil and Singapore; launched a $250M five-year AI & Innovation investment; and provides mainframe, cloud and hybrid infrastructure services [financial/web]. No recent public contract wins in Wisconsin found [web/public contract].",
+        "predicted_price_range_usd": "Full program: likely $15M-$45M over 3-5 years; Phase 0: likely $350K-$1.0M. Confidence: medium-low. Calculation anchor: revenue/employee = $1.1B / 4,000 = about $275,000 per employee [financial/web]. Public operating margin unavailable; S&P Global Ratings expected adjusted EBITDA margin to improve above 26% in 2026-2027, which is a credit-rating proxy, not reported operating margin [financial]. Using 26% adjusted EBITDA proxy, pricing floor = cost / (1 - 0.26) = cost / 0.74 = 1.351x cost. A $15M bid implies cost ceiling of about $11.1M; a $45M bid implies cost ceiling of about $33.3M. Public contract value anchor is not comparable: UK Post Office IDAM direct award was \u00a3199,979.10 for Jan.-Apr. 2026, far smaller than the Kohler-scale hosting opportunity [public contract/web].",
+        "their_strengths": [
+          "Strong hybrid IT and legacy-modernization fit: mainframe, private cloud, public cloud, hybrid infrastructure, application modernization, database managed services, hosted services, data-center exit/consolidation, IAM and security [web].",
+          "Recent AI managed-services investment: $250M five-year AI & Innovation Division, Envision Predictive Engine, 22% major-incident reduction and 50% MTTR reduction claims [web].",
+          "Manufacturing proof point: proactive remediation for a leading automotive manufacturer cited in AI & Innovation release [web].",
+          "Hospitality proof point: hotel-group case study using Google Cloud data platform for customer 360, personalization, predictive modeling and governance [web].",
+          "Healthcare/wellness-adjacent proof point: medical-center mainframe application management with $300,000 annual software savings and 15% transaction-capacity increase [web]."
+        ],
+        "their_weaknesses": [
+          "No public quarterly earnings or GAAP operating margin found; only S&P adjusted EBITDA margin proxy above 26% is available [financial].",
+          "No clearly open Wisconsin-specific job posting found, despite Wisconsin/Madison filters on the jobs board [job posting].",
+          "No recent public Wisconsin contract win found [web/public contract].",
+          "Much smaller scale than Accenture, Deloitte, Kyndryl and HCLTech, which may matter for global multi-region SAP/VMware/cloud transition [financial/web].",
+          "SAP and VMware evidence in the provided sources is less current and quantified than Kyndryl's SAP/VMware proof points or HCLTech's VMware consultant base [web]."
+        ],
+        "how_to_beat_them": [
+          "Exploit scale limitations versus Accenture, Deloitte, Kyndryl and HCLTech. Ensono has about $1.1B revenue and 4,000+ associates, much smaller than the global SI competitors [financial/web].",
+          "Require deep SAP and VMware evidence. Ensono has hybrid infrastructure, mainframe, cloud, database, security and hosted-services credibility, but the provided evidence is less current and specific on SAP/VMware scale than HCLTech or Kyndryl [web].",
+          "Press on Wisconsin specificity. Ensono's jobs board includes Wisconsin and Madison, WI filters, but no clearly open Wisconsin-specific posting was found in the indexed snippets [job posting].",
+          "Do not let them win only on legacy/hybrid operations. Differentiate with a broader manufacturing/hospitality/wellness digital roadmap tied to Kohler business outcomes, not just infrastructure modernization [web/RFP]."
+        ]
+      },
+      {
+        "competitor_name": "Rackspace Technology",
+        "likelihood_to_bid": "high \u2014 Confidence: medium. Rackspace has U.S. job signals for VMware Cloud Engineer IV and Healthcare/AI sales, and its strategy is focused on U.S./global private cloud, enterprise AI, regulated workloads and hybrid cloud [job posting/web]. However, no Wisconsin-specific job posting or recent Wisconsin deal was found [job posting/web].",
+        "predicted_positioning": "Likely angle: 'AI-ready private cloud and hybrid-cloud modernization for regulated/manufacturing workloads, with VMware operations, Palantir AIP/Foundry, AMD AI compute and cyber recovery.' Evidence: July 2026 Rackspace/Palantir framework, about 400 Palantir certifications, first joint U.S.-based solar tracking manufacturer deployment with 94% quote-cycle-time reduction, AMD 30 MW AI compute plan, Rubrik UK Sovereign Cyber Recovery Cloud, and U.S. VMware Cloud Engineer IV hiring signal [web/job posting].",
+        "predicted_price_range_usd": "Full program: likely $15M-$40M over 3-5 years; Phase 0: likely $250K-$850K. Confidence: medium. Calculation anchor: FY2026 revenue guidance $2.45B-$2.55B divided by about 6,977 LinkedIn-listed employees = roughly $351,000-$365,000 revenue per listed employee; treat employee denominator as LinkedIn signal, not audited headcount [financial/job posting]. Q1 2026 non-GAAP operating margin = $30.7M / $678M = 4.5%; preliminary Q2 2026 non-GAAP margin = $19M-$23M / $641M-$649M = about 2.9%-3.6% [financial]. Pricing floor at 3.6% = cost / 0.964 = 1.037x cost; at 4.5% = cost / 0.955 = 1.047x cost. A $15M bid implies cost ceiling of about $14.3M-$14.5M; a $40M bid implies cost ceiling of about $38.2M-$38.6M. Low margin supports aggressive pricing, but GAAP losses and workforce cuts increase execution risk [financial]. No public procurement award anchor was available [public contract].",
+        "their_strengths": [
+          "Strong private-cloud, hybrid-cloud and managed infrastructure relevance; Rackspace describes itself as designing, building and operating cloud environments across major technology platforms [web].",
+          "VMware signal: U.S. VMware Cloud Engineer IV job posting and Broadcom VMware Cloud Services Provider partner status [job posting/web].",
+          "Manufacturing digital-innovation proof point: Rackspace/Palantir first joint deployment for a U.S.-based solar tracking manufacturer reduced quote-cycle time by 94% [web].",
+          "Enterprise AI momentum: definitive Palantir framework, about 400 Palantir certifications, AMD 30 MW AI compute plan, and forward-deployed engineering strategy [web].",
+          "Cyber recovery and regulated workload positioning through Rubrik UK Sovereign Cyber Recovery Cloud and Palantir/regulated-environment messaging [web]."
+        ],
+        "their_weaknesses": [
+          "Financial pressure: Q1 2026 GAAP loss from operations of $17.8M; preliminary Q2 2026 GAAP loss from operations expected at $33M-$53M [financial].",
+          "Very low non-GAAP operating margin: Q1 2026 about 4.5%, preliminary Q2 2026 about 2.9%-3.6% [financial].",
+          "Lowered FY2026 revenue guidance by $150M and EBITDA expectations by $20M on July 9, 2026 [financial].",
+          "Workforce realignment: approximately 15% global workforce reduction approved June 2026, tied to deemphasizing legacy service-delivery functions [financial/web].",
+          "Strategic fit risk: Rackspace is exiting some colocation/basic hosting revenues and low-margin public-cloud resale, so a traditional DCaaS/hosting-heavy scope may not match its current priorities unless reframed as AI-ready private cloud [financial/web].",
+          "No Wisconsin-specific job posting or recent Wisconsin deal found [job posting/web]."
+        ],
+        "how_to_beat_them": [
+          "Exploit financial instability and transition risk. Rackspace lowered FY2026 revenue guidance by $150M, expects lower EBITDA, reported Q1 GAAP operating loss, and disclosed a 15% global workforce reduction approved June 2026 [financial/web].",
+          "Frame the RFP as a broad hosting-options evaluation, not just governed AI/private cloud. Rackspace is deemphasizing low-margin resale, colocation and basic hosting while reserving capacity for Enterprise AI [financial/web].",
+          "Require continuity of named delivery resources through transition and run state; their workforce realignment creates delivery-risk questions around legacy service functions [financial/web].",
+          "Use compliance and attestation rigor to force specificity on DCaaS, backup/DR, security tooling, identity integration and hybrid connectivity; Rackspace can speak to private cloud and cyber recovery, but must prove fit for Kohler's complete SAP/VMware/data-center estate [RFP/web]."
+        ]
+      }
+    ],
+    "recommended_differentiators": [
+      "Provider-neutral hosting-options evaluation with no mandatory downstream managed-services award; make Kohler ownership of all architecture, pricing and migration artifacts explicit.",
+      "Workload-level USD TCO model covering retain, DCaaS, colocation/private cloud, hyperscaler, SAP hosting, VMware modernization/exit and hybrid scenarios; include sensitivity for storage, backup, DR, network egress, licensing and support changes.",
+      "Compliance-first response pack: certification evidence, DCaaS attestations, identity integration, environment segregation, landing-zone design and hybrid-connectivity details mapped directly to the RFP disqualifiers.",
+      "Wisconsin-local Phase 0 execution model with named on-site architects for discovery workshops, plus global delivery only where it reduces cost without weakening accountability.",
+      "Contractual price transparency: separate advisory fees, transformation labor, run services, software/licensing, hyperscaler pass-throughs, network charges, backup/DR costs and optional AI/private-cloud components.",
+      "Risk-reduction guarantee: executive steering cadence, migration-wave acceptance criteria, DR test commitments, dependency-map validation, and no-change-order rule for agreed Phase 0 deliverables."
+    ],
+    "price_to_win_range_usd": "Recommended price to win: Phase 0 advisory $650K-$950K; if Kohler proceeds to a 3-5 year managed hybrid hosting/DCaaS/cloud transition, target $18M-$42M excluding hyperscaler pass-throughs and extraordinary transformation scope. Rationale: below likely Accenture/Deloitte/Kyndryl premium bands, competitive with HCLTech/Ensono, but not as risky as Rackspace's financially pressured low-margin posture. Competitor floor anchors: HCLTech 17.2% EBIT implies price floor 1.208x cost; Kyndryl 17.7% adjusted EBITDA proxy implies 1.215x cost; Accenture 17.0% operating margin implies 1.205x cost; Ensono S&P adjusted EBITDA proxy above 26% implies 1.351x cost; Rackspace preliminary/Q1 non-GAAP margin about 2.9%-4.5% implies 1.03x-1.047x cost but with GAAP losses, lowered guidance and layoffs [financial]. No public procurement award values were available for this RFP [public contract].",
+    "killer_differentiator": "Offer Kohler a fixed-fee, vendor-neutral Phase 0 that produces Kohler-owned executable artifacts: workload-by-workload placement decisions, SAP/VMware dependency maps, landing-zone designs, compliance/certification evidence matrix, hybrid-connectivity design, backup/DR target state, 3-5 year USD TCO, and an RFP-ready sourcing pack that can be handed to any DCaaS, hyperscaler, SI or managed-services provider with no downstream lock-in. Based on the evidence, every named competitor has a strong pull-through agenda \u2014 HCLTech toward HCL/IBM DCaaS, VMware and HyRISE [web]; Kyndryl toward managed mission-critical infrastructure and hyperscaler run services [web/financial]; Deloitte toward advisory plus Operate/SAP/cloud managed services [web]; Accenture toward large transformation, SAP AI, data-center/network acquisitions and managed reinvention [web/financial]; Ensono toward hybrid IT/mainframe/cloud managed services [web]; Rackspace toward private cloud/enterprise AI/Palantir/AMD capacity [web/financial]. None of the provided sources proves that any competitor is offering a no-lock-in, Kohler-owned, provider-neutral Phase 0 as the primary deliverable."
+  },
+  "ghost_bids": {
+    "ghost_bids": [
+      {
+        "competitor_name": "HCLTech",
+        "likely_solution_approach": "As HCLTech bid director, I would propose a Phase 0 hybrid-hosting assessment followed by an optional managed transformation. The solution would emphasize HCLTech\u2019s VMware business unit, 9,000+ trained/certified VMware consultants, VMware Cloud on AWS, Shared Data Center as a Service with IBM, SAP HyRISE, enterprise infrastructure/cyber/network services, AI Factory and AI-enabled operations. The Phase 0 deliverables would likely include current-state discovery of Kohler\u2019s Wisconsin data center, SAP/non-SAP workload grouping, VMware estate assessment, landing-zone reference architecture, hybrid connectivity, backup/DR, security tooling and a migration/TCO roadmap. Approach is grounded in HCLTech\u2019s cited VMware, DCaaS, SAP, AI infrastructure and enterprise infrastructure capabilities; no similar Wisconsin contract was found. [web/public contract]",
+        "predicted_pricing_range_usd": "Full program likely $18M-$55M over 3-5 years; Phase 0 likely $400K-$1.1M. Confidence: medium-low because no public procurement award anchor was found. Pricing floor: FY26 EBIT margin 17.2% implies minimum price = cost / (1 - 0.172) = cost / 0.828 = 1.208x cost. Therefore a $18M bid implies internal cost ceiling of about $14.9M, and a $55M bid implies internal cost ceiling of about $45.5M. Range is constrained by the RFP-inferred $15M-$75M program size and HCLTech\u2019s global/offshore delivery model; no Wisconsin procurement anchor was available. [financial/public contract/RFP]",
+        "predicted_win_themes": [
+          "Global scale: $14.7B FY26 revenue, 227,000+ people, 60 countries, 23,000+ U.S. professionals and $9.3B FY26 new-deal TCV. [financial/web]",
+          "VMware and DCaaS depth: dedicated VMware business unit, 9,000+ trained/certified VMware consultants, VMware Cloud on AWS and Shared DCaaS with IBM. [web]",
+          "SAP modernization via SAP HyRISE and enterprise application transformation. [web]",
+          "AI-enabled operations through AI Factory and AI infrastructure momentum. [financial/web]",
+          "Manufacturing relevance through digital manufacturing, IT/OT/engineering integration and automotive software partnership evidence. [web]"
+        ],
+        "predicted_team_model": "Likely global-delivery model: U.S.-based client partner and enterprise/cloud architect; SAP HANA/SAP HyRISE architect; VMware/DCaaS architect; network/security/IAM lead; backup/DR lead; offshore discovery, CMDB, TCO modeling and runbook team; optional IBM/VMware/SAP alliance SMEs. Local Wisconsin presence is unproven in the provided data. [web/job posting]",
+        "predicted_timeline_months": 48,
+        "key_vulnerabilities": [
+          "No verified Wisconsin-specific job posting or recent Wisconsin contract win was found in the provided intelligence. [job posting/public contract]",
+          "No public procurement award values were available to anchor HCLTech\u2019s pricing for this specific geography/opportunity. [public contract]",
+          "FY27 revenue guidance of 1.0%-4.0% constant-currency growth may make HCLTech margin-protective rather than purely price-aggressive. [financial]",
+          "Potential perceived bias toward HCLTech/partner-led DCaaS, VMware and SAP HyRISE paths rather than a fully independent hosting-options evaluation. [web]"
+        ],
+        "how_we_beat_this_bid": [
+          "Make Phase 0 explicitly vendor-neutral and Kohler-owned: workload placement model, SAP/VMware dependency map, landing-zone options, DCaaS/cloud/hybrid scorecard, and 3-5 year USD TCO that can be handed to any provider. This counters HCLTech\u2019s likely pull toward VMware, IBM Shared DCaaS, SAP HyRISE and HCL-operated services. [web/RFP]",
+          "Score local discovery and named resource commitment heavily. HCLTech has U.S. scale but no verified Wisconsin-specific hiring or recent Wisconsin deal in the provided data. [job posting/public contract]",
+          "Require detailed certification evidence and DCaaS compliance attestations in the template, not generic yes/no responses, because those are RFP disqualifiers. [RFP pages 7-9]",
+          "Probe for neutrality across retain/modernize, DCaaS, hyperscaler, SAP hosting and VMware-exit scenarios; HCLTech\u2019s strongest cited evidence is alliance/platform-led. [web]"
+        ],
+        "confidence_level": "MEDIUM likelihood / MEDIUM confidence. Evidence: HCLTech has relevant U.S./global hybrid-cloud, VMware, DCaaS, SAP HyRISE, infrastructure, cyber and network offerings, but the provided intelligence found no verified Wisconsin-specific job posting or recent Wisconsin contract win. [web/job posting/public contract]"
+      },
+      {
+        "competitor_name": "Kyndryl",
+        "likely_solution_approach": "As Kyndryl bid director, I would propose a mission-critical hybrid infrastructure evaluation with a strong path to managed execution. The approach would use Kyndryl Consult for Phase 0, then offer distributed cloud, VMware estate modernization, SAP hosting/operations, hyperscaler landing zones, resiliency, network/edge and security operations. I would stress Kyndryl\u2019s management of 675k+ VMs, 3,600+ VMware certifications/accreditations, 14,000+ SAP instances, hyperscaler-related revenue of $1.9B up 59%, and expanded AWS, Microsoft and Google Cloud partnerships. Recent U.S. modernization wins with Arizona MVD, North Carolina DMV and Texas DIR support public-sector modernization capability, but no similar Wisconsin/Kohler award was found. [financial/web/job posting/public contract]",
+        "predicted_pricing_range_usd": "Full program likely $22M-$65M over 3-5 years; Phase 0 likely $500K-$1.3M. Confidence: medium. Pricing floor using FY2026 adjusted EBITDA proxy: $2.672B / $15.092B = 17.7%, so minimum price = cost / (1 - 0.177) = cost / 0.823 = 1.215x cost. Bare pretax accounting floor: $414M / $15.092B = 2.7%, so cost / 0.973 = 1.028x cost. A $22M bid at 17.7% adjusted EBITDA margin implies cost ceiling of about $18.1M; a $65M bid implies cost ceiling of about $53.5M. No comparable public procurement value for Kohler/Wisconsin was provided. [financial/public contract]",
+        "predicted_win_themes": [
+          "Mission-critical infrastructure modernization and run credibility. [web/10-K]",
+          "Deep VMware and SAP proof points: 675k+ VMs managed, 3,600+ VMware certifications/accreditations and 14,000+ SAP instances. [web/job posting]",
+          "Hyperscaler momentum: FY2026 hyperscaler-related revenue $1.9B, up 59%, plus 2026 AWS, Microsoft and Google Cloud expansions. [financial/web]",
+          "Kyndryl Consult momentum: FY2026 Consult revenue $3.5B, up 18%, and $4B of Consult signings. [financial]",
+          "U.S. modernization proof points with Arizona MVD, North Carolina DMV and Texas DIR. [web]"
+        ],
+        "predicted_team_model": "Likely Kyndryl Consult-led team: executive sponsor; U.S. engagement lead; hybrid cloud/DCaaS architect; VMware architect; SAP infrastructure/HANA lead; network and edge lead; cyber/resiliency lead; FinOps/TCO analyst; migration factory and managed operations team. Hyperscaler alliance SMEs from AWS, Microsoft and Google Cloud would likely be positioned for optional target states. [financial/web/job posting]",
+        "predicted_timeline_months": 48,
+        "key_vulnerabilities": [
+          "No verified Wisconsin-specific job posting or recent Wisconsin deal found in the provided intelligence. [job posting/public contract]",
+          "Lower GAAP profitability than some peers: FY2026 pretax margin was $414M / $15.092B = 2.7%, despite adjusted EBITDA margin of 17.7%. [financial]",
+          "Likely transformation-risk premium due to positioning around mission-critical resilience, distributed cloud, sovereignty and managed infrastructure rather than lowest-cost hosting. [web/financial]",
+          "May over-index on infrastructure/run operations versus Kohler-specific innovation across manufacturing, hospitality, wellness and digital products. [web]"
+        ],
+        "how_we_beat_this_bid": [
+          "Make speed and executable Phase 0 outputs the differentiator: fixed-fee discovery, workload placement, TCO and sourcing pack in a shorter, tightly governed advisory phase. Kyndryl\u2019s strength is mission-critical infrastructure operations; we should own the business-case and option-analysis layer. [web/financial/RFP]",
+          "Require binding economics and clear change-control assumptions. Kyndryl\u2019s FY2026 pretax margin was only 2.7%, while adjusted EBITDA margin was 17.7%, creating incentive to protect downside through scope control. [financial]",
+          "Score Kohler-specific manufacturing, hospitality and wellness outcomes, not only infrastructure resilience. The provided evidence shows strong horizontal infrastructure credentials but no recent named hospitality/wellness deal. [web]",
+          "Probe for named Wisconsin/on-site resources because the data shows U.S. SAP/VMware hiring and U.S. state wins, but no verified Wisconsin-specific job posting or Wisconsin contract win. [job posting/public contract]"
+        ],
+        "confidence_level": "HIGH likelihood / MEDIUM-HIGH confidence. Evidence: Kyndryl has U.S. job-posting signals for SAP and VMware/cloud infrastructure roles and recent U.S. modernization wins with Arizona MVD, North Carolina DMV and Texas DIR. No recent Wisconsin contract win was found. [job posting/web/public contract]"
+      },
+      {
+        "competitor_name": "Deloitte",
+        "likely_solution_approach": "As Deloitte bid director, I would lead with a trusted-advisor Phase 0: current-state assessment, workload segmentation, SAP/non-SAP modernization roadmap, cyber-resilience controls, target operating model, landing-zone governance and business-case/TCO model. I would position Deloitte\u2019s SAP INTEGRATE on SAP Cloud ERP, SAP Operate, Cloud Managed Services, IBM/Red Hat software supply-chain security collaboration, Deloitte Digital and hospitality/digital experience references. Approach is grounded in Deloitte\u2019s cited SAP, cloud managed services, cyber and technology integration evidence; no similar Wisconsin public contract was found. [web/job posting/public contract]",
+        "predicted_pricing_range_usd": "Insufficient financial data for a margin-grounded pricing prediction. Deloitte Global does not disclose operating margin in the provided sources, so a pricing floor cannot be calculated. The only defensible commercial context is the RFP-inferred planning envelope of approximately $15M-$75M for a 3-5 year full program and $250K-$1.5M for a standalone Phase 0; any Deloitte-specific premium expectation is qualitative and not margin-grounded. [financial/RFP]",
+        "predicted_win_themes": [
+          "Trusted strategic advisor for hosting-options evaluation, operating model and governance. [web]",
+          "SAP modernization and operations through SAP INTEGRATE, SAP Operate and SAP Cloud ERP positioning. [web]",
+          "Cyber and software supply-chain trust via Deloitte/IBM/Red Hat collaboration announced June 2026. [web]",
+          "Local relevance through Milwaukee job signals for cloud/AIX, Linux/AIX, VMware and ITSM/ServiceNow. [job posting]",
+          "Hospitality/digital fit through Deloitte Digital transportation, hospitality and services practice references. [web]"
+        ],
+        "predicted_team_model": "Likely advisory-heavy team: Milwaukee/Chicago-region client partner; cloud/hybrid infrastructure architect; SAP transformation lead; cyber-resilience lead; ServiceNow/ITSM operating-model SME; FinOps/TCO modeler; enterprise architecture and governance consultants; optional Deloitte Operate/cloud managed-services transition team. Wisconsin hiring signals support local/regional staffing, but no recent Wisconsin contract win was found. [job posting/web/public contract]",
+        "predicted_timeline_months": 36,
+        "key_vulnerabilities": [
+          "Insufficient public financial data for margin-grounded pricing prediction: Deloitte is privately held through member firms and Deloitte Global does not disclose operating margin in the provided sources. [financial]",
+          "No recent public Wisconsin contract win found in the provided data. [public contract/web]",
+          "May price at a premium if Kohler values advisory, SAP, cyber, transformation governance and operating-model change more than commodity hosting. This is qualitative only; no margin-grounded price floor is available. [web/financial]",
+          "Delivery accountability across member-firm, advisory, Operate and subcontractor boundaries should be tested. [web]"
+        ],
+        "how_we_beat_this_bid": [
+          "Make operational accountability and price certainty the battleground. Deloitte\u2019s public materials support advisory, SAP Operate, cloud managed services and integration governance, but Deloitte Global does not disclose operating margin, so pricing floor is opaque. [financial/web]",
+          "Require the Phase 0 output to be provider-neutral and executable by any DCaaS, hyperscaler, SI or managed-services provider. This counters Deloitte\u2019s likely consulting-to-Operate pull-through. [web/RFP]",
+          "Demand named infrastructure operators, certifications and DCaaS compliance attestations, not only strategy credentials. The RFP is hosting/DCaaS/hybrid-heavy and disqualifies insufficient template responses and missing certification evidence. [RFP]",
+          "Score practical transition sequencing for SAP, VMware, Windows/Linux, databases, storage, backup/DR, identity and security tooling. Deloitte\u2019s strongest cited evidence is advisory/SAP/cyber/governance rather than quantified VMware-estate scale. [web/job posting]"
+        ],
+        "confidence_level": "HIGH likelihood / MEDIUM-HIGH confidence. Evidence: Deloitte has relevant Milwaukee, Wisconsin job signals, including cloud/AIX, Linux/AIX, cloud, VMware and ITSM/ServiceNow relevance, plus broader U.S. cloud/AI managed-services hiring. No recent public Wisconsin contract win was found. [job posting/web/public contract]"
+      },
+      {
+        "competitor_name": "Accenture",
+        "likely_solution_approach": "As Accenture bid director, I would propose an end-to-end reinvention bid: Phase 0 assessment, secure hybrid landing-zone design, SAP modernization roadmap, AI-ready data-center and network strategy, manufacturing digital innovation, cyber resilience and optional managed migration/run. I would emphasize Q3 FY2026 revenue of $18.7B, 17.0% operating margin, $19.3B bookings, 104 $100M+ bookings YTD, the approximately \u20ac200M NATO Protected Business Network over seven years, SAP Forward Deployed Engineering with SAP, Stellantis/NVIDIA digital twin plans, Microsoft/Avanade agentic factory, DLB data-center engineering acquisition, Ookla network intelligence acquisition and Ascott hospitality AI-ready infrastructure collaboration. [financial/web/job posting]",
+        "predicted_pricing_range_usd": "Full program likely $25M-$75M over 3-5 years; Phase 0 likely $750K-$1.5M. Confidence: medium-high. Pricing floor: Q3 FY2026 operating margin 17.0% implies minimum price = cost / (1 - 0.17) = cost / 0.83 = 1.205x cost. Annualized Q3 revenue = $18.7B x 4 = $74.8B; revenue/employee using 799,000 employees = about $93,600. A $25M bid implies internal cost ceiling of about $20.8M; a $75M bid implies internal cost ceiling of about $62.3M. Public value anchor: NATO Protected Business Network was announced at approximately \u20ac200M over seven years, demonstrating pursuit of large secure multi-cloud programs, but no comparable USD Kohler/Wisconsin procurement value was provided. [financial/web/public contract]",
+        "predicted_win_themes": [
+          "End-to-end reinvention from advisory through managed operations. [web]",
+          "Large-deal credibility: Q3 FY2026 bookings $19.3B and 104 $100M+ bookings year-to-date. [financial]",
+          "Secure cloud infrastructure proof point: NATO Protected Business Network, approximately \u20ac200M over seven years, for secure cloud-enabled digital enterprise and multi-cloud operations for about 29,000 users. [web]",
+          "Manufacturing relevance through Stellantis/NVIDIA digital twin, Microsoft/Avanade agentic factory and Industries eXcellence Group/Siemens Digital Industries capabilities. [web]",
+          "SAP modernization through SAP Forward Deployed Engineering, SAP Business AI Platform and S/4HANA Cloud Private references. [web]",
+          "Milwaukee/Wisconsin SAP security and SAP private-cloud/supply-chain hiring signals. [job posting]"
+        ],
+        "predicted_team_model": "Likely large SI model: senior managing director sponsor; Wisconsin/Midwest client account lead; cloud transformation lead; SAP security and SAP private-cloud/supply-chain SMEs; cyber lead; data-center engineering SME from DLB capability; network intelligence SME from Ookla capability; manufacturing digital twin/AI SME; offshore migration/TCO factory; optional Avanade/Microsoft and SAP alliance resources. [financial/web/job posting]",
+        "predicted_timeline_months": 48,
+        "key_vulnerabilities": [
+          "Likely premium bidder due to 17.0% operating margin, large-deal orientation and high-value transformation positioning. [financial/web]",
+          "No recent public Wisconsin contract win found in the provided data. [public contract]",
+          "Recent evidence is broad and powerful but less explicitly VMware-estate-specific than some competitors\u2019 cited VMware evidence. [web/job posting]",
+          "Potential perceived bias toward Accenture-led transformation, SAP AI, Microsoft/Avanade, data-center engineering, network intelligence and managed services rather than a no-lock-in Phase 0. [web]"
+        ],
+        "how_we_beat_this_bid": [
+          "Exploit likely premium pricing by offering a fixed-fee, vendor-neutral Phase 0 at $650K-$950K with hard deliverables. Accenture\u2019s Q3 FY2026 operating margin was 17.0% and it reported 104 client bookings over $100M year-to-date, indicating a large, profitable transformation orientation. [financial]",
+          "Demand neutrality across DCaaS, hyperscaler, hybrid, SAP hosting, VMware-retain and VMware-exit options. Accenture\u2019s evidence is strong but tied to major platform ecosystems, SAP AI, Microsoft/Avanade, DLB data-center engineering and Ookla network intelligence. [web]",
+          "Challenge VMware specificity. The provided evidence is less explicitly VMware-estate-specific than Kyndryl\u2019s 675k+ VMs, HCLTech\u2019s 9,000+ VMware consultants or Rackspace\u2019s VMware Cloud Engineer hiring signal. [web/job posting]",
+          "Win on practical Kohler transition sequencing and local accountability. Accenture has Milwaukee job signals but no public Wisconsin contract win in the provided data. [job posting/public contract]"
+        ],
+        "confidence_level": "HIGH likelihood / HIGH confidence. Evidence: Accenture has Milwaukee, Wisconsin job signals for SAP Platform Security Consultant and SAP Supply Chain Consultant/private-cloud roles, broader U.S. infrastructure/cloud roles, and recent large secure cloud infrastructure momentum including the NATO Protected Business Network contract announced July 7, 2026. [job posting/web]"
+      },
+      {
+        "competitor_name": "Ensono",
+        "likely_solution_approach": "As Ensono bid director, I would propose a specialist hybrid IT and private-cloud assessment: data-center exit/consolidation options, hosted/private cloud, public cloud migration, mainframe/legacy dependency review, database managed services, IAM/security, backup/DR and AI-enabled managed operations. I would emphasize Ensono\u2019s $1.1B revenue, 4,000+ associates, 250+ clients, hybrid infrastructure, mainframe, cloud migration, hosted services, $250M five-year AI & Innovation investment, Envision Predictive Engine, claimed 22% major-incident reduction and 50% MTTR reduction, plus manufacturing, hospitality and medical-center case-study evidence. No similar Wisconsin contract was found. [financial/web/public contract]",
+        "predicted_pricing_range_usd": "SEC/GAAP operating-margin-grounded pricing prediction is not possible from the provided data because Ensono is private and no public operating margin was provided. The provided S&P adjusted EBITDA proxy above 26% is not an SEC operating margin; if used only as a non-SEC proxy, it would imply cost / (1 - 0.26) = 1.351x cost. The earlier indicative envelope of $15M-$45M full program and $350K-$1.0M Phase 0 should be treated as non-margin-grounded and lower confidence. Public contract anchor is not comparable: UK Post Office IDAM direct award was \u00a3199,979.10 for Jan.-Apr. 2026, far below Kohler-scale hosting. [financial/public contract/RFP]",
+        "predicted_win_themes": [
+          "Specialist hybrid IT alternative to mega-SIs. [web]",
+          "Private cloud, public cloud migration, hosted services, database managed services, IAM/security and data-center exit/consolidation. [web]",
+          "Legacy/mainframe modernization credibility. [web]",
+          "AI-enabled managed services through $250M AI & Innovation Division and Envision Predictive Engine claims. [web]",
+          "Industry adjacency: automotive manufacturing remediation, hotel-group Google Cloud data platform and medical-center mainframe application management case studies. [web]"
+        ],
+        "predicted_team_model": "Likely specialist managed-services model: U.S. engagement lead; hybrid infrastructure/private-cloud architect; mainframe/legacy modernization SME; database managed-services lead; security/IAM architect; backup/DR lead; AI operations architect; offshore/remote managed-service engineers. Wisconsin-local staffing is unproven in the provided data. [web/job posting]",
+        "predicted_timeline_months": 42,
+        "key_vulnerabilities": [
+          "No public SEC/GAAP operating margin was provided; only an S&P adjusted EBITDA margin proxy above 26% was cited, so a true SEC-style operating-margin pricing floor is not available. [financial]",
+          "No clearly open Wisconsin-specific job posting found in the provided data. [job posting]",
+          "No recent public Wisconsin contract win found. [public contract/web]",
+          "Smaller scale than global SI competitors may be a concern for a global multi-region SAP/VMware/cloud transition. [financial/web]",
+          "SAP and VMware evidence in the provided sources is less current and quantified than Kyndryl\u2019s SAP/VMware proof points or HCLTech\u2019s VMware consultant base. [web]"
+        ],
+        "how_we_beat_this_bid": [
+          "Exploit scale concerns. Ensono reports about $1.1B revenue, 4,000+ associates and 250+ clients, much smaller than Accenture, Deloitte, Kyndryl and HCLTech. [financial/web]",
+          "Require deep SAP HANA and VMware evidence with quantified estate scale. The provided evidence supports hybrid IT, mainframe, cloud, database, security and hosted services, but is less current/quantified for SAP and VMware than Kyndryl or HCLTech. [web]",
+          "Press Wisconsin specificity. Ensono\u2019s job board includes Wisconsin/Madison filters, but no clearly open Wisconsin-specific role was found in the provided snippets and no recent Wisconsin win was found. [job posting/public contract]",
+          "Broaden the evaluation beyond legacy/hybrid operations to manufacturing, hospitality and wellness digital outcomes; this reduces Ensono\u2019s ability to win solely on hybrid IT intimacy. [web/RFP]"
+        ],
+        "confidence_level": "MEDIUM likelihood / MEDIUM confidence. Evidence: Ensono has relevant U.S. remote job postings for security architecture, AI/ML managed-service architecture, mainframe and go-to-market roles, and its jobs-board taxonomy includes Wisconsin/Madison filters, but no clearly open Wisconsin-specific role and no recent Wisconsin contract win were found. [job posting/web/public contract]"
+      },
+      {
+        "competitor_name": "Rackspace Technology",
+        "likely_solution_approach": "As Rackspace bid director, I would position an AI-ready private cloud and hybrid-cloud modernization program. The bid would emphasize VMware operations, private cloud, Broadcom VMware Cloud Services Provider status, cyber recovery, Palantir AIP/Foundry, AMD AI compute capacity and regulated/manufacturing workload governance. I would cite the July 2026 Rackspace/Palantir framework, approximately 400 Palantir certifications, first joint U.S.-based solar tracking manufacturer deployment with 94% quote-cycle-time reduction, AMD 30 MW AI compute plan, Rubrik UK Sovereign Cyber Recovery Cloud and the U.S. VMware Cloud Engineer IV hiring signal. [web/job posting]",
+        "predicted_pricing_range_usd": "Full program likely $15M-$40M over 3-5 years; Phase 0 likely $250K-$850K. Confidence: medium. Pricing floor using public non-GAAP operating-margin data: Q1 2026 non-GAAP operating margin = $30.7M / $678M = 4.5%, implying cost / (1 - 0.045) = 1.047x cost. Preliminary Q2 2026 non-GAAP margin = $19M-$23M / $641M-$649M = about 2.9%-3.6%, implying cost / 0.971 to cost / 0.964 = about 1.030x-1.037x cost. A $15M bid implies internal cost ceiling of about $14.3M-$14.6M; a $40M bid implies cost ceiling of about $38.2M-$38.8M. Low margin supports aggressive pricing, but GAAP losses, lowered guidance and layoffs increase execution risk. No comparable public procurement award anchor was provided. [financial/public contract]",
+        "predicted_win_themes": [
+          "Cost-aggressive private-cloud and hybrid-cloud specialist. [financial/web]",
+          "VMware relevance through U.S. VMware Cloud Engineer IV hiring and Broadcom VMware Cloud Services Provider status. [job posting/web]",
+          "Enterprise AI differentiation through Palantir framework, approximately 400 Palantir certifications and AMD 30 MW AI compute plan. [web]",
+          "Manufacturing proof point: U.S.-based solar tracking manufacturer deployment with 94% quote-cycle-time reduction. [web]",
+          "Cyber recovery and regulated workload story through Rubrik UK Sovereign Cyber Recovery Cloud and regulated-environment messaging. [web]"
+        ],
+        "predicted_team_model": "Likely lean specialist model: U.S. account executive; private-cloud solution architect; VMware Cloud Engineer/architect; cyber recovery/backup SME; network/security/IAM architect; Palantir/AI solutions lead; offshore/remote managed cloud operations team; optional AMD/Palantir/Rubrik alliance SMEs. Wisconsin-local staffing is unproven. [web/job posting]",
+        "predicted_timeline_months": 36,
+        "key_vulnerabilities": [
+          "Financial pressure: Q1 2026 GAAP loss from operations of $17.8M and preliminary Q2 2026 GAAP operating loss expected at $33M-$53M. [financial]",
+          "Very low non-GAAP operating margin: Q1 2026 about 4.5%; preliminary Q2 2026 about 2.9%-3.6%. [financial]",
+          "Lowered FY2026 revenue guidance by $150M and EBITDA expectations by $20M on July 9, 2026. [financial]",
+          "Approximately 15% global workforce reduction approved June 2026, tied to deemphasizing legacy service-delivery functions. [financial/web]",
+          "Strategic fit risk: Rackspace is exiting or deemphasizing some colocation/basic hosting and low-margin public-cloud resale, which may conflict with a broad DCaaS/hosting-heavy scope unless reframed as AI-ready private cloud. [financial/web]",
+          "No Wisconsin-specific job posting or recent Wisconsin deal found. [job posting/public contract]"
+        ],
+        "how_we_beat_this_bid": [
+          "Exploit financial and execution risk. Rackspace reported Q1 2026 GAAP loss from operations of $17.8M, preliminary Q2 2026 GAAP operating loss expected at $33M-$53M, lowered FY2026 revenue guidance by $150M and approved an approximately 15% global workforce reduction in June 2026. [financial/web]",
+          "Frame Polaris as a broad hosting-options evaluation, not only AI-ready private cloud. Rackspace is deemphasizing low-margin public-cloud resale, colocation and basic hosting while reserving capacity for Enterprise AI. [financial/web]",
+          "Require named delivery-resource continuity through discovery, transition and run state; workforce realignment creates a credible delivery-risk question around legacy service functions. [financial/web]",
+          "Use compliance and attestation rigor to force detailed proof across DCaaS, SAP HANA, VMware, backup/DR, IAM, network connectivity, monitoring/logging and security tooling, not just private cloud/AI/cyber recovery. [RFP/web]"
+        ],
+        "confidence_level": "HIGH likelihood / MEDIUM confidence. Evidence: Rackspace has U.S. job signals for VMware Cloud Engineer IV and Healthcare/AI sales, and its strategy is focused on U.S./global private cloud, enterprise AI, regulated workloads and hybrid cloud. No Wisconsin-specific job posting or recent Wisconsin deal was found. [job posting/web/public contract]"
+      }
+    ],
+    "overall_competitive_position": "The strongest likely competitors are Accenture and Kyndryl. Accenture has the strongest large-deal and secure-cloud transformation evidence, Milwaukee SAP/private-cloud hiring signals, and a recent approximately \u20ac200M NATO secure multi-cloud reference, but is likely premium-priced. Kyndryl has the deepest directly relevant infrastructure/SAP/VMware operating proof points, including 675k+ VMs, 3,600+ VMware certifications/accreditations and 14,000+ SAP instances, but no Wisconsin-specific proof and lower GAAP profitability. Deloitte is dangerous in Phase 0 because of Milwaukee hiring and advisory/SAP/cyber credibility, but its pricing floor is opaque. HCLTech is credible globally and strong on VMware/DCaaS/SAP, but local evidence is weak. Ensono can play hybrid IT intimacy but has scale and SAP/VMware evidence gaps. Rackspace may be the most price-aggressive but carries the clearest financial and workforce-risk story. [financial/job posting/web/public contract]",
+    "single_biggest_risk": "Kyndryl or Accenture could reframe Polaris from a neutral hosting-options evaluation into a low-risk enterprise transformation award: Kyndryl through mission-critical SAP/VMware infrastructure operations evidence, and Accenture through secure multi-cloud, SAP AI, manufacturing innovation and large-deal credibility. If Kohler prioritizes brand scale and downstream execution over independent Phase 0 neutrality, our no-lock-in advisory differentiator may be undervalued. [financial/web/job posting]",
+    "recommended_counter_strategy": "Bid a fixed-fee, vendor-neutral Phase 0 advisory package at $650K-$950K, with optional downstream managed-services pricing held separately. Make the deliverables Kohler-owned and executable by any provider: workload-by-workload placement decisions, SAP/VMware dependency maps, multi-account/multi-subscription landing-zone designs, environment segregation, identity integration, hybrid connectivity design, region/data-residency strategy, backup/DR target state, compliance/certification evidence matrix, 3-5 year USD TCO and an RFP-ready sourcing pack. For the full 3-5 year opportunity, target $18M-$42M excluding hyperscaler pass-throughs and extraordinary transformation scope: below likely Accenture/Deloitte/Kyndryl premium positioning, competitive with HCLTech/Ensono, and less risky than Rackspace\u2019s low-margin financial posture. Score the response around neutrality, local executive accountability, named Phase 0 team, detailed certifications/attestations, practical Wisconsin data-center discovery, and transition sequencing for SAP, VMware, Windows/Linux, databases, storage, backup/DR, IAM, network and security tooling. [RFP/financial/job posting/web]"
+  },
+  "deal_fingerprint": {
+    "fingerprint_id": "KOHLER-POLARIS-HYBRID-HOSTING-PHASE0-2026",
+    "deal_archetype": "Managed Services / Cloud Migration \u2014 Manufacturing Hybrid Hosting, DCaaS and Data-Center-Exit Phase 0 Evaluation",
+    "similar_public_contracts": [
+      "No comparable public contracts found in the supplied procurement history. The listed UK public awards are unrelated fire/security installation, recruitment, IT project manager, IT consultancy, and business analyst contracts rather than enterprise hosting, DCaaS, hybrid cloud, or manufacturing data-center-exit evaluations."
+    ],
+    "predicted_competitors": [
+      "Cognizant / incumbent ecosystem signal from provided proposal patterns; not confirmed as a bidder.",
+      "Public cloud, DCaaS, and hybrid infrastructure providers are likely categories, but no specific additional bidders are grounded in the supplied procurement history."
+    ],
+    "predicted_winner_without_intervention": "Cognizant or the incumbent ecosystem if they bid, because the supplied knowledge-base patterns explicitly reference an incumbent/coexistence environment and this deal type heavily rewards current-state operational knowledge. If the incumbent does not bid, winner is not determinable from the supplied data.",
+    "historical_win_rate_for_archetype": "No comparable win/loss outcomes were provided. Historical win rate for this archetype cannot be calculated from the supplied data; no comparable wins found.",
+    "critical_success_factors": [
+      "Detailed RFP compliance execution: the response must use Kohler\u2019s Vendor Response template, avoid simple Yes/No answers, submit by 26 June, and route communications to the named Kohler addresses.",
+      "Mandatory compliance evidence: the RFP requires vendors to demonstrate capability to host workloads in compliance with applicable industry/regional standards, and DCaaS providers must provide explicit compliance attestations.",
+      "Credible Cloud / DCaaS / Hybrid comparison: the solution must respond across relevant hosting scenarios and clearly state assumptions rather than forcing one target-state answer.",
+      "Target-state architecture depth: the response must cover multi-account / multi-subscription landing-zone principles, landing-zone deployment, application deployment model, Prod/Test/Dev segregation, identity integration, hybrid connectivity, region strategy, data residency, DR, HA, and scalability.",
+      "Inventory-driven sizing and pricing: Kohler expects vendors to use the provided inventory dataset as the baseline for solution design and indicative pricing, with all gaps and assumptions disclosed.",
+      "Manufacturing-enterprise workload credibility: the in-scope estate includes SAP HANA, Oracle, SQL Server, MySQL, PostgreSQL, VMware-style Windows/Linux estates, storage, backup/DR, IAM, network connectivity, security tooling, and selected OT-adjacent workloads.",
+      "Commercial transparency: pricing must be in USD, should address net-90 economics, and should separate optional services, deviations, dependencies, constraints, and exclusions.",
+      "Decision-lab positioning: the strongest provided proposal pattern is a 12-week vendor-neutral Hosting Decision Lab / Hosting Option Control Tower with open-book TCO, FinOps guardrails, workload placement scorecards, landing-zone blueprints, transition sequencing, rollback gates, and vendor-coexistence RACI."
+    ],
+    "common_failure_modes": [
+      "Submitting generic Yes/No compliance answers instead of a detailed Vendor Response template response, which is explicitly insufficient under the RFP.",
+      "Missing the 26 June submission deadline or using the wrong communication channel, both of which are hard disqualifiers.",
+      "Failing to provide certification evidence or DCaaS compliance attestations where required.",
+      "Taking a biased cloud-first or DCaaS-first position instead of objectively comparing Cloud, DCaaS, retained data center, and Hybrid options workload by workload.",
+      "Building indicative pricing without using the provided inventory baseline dataset or without calling out data gaps and sizing assumptions.",
+      "Underestimating SAP HANA, Oracle, SQL Server, VMware, storage, backup/DR, network connectivity, monitoring, logging, and security tooling complexity.",
+      "Weak target-state architecture content: no landing-zone model, no environment segregation, no identity integration, no hybrid connectivity design, no region/data-residency approach, and no DR/HA/scalability patterns.",
+      "Ignoring manufacturing continuity and OT-adjacent constraints, especially plant connectivity, controlled integrations, latency, and operational disruption risk.",
+      "Pricing in a non-USD format or proposing payment terms materially less favorable than Kohler\u2019s net-90 preference.",
+      "Failing to neutralize incumbent advantage by not showing a practical vendor-coexistence RACI and low-risk transition path."
+    ],
+    "recommended_bid_no_bid_decision": "BID WITH CONDITIONS",
+    "bid_conditions": [
+      "Proceed only if the full Vendor Response template, Evaluation Template, and inventory baseline dataset are received early enough to build a detailed, compliant response; these documents may contain hidden mandatory requirements not visible in the provided RFP text.",
+      "Submit a detailed Vendor Response template response by 26 June through the mandated Kohler channels: Nicholas.Groh@Kohler.com with copy to RFP-Responses-Polaris@kohler.com.",
+      "Provide certification evidence for applicable hosting, cloud, security, regional compliance, and data-residency obligations; do not bid a DCaaS scenario unless the required provider compliance attestations are available before submission.",
+      "Position Phase 0 as a vendor-neutral Hosting Decision Lab / Hosting Option Control Tower, not as a pre-decided cloud migration or data-center outsourcing sale.",
+      "Price all commercial values in USD and explicitly model net-90 payment economics, since terms below net 90 are stated as commercially non-competitive.",
+      "Secure access to Kohler stakeholders for SAP, VMware, network, security, IAM, backup/DR, manufacturing/OT-adjacent, and application portfolio validation; otherwise sizing and TCO will be too assumption-heavy.",
+      "Separate Phase 0 advisory pricing from downstream transformation / managed services pricing, with assumptions, optional services, exclusions, dependencies, and deviations clearly stated."
+    ],
+    "confidence": 0.55
+  },
+  "solution_pricing": {
+    "solution_options": [
+      {
+        "option_id": "A",
+        "name": "Premium Hybrid Resilience Program",
+        "description": "Premium, lowest-risk hybrid hosting and transformation program. Includes vendor-neutral Phase 0, detailed current-state discovery, dual-hyperscaler landing zones, DCaaS/hybrid design, expanded SAP/Oracle/HANA engineering support, stronger DR/HA posture, enhanced AIOps observability, security-by-design controls, compliance evidence management and 24/7 managed operations.",
+        "key_components": [
+          "12-week Kohler-owned Hosting Decision Lab with executable workload placement and sourcing pack",
+          "Expanded architecture workstream for Azure/AWS multi-account or multi-subscription landing zones",
+          "Hybrid connectivity, identity integration, network segmentation and region/data-residency design",
+          "Premium DR/HA design with broader Tier-1 and Tier-2 workload coverage",
+          "SAP HANA, Oracle, SQL Server, VMware and manufacturing/OT-adjacent workload specialist support",
+          "24/7 SRE/NOC/SOC-integrated operating model with enhanced AIOps and FinOps",
+          "Compliance/certification evidence matrix and DCaaS attestation management",
+          "Migration factory, rollback gates, parallel-run planning and Cognizant coexistence governance"
+        ],
+        "delivery_months": 48,
+        "total_cost_usd": 35704242.42,
+        "annual_cost_usd": 8926061.0,
+        "margin_pct": 22.0,
+        "risk_level": "Low",
+        "recommended": false,
+        "rationale": "Best for Kohler if risk reduction, resiliency, certification evidence and workload-specific engineering depth are more important than lowest price. Built from the highest historical Polaris pricing variant. Cost math: people $13.400M + infrastructure $8.000M + migration/transformation $2.200M + governance/tooling/compliance $1.449M + contingency $2.800M + 22% margin $7.855M = $35.704M. Infrastructure is based on the provided live AWS/Azure unit prices scaled to an enterprise portfolio of roughly 320 compute/database equivalents, larger SAP-capable Azure memory nodes, higher DR/backup capacity, observability and security uplift."
+      },
+      {
+        "option_id": "B",
+        "name": "Balanced Hybrid Decision-to-Run Program",
+        "description": "Balanced and recommended vendor-neutral hybrid cloud/DCaaS transition program. Covers the complete commercial horizon: Phase 0 evaluation, workload-by-workload placement, target-state architecture, landing-zone design, migration/transformation, governance, and 48-month managed hybrid hosting operations using an open-book USD TCO model.",
+        "key_components": [
+          "Fixed-fee 12-week Phase 0 Hosting Decision Lab embedded in the program",
+          "Kohler-owned workload placement scorecards and cloud/DCaaS/hybrid decision framework",
+          "Azure/AWS landing zone reference architecture with Prod/Test/Dev segregation",
+          "Hybrid connectivity, IAM integration, monitoring/logging and security reference designs",
+          "SAP and non-SAP hosting TCO views, including Windows/Linux, databases, file storage, backup and DR",
+          "Migration-wave plan with rollback gates, dependency mapping and parallel-run assumptions",
+          "Managed services team for operations, SRE, DBA, network, security, FinOps and service delivery",
+          "Compliance evidence matrix, ITSM governance, reporting dashboards and Cognizant coexistence RACI"
+        ],
+        "delivery_months": 48,
+        "total_cost_usd": 30667392.0,
+        "annual_cost_usd": 7666848.0,
+        "margin_pct": 20.0,
+        "risk_level": "Medium-Low",
+        "recommended": true,
+        "rationale": "Recommended because it matches the likely winning price band while still covering the full RFP scope rather than only Phase 0. It uses the prior HCLTech Polaris $30.667M variant, stays within competitor PTW of $18M-$42M, and includes realistic enterprise cost layers. Cost math: people $10.800M + infrastructure $7.780M + migration/transformation $2.200M + governance/tooling/compliance $1.524M + contingency $2.230M + 20% margin $6.133M = $30.667M. Infrastructure model uses live unit prices scaled to about 270 VM/database equivalents: AWS m5.xlarge $0.192/hr, m5.2xlarge $0.384/hr, r5.xlarge $0.252/hr, c5.xlarge $0.170/hr, t3.medium $0.0416/hr; Azure D16ds_v5 $0.904/hr, D4ds_v5 $0.410/hr, E2bs_v6 $0.266/hr, M128bds_v3 $11.710/hr; RDS db.m5.2xlarge $0.924/hr; S3 $0.023/GB-month; RDS gp3 $0.115/GB-month; CloudWatch logs $0.500/GB; and data transfer $0.090/GB, plus backup, DR, security and connectivity uplift."
+      },
+      {
+        "option_id": "C",
+        "name": "Lean Hybrid Evaluation and Managed Run",
+        "description": "Lean, lowest-cost complete program with a narrower managed-services footprint, lighter migration factory, selective DR modernization and more retained responsibility for Kohler or incumbents. Still includes Phase 0, target architecture, workload placement, migration planning and recurring managed hybrid hosting, but assumes stricter scope control and fewer premium resiliency features.",
+        "key_components": [
+          "12-week Phase 0 with reduced workshop and artifact depth compared with Options A/B",
+          "Single primary hyperscaler landing-zone pattern plus DCaaS/hybrid comparison model",
+          "Selective workload dependency mapping focused on high-value SAP, VMware and critical non-SAP systems",
+          "Smaller managed services team with heavier offshore delivery mix",
+          "Standard monitoring/logging and security tooling rather than enhanced AIOps/SOC integration",
+          "Limited DR modernization for priority workloads only",
+          "Migration planning and selected wave execution with greater Kohler/incumbent participation",
+          "Open-book TCO and FinOps model with more assumptions and consumption true-up risk"
+        ],
+        "delivery_months": 48,
+        "total_cost_usd": 24750000.0,
+        "annual_cost_usd": 6187500.0,
+        "margin_pct": 17.5,
+        "risk_level": "Medium-High",
+        "recommended": false,
+        "rationale": "Lowest-cost credible option and useful as a defensive commercial position, but it carries higher risk because it reduces specialist depth, DR coverage, automation, discovery completeness and transition buffer. Cost math: people $9.000M + infrastructure $6.000M + migration/transformation $2.200M + governance/tooling/compliance $1.363M + contingency $1.856M + 17.5% margin $4.331M = $24.750M. Infrastructure is still enterprise-scaled using the provided live cloud pricing, but assumes roughly 210 VM/database equivalents, less duplicated DR capacity, lower storage/logging volumes and stricter workload rationalization before migration."
+      }
+    ],
+    "pricing": {
+      "recommended_price_usd": 30667392.0,
+      "price_low_usd": 24750000.0,
+      "price_high_usd": 35704242.42,
+      "price_to_win_usd": 30667392.0,
+      "pricing_structure": "USD fixed-fee Phase 0 embedded in total program price, milestone-based transformation/migration fees, and recurring managed hybrid hosting services over 48 months. Includes modeled cloud/DCaaS infrastructure using live unit pricing with open-book consumption true-up if actual inventory or usage materially differs from assumptions.",
+      "margin_pct": 20.0,
+      "cost_drivers": [
+        {
+          "category": "People / managed services: approx. 25 blended FTEs for service delivery, cloud architects, SRE/NOC, DBA, security, network, FinOps and migration control tower over 48 months",
+          "cost_usd": 10800000.0,
+          "percentage": 35.22
+        },
+        {
+          "category": "Infrastructure: live cloud pricing scaled to roughly 270 VM/database equivalents, SAP-capable Azure memory nodes, S3/RDS storage, logging, egress, backup, DR, network and security tooling",
+          "cost_usd": 7780000.0,
+          "percentage": 25.37
+        },
+        {
+          "category": "Migration / transformation: Phase 0 decision lab, workload placement, landing zones, migration waves, testing, cutover, parallel-run and rollback planning",
+          "cost_usd": 2200000.0,
+          "percentage": 7.17
+        },
+        {
+          "category": "Governance / tooling / compliance: ITSM integration, compliance evidence matrix, FinOps/TBM, dashboards, audit support, architecture boards and Cognizant coexistence RACI",
+          "cost_usd": 1523557.82,
+          "percentage": 4.97
+        },
+        {
+          "category": "Contingency: 10% of pre-contingency delivery cost for inventory uncertainty, dependency discovery, DR testing and transition risk",
+          "cost_usd": 2230355.78,
+          "percentage": 7.27
+        },
+        {
+          "category": "Margin: 20% revenue margin consistent with enterprise IT services target range",
+          "cost_usd": 6133478.4,
+          "percentage": 20.0
+        }
+      ],
+      "competitive_rationale": "Recommended Option B is anchored to HCLTech past Project Polaris pricing variants: Phase 0 advisory historically $279,533-$595,000 and downstream hybrid hosting/data-center-exit variants at $24.75M, $30.67M and $35.70M. No public procurement award values were available, so market validation relies on competitor price-to-win intelligence of $18M-$42M for a 3-5 year managed hybrid hosting/DCaaS/cloud transition. The $30.667M recommended price sits inside that band, aligns to the prior $30.667M Kohler variant, stays below likely Accenture/Deloitte/Kyndryl premium pricing, and avoids a low-margin/risky Rackspace-style floor. Math for recommended price: people/managed services $10.800M + infrastructure $7.780M + migration/transformation $2.200M + governance/tooling/compliance $1.524M + contingency $2.230M + margin $6.133M = $30.667M. Infrastructure uses live unit pricing scaled to enterprise size: AWS m5.xlarge $0.192/hr, m5.2xlarge $0.384/hr, r5.xlarge $0.252/hr, c5.xlarge $0.170/hr, t3.medium $0.0416/hr, Azure D16ds_v5 $0.904/hr, D4ds_v5 $0.410/hr, E2bs_v6 $0.266/hr, M128bds_v3 $11.710/hr, RDS db.m5.2xlarge PostgreSQL $0.924/hr, S3 $0.023/GB-month, RDS gp3 $0.115/GB-month, CloudWatch logs $0.500/GB and data transfer $0.090/GB. Confidence is moderate because the current-state Kohler inventory, exact RTO/RPOs and public award benchmarks are unavailable.",
+      "confidence": 0.66
+    },
+    "recommended_option": "B"
+  },
+  "draft": {
+    "rfp_id": "RFP-BC156A",
+    "executive_summary": "Kohler's Project Polaris should not be treated as a binary cloud-versus-data-center exercise. It is a resilience, cost, architecture, security, and operating-model decision for a global manufacturer whose Wisconsin data center, plants, SAP estate, hospitality operations, connected products, analytics platforms, and customer digital experiences must continue to perform while hosting options are compared. In the January 2026 Cognizant release, Eric Tabor's priorities centered on operational and business excellence through technology, productivity gains, faster response to business needs, and customer value through digital engineering and domain expertise. Our response makes Polaris a risk-managed Hosting Decision Lab: a fixed-fee, vendor-neutral Phase 0 that lets Kohler own the evidence, compare cloud, DCaaS, retained data center, hybrid, plant/edge, and SaaS integration workload by workload, and leave with executable sourcing artifacts instead of downstream lock-in.",
+    "win_themes": [
+      "Vendor-neutral Polaris Hosting Decision Lab: Kohler-owned, evidence-based decisioning across cloud, DCaaS, retained data center, hybrid, plant/edge, and SaaS integration options.",
+      "SAP-first manufacturing continuity: disciplined hosting and migration planning for SAP, RTO/RPO, zero or low-downtime options, and manufacturing and hospitality continuity.",
+      "Open-book USD TCO and FinOps transparency: visible assumptions, unit costs, transition costs, run costs, savings trajectory, and three-to-five-year scenario comparison.",
+      "Compliance-by-design and no-disqualification governance: response completion, certification evidence, DCaaS attestations, USD pricing, submission checks, and red-team compliance review.",
+      "Accelerated, low-risk transition using reusable assets: scorecards, discovery accelerators, sizing models, VMware playbooks, landing-zone patterns, DR/security/observability blueprints, migration waves, rollback gates, and hypercare."
+    ],
+    "sections": [
+      {
+        "section_title": "Target state architecture, security and governance capabilities",
+        "content": "The target state is a governed hybrid hosting architecture, not a preselected destination. We will baseline Kohler's SAP, VMware, database, manufacturing, hospitality, analytics, connected-product, and integration patterns, then score each workload against business criticality, latency, regulatory exposure, security controls, data gravity, support model, RTO/RPO, and three-to-five-year USD TCO. The Phase 0 deliverables include landing-zone patterns, retained data-center options, DCaaS reference architecture, hybrid plant/edge patterns, IAM and privileged-access model, cyber control mapping, observability blueprint, certification evidence matrix, and shared-responsibility RACI. This directly advances the vendor-neutral Polaris Hosting Decision Lab and compliance-by-design win themes by making security, governance, and no-disqualification evidence part of the architecture package. Kohler finishes with target-state choices it can defend, source, and govern without surrendering provider optionality.",
+        "word_count": 121
+      },
+      {
+        "section_title": "Migration approach, risk considerations and transition strategy",
+        "content": "Our migration strategy protects manufacturing and hospitality continuity before it optimizes platform preference. We will create SAP/VMware dependency maps, Oracle and database sizing models, application grouping logic, network and identity dependencies, integration inventories, and migration-wave candidates. Each wave will include entry criteria, rehearsal needs, cutover approach, rollback gate, data-protection method, testing scope, hypercare model, and decision owner. For SAP and other tier-one workloads, the plan will apply the SAP-first manufacturing continuity theme: RTO/RPO discipline, migration-risk scoring, zero or low-downtime options where justified, and explicit blackout handling for plants, distribution, hospitality properties, digital commerce, and customer service. Reusable migration playbooks, discovery accelerators, landing-zone patterns, and rollback gates reduce transition risk while leaving Kohler with an implementation-ready plan that any selected downstream provider can execute.",
+        "word_count": 125
+      },
+      {
+        "section_title": "Networking and connectivity capabilities",
+        "content": "Polaris depends on the network as much as the hosting platform. We will document WAN, internet, VPN, private connectivity, plant/edge, data-center, DCaaS, cloud, SaaS, DNS, routing, firewall, segmentation, remote-access, and third-party integration requirements, then design a hybrid-connectivity target state that supports phased coexistence. The analysis will compare latency-sensitive manufacturing workloads, SAP integration traffic, hospitality and guest-facing dependencies, backup and replication paths, administrative access, and security inspection points across hosting scenarios. Network cost assumptions will be shown in the open-book USD TCO, including circuits, egress, cross-connects, appliance or virtual firewall costs, monitoring, and labor. This reinforces the vendor-neutral decision lab and FinOps transparency themes: Kohler sees the operational and commercial impact of connectivity choices before committing to cloud, DCaaS, retained data center, or hybrid placement.",
+        "word_count": 125
+      },
+      {
+        "section_title": "Availability, resilience and disaster recovery approach",
+        "content": "We will make resilience a placement criterion, not a remediation task after sourcing. Each workload will be assigned an availability tier with current and target RTO/RPO, dependency tolerance, backup frequency, recovery sequence, data replication pattern, test cadence, monitoring need, and business owner validation. The target-state DR package will compare active-active, active-passive, backup-restore, DCaaS recovery, hyperscaler recovery, retained data-center recovery, and plant/edge survivability options where relevant. AIOps observability, aligned to the Neuro IT Ops reliability and observability scope identified in client intelligence, will be incorporated into event correlation, service health, alert routing, and SLA reporting. This section carries the SAP-first continuity and accelerated low-risk transition themes: Kohler receives DR runbooks, resilience tiers, migration rollback gates, and hypercare requirements before implementation begins, reducing cutover uncertainty and operational exposure.",
+        "word_count": 128
+      },
+      {
+        "section_title": "Cost and commercial transparency",
+        "content": "We will provide an open-book USD TCO model that exposes the assumptions behind every scenario. The model will separate transition costs, discovery and design fees, migration execution, run labor, hosting, storage, backup, DR, network, security tooling, observability, licensing impacts, managed services, retained operations, decommissioning, savings timing, inflation assumptions, and contingency. It will compare cloud, DCaaS, retained data center, hybrid, plant/edge, and SaaS integration options over three-to-five years with unit rates and workload-level attribution. This directly addresses the open-book USD TCO and FinOps transparency theme and avoids the price ambiguity pattern identified in prior losses. The Phase 0 is proposed as fixed-fee and vendor-neutral, producing Kohler-owned commercial artifacts and an RFP-ready sourcing pack that can be handed to any hyperscaler, DCaaS provider, SI, or managed-services provider.",
+        "word_count": 126
+      },
+      {
+        "section_title": "Operating model and support capabilities",
+        "content": "The future hosting choice must fit Kohler's operating model rather than force one. We will map current service ownership, incident paths, change controls, escalation routes, SAP basis touchpoints, cybersecurity roles, plant support, application ownership, vendor responsibilities, and managed-service interfaces. The target model will include ITIL and SRE-aligned practices, service catalog, RACI, escalation matrix, change calendar, release governance, vulnerability and patch workflow, observability operations, service-level reporting, and hypercare-to-run handoff. We will explicitly address coexistence with incumbent and future providers so Polaris does not create accountability gaps during transition. This reinforces compliance-by-design governance and accelerated low-risk transition: Kohler gets a run-ready operating model, support boundaries, and governance cadence that preserve productivity, speed business response, and keep ownership of the decision evidence.",
+        "word_count": 119
+      },
+      {
+        "section_title": "Tools, ecosystem and platform maturity",
+        "content": "We will evaluate platforms through maturity evidence, not sales preference. The scorecard will assess discovery tooling, CMDB and dependency mapping, SAP and database sizing evidence, VMware migration methods, landing-zone automation, policy-as-code, identity integration, backup and DR tooling, security telemetry, AIOps observability, FinOps reporting, ticketing integration, and ecosystem certification evidence. Reusable assets include workload placement scorecards, discovery accelerators, SAP/Oracle/database sizing models, VMware migration playbooks, landing-zone patterns, DR, security, and observability blueprints, migration-wave templates, rollback gates, and hypercare checklists. This advances the reusable-asset and vendor-neutral themes: Kohler can compare provider maturity on the same evidence base, identify gaps before award, and avoid being guided by a competitor's pull-through agenda rather than Polaris outcomes.",
+        "word_count": 113
+      },
+      {
+        "section_title": "Alignment to expected deliverables",
+        "content": "Our deliverables are designed as executable assets, not advisory slides. Phase 0 will produce workload-by-workload placement recommendations, SAP/VMware dependency maps, application and infrastructure baselines, target landing-zone and DCaaS designs, hybrid-connectivity design, IAM and security-control model, compliance and certification evidence matrix, backup and DR target state, RTO/RPO tiers, migration waves, rollback gates, runbook outline, shared-responsibility RACI, open-book USD TCO, sourcing assumptions, and RFP-ready provider package. Each artifact will have an owner, acceptance criterion, source evidence, and downstream use. This is the killer differentiator: Kohler owns the evidence and can hand the package to any provider without lock-in. The outcome is a decision factory that supports operational excellence and faster response to business needs.",
+        "word_count": 114
+      },
+      {
+        "section_title": "External Evaluation Template scoring model",
+        "content": "The supplied RFP decomposition states that detailed weightages and scoring structure reside in an External Evaluation Template that was not included. We will therefore manage Polaris against every listed criterion with equal compliance discipline until Kohler releases the Excel scoring model, then recalibrate response depth, evidence, and pricing detail to match the final weights. Our compliance-by-design approach includes a response-template completion check, USD pricing validation, certification and DCaaS attestation matrix, submission-channel review, and red-team no-disqualification gate. This protects Kohler and the bid from preventable scoring leakage while preserving the vendor-neutral, open-book decision narrative.",
+        "word_count": 93
+      }
+    ],
+    "architecture_diagram": "graph TD\nA[Kohler Phase 0 Hosting Decision Lab] --> B[Discovery and dependency baseline]\nB --> C[Workload placement scorecards]\nC --> D1[Public cloud scenario]\nC --> D2[DCaaS scenario]\nC --> D3[Retained data center scenario]\nC --> D4[Hybrid plant and edge scenario]\nC --> D5[SaaS integration scenario]\nD1 --> E[Open-book USD TCO and FinOps model]\nD2 --> E\nD3 --> E\nD4 --> E\nD5 --> E\nC --> F[Security controls and compliance evidence matrix]\nC --> G[AIOps observability and service reliability layer]\nC --> H[SAP and VMware migration waves with rollback gates]\nC --> I[Hybrid network and connectivity design]\nC --> J[Backup and DR target state with RTO/RPO tiers]\nE --> K[Kohler-owned RFP-ready sourcing pack]\nF --> K\nG --> K\nH --> K\nI --> K\nJ --> K",
+    "total_word_count": 1194
+  },
+  "verification": null,
+  "win_probability": 0.46,
+  "recommended_price": 30667392.0,
+  "outcome": null,
+  "outcome_notes": null,
+  "auto_ingested": true,
+  "pursuit_plan": {
+    "competitors_identified": [
+      "Accenture",
+      "Deloitte",
+      "Kyndryl",
+      "HCLTech",
+      "Ensono",
+      "Rackspace Technology"
+    ],
+    "deal_complexity": "complex",
+    "strategy": "Pursue this as a strategic Phase 0 advisory wedge into a larger hosting transformation and managed-services opportunity. Lead with an unbiased decision framework across Cloud, DCaaS, and Hybrid, but differentiate through granular TCO transparency, SAP/non-SAP workload treatment, compliance evidence, and a practical risk-managed migration roadmap for Kohler\u2019s Wisconsin data-center estate and global manufacturing operations.",
+    "win_strategy": "Win by making Kohler confident that the Phase 0 output will be decision-grade: a certification-backed, vendor-neutral Cloud/DCaaS/Hybrid comparison with transparent SAP and non-SAP TCO, realistic migration risk analysis, and a credible operating model for global manufacturing resilience.",
+    "pricing_approach": "Use a hybrid pricing strategy: fixed-fee, milestone-based pricing for Phase 0 advisory, paired with transparent 3-5 year scenario-based TCO models for Cloud, DCaaS, and Hybrid options. Price competitively but not purely lowest-cost: Kohler is explicitly evaluating architecture, migration risk, resilience, governance, operating model, and commercial transparency, so the model should show itemized SAP versus non-SAP costs, setup/migration/managed-services run costs, network/security/backup/DR costs, assumptions, cost protections, and optimization savings over time. Include net-90 payment terms, all values in USD, clear optional add-ons, and a mechanism to credit part of Phase 0 fees toward subsequent migration or managed-services phases if awarded.",
+    "key_risks": [
+      "The Evaluation Template, Vendor Response template, and inventory baseline are missing; they may contain hidden scoring weights, mandatory fields, workload counts, certification requirements, and disqualifiers that materially change the response strategy.",
+      "This is a Phase 0 evaluation rather than a full implementation award, so the proposal must be advisory-quality and commercially credible without overcommitting to final architecture or pricing before inventory validation.",
+      "Kohler explicitly requires transparent pricing, SAP/non-SAP cost separation, cost increase protections, efficiency gains, and net-90 terms; weak commercial structure could lose even with a strong technical solution.",
+      "Compliance evidence and DCaaS attestations are hard disqualifiers; any missing certification proof, vague compliance claim, or unsupported data-residency assumption could make the bid non-compliant.",
+      "The scope spans enterprise IT and manufacturing/OT-adjacent connectivity; underestimating plant network constraints, latency, security segmentation, or controlled OT integration risks could weaken the migration strategy.",
+      "SAP HANA, Oracle, SQL Server, file storage, backup/DR, and VMware dependencies may create complex migration sequencing and licensing risks, especially under changing VMware/Broadcom economics.",
+      "Competitors may attempt to lock Kohler into a preferred hyperscaler or proprietary DCaaS model; the response must show credible neutrality across Cloud, DCaaS, and Hybrid options while still providing a clear recommendation framework.",
+      "Submission logistics are strict: due by 26 June, through specified contacts, using the required template, with detailed answers rather than Yes/No responses, and all pricing in USD."
+    ]
+  },
+  "quality_verdict": {
+    "verdict": "retry",
+    "quality": "weak",
+    "confidence": 0.48,
+    "gaps": [
+      "Competitor intelligence is materially incomplete: only HCLTech is visible, while obvious likely bidders/incumbents such as Cognizant, Kyndryl, DXC, TCS, Infosys, Wipro, IBM, Accenture, and hyperscaler/DCaaS partners are not assessed.",
+      "Competitor pricing rationale is weak for HCLTech: revenue-per-employee and EBIT margin do not credibly anchor a $18M-$55M managed hosting/DCaaS bid. Need comparable managed infrastructure, data center outsourcing, SAP hosting, or cloud transformation deal benchmarks.",
+      "Cognizant appears to be a strategic incumbent/partner for Kohler, but the competitor analysis does not evaluate Cognizant\u2019s incumbent advantage, potential conflict, or how to position around coexistence/displacement.",
+      "WIN_INTEL output is truncated and does not show a final win probability, capability-gap assessment, or calibrated rationale. Similar-deal lessons are useful, but the decisioning layer is missing from the visible output.",
+      "CLIENT_INTEL is directionally strong and specific, but it leans heavily on strategic partnership/news signals. It should be treated as good enough with a note that the proposal must not overstate unsupported budget authority or assume Cognizant displacement."
+    ],
+    "strengths": [
+      "Client intel uses specific web-derived signals rather than generic industry trends.",
+      "Unstated needs are actionable: hybrid-cloud decision framework, AIOps/observability, security-by-design, FinOps/TBM, privacy governance, and Cognizant coexistence.",
+      "Win-intel similar deals are relevant to manufacturing, SAP, compliance gates, and 3-5 year transformation programs.",
+      "RFP disqualifiers are clearly captured and should materially improve compliance discipline."
+    ]
+  },
+  "agentic_decisions": [
+    {
+      "agent": "planner",
+      "decision": "Identified 6 competitors: ['Accenture', 'Deloitte', 'Kyndryl', 'HCLTech', 'Ensono', 'Rackspace Technology']",
+      "reasoning": "Pursue this as a strategic Phase 0 advisory wedge into a larger hosting transformation and managed-services opportunity. Lead with an unbiased decision framework across Cloud, DCaaS, and Hybrid, but differentiate through granular TCO transparency, SAP/non-SAP workload treatment, compliance evidence, and a practical risk-managed migration roadmap for Kohler\u2019s Wisconsin data-center estate and global manufacturing operations."
+    },
+    {
+      "agent": "quality_gate",
+      "decision": "Verdict: retry (quality: weak, confidence: 48%)",
+      "reasoning": "The client intelligence contains real, specific signals and actionable unstated needs, especially around hybrid cloud, AIOps, security, FinOps, IoT/privacy, and Cognizant coexistence. The win-intel similar deals are relevant and provide useful lessons around manufacturing SAP scale and compliance gates. However, the competitor intelligence is not good enough for a proposal strategy on a $15M-$75M hosting options RFP: it visibly covers only HCLTech, misses the likely incumbent Cognizant and other major infrastructure/cloud outsourcing competitors, and uses a pricing methodology that is too indirect to support competitive bid positioning. The visible WIN_INTEL output is also incomplete/truncated before providing a calibrated win probability. These gaps would materially affect win strategy, differentiation, and pricing narrative, so proceeding now risks building a proposal around an under-informed competitive thesis."
+    }
+  ],
+  "created_at": "2026-07-11T07:23:11.155218+00:00",
+  "updated_at": "2026-07-11T07:23:11.155229+00:00",
+  "error": null,
+  "pipeline_duration_seconds": 597.9,
+  "pipeline_agents_used": 11,
+  "estimated_cost_usd": 5.5
+}

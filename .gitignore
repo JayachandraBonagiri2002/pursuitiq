@@ -2,8 +2,9 @@
 .env
 .env.local
 
-# IDE/tool config
-.claude/
+# IDE/editor config
+.idea/
+.vscode/
 
 # Python
 __pycache__/

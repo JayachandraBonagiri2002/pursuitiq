@@ -34,6 +34,7 @@ from agents.agent6_draft import run_draft_generator
 from agents.planner_agent import run_planner_agent
 from agents.quality_gate import run_quality_gate
 from agents.reflection_loop import reflect_on_pricing
+from agents.verifier import verify_outputs
 
 logger = logging.getLogger(__name__)
 
@@ -449,6 +450,26 @@ def run_full_pursuit(
 
                 except Exception as e:
                     logger.warning(f"[{rfp_id}] Pricing reflection failed (non-fatal): {e}")
+
+        # ══════════════════════════════════════════════════════════════════════
+        # VERIFIER: Anti-hallucination cross-check (Agent 7)
+        # ══════════════════════════════════════════════════════════════════════
+        update("verifying", "verifier")
+        try:
+            verification = verify_outputs(
+                pursuit_data=pursuit_store[rfp_id],
+                data_sources={
+                    "procurement_data": _format_procurement(prefetched),
+                    "knowledge_data": _get_knowledge_context(decomposition),
+                    "financial_data": prefetched.get("financial", ""),
+                    "cloud_pricing": prefetched.get("cloud_pricing", ""),
+                    "web_search_summary": prefetched.get("job_intel", ""),
+                },
+            )
+            update("verified", "verifier", verification=verification.model_dump())
+            logger.info(f"[{rfp_id}] Verifier: overall_confidence={verification.overall_confidence:.0%}")
+        except Exception as e:
+            logger.warning(f"[{rfp_id}] Verifier failed (non-fatal): {e}")
 
         # ══════════════════════════════════════════════════════════════════════
         # COMPLETE

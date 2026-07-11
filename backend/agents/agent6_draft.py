@@ -231,7 +231,8 @@ def _try_codex_draft(rfp_id: str, user_prompt: str) -> ProposalDraft | None:
     logger.info(f"Agent 6: attempting Codex CLI (GPT-5, zero cost) | rfp_id={rfp_id}")
 
     codex_prompt = f"{SYSTEM}\n\n---\n\n{user_prompt}"
-    raw = run_codex(codex_prompt, timeout=240)
+    logger.info(f"Agent 6: Codex prompt size = {len(codex_prompt):,} chars")
+    raw = run_codex(codex_prompt, timeout=300)
 
     if not raw:
         logger.info("Agent 6: Codex unavailable, will use API")
@@ -239,13 +240,23 @@ def _try_codex_draft(rfp_id: str, user_prompt: str) -> ProposalDraft | None:
 
     # Parse the JSON response from Codex
     try:
-        # Strip markdown fences if Codex wrapped it
         text = raw.strip()
-        if text.startswith("```"):
-            text = text.split("\n", 1)[1] if "\n" in text else text[3:]
-            if text.endswith("```"):
-                text = text[:-3]
-            text = text.strip()
+        # Strip markdown fences if Codex wrapped it
+        if "```" in text:
+            import re
+            fence_match = re.search(r"```(?:json)?\s*\n?(.*?)```", text, re.DOTALL)
+            if fence_match:
+                text = fence_match.group(1).strip()
+        # If text doesn't start with '{', find the first '{' (Codex may add preamble)
+        if not text.startswith("{"):
+            brace_idx = text.find("{")
+            if brace_idx != -1:
+                text = text[brace_idx:]
+        # If text doesn't end with '}', find the last '}' (Codex may add trailing text)
+        if not text.endswith("}"):
+            brace_idx = text.rfind("}")
+            if brace_idx != -1:
+                text = text[:brace_idx + 1]
 
         data = json.loads(text)
         data["rfp_id"] = rfp_id
@@ -267,5 +278,8 @@ def _try_codex_draft(rfp_id: str, user_prompt: str) -> ProposalDraft | None:
         return result
 
     except (json.JSONDecodeError, KeyError, TypeError) as e:
-        logger.warning(f"Agent 6: Codex response parse failed ({e}), falling back to API")
+        logger.warning(
+            f"Agent 6: Codex response parse failed ({e}), falling back to API. "
+            f"Response length={len(raw)}, first 200 chars: {raw[:200]}"
+        )
         return None

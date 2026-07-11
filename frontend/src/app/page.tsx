@@ -124,7 +124,7 @@ export default function HomePage() {
               Starting pursuit...
             </>
           ) : (
-            "Run Demo Pursuit — Nordbank AG Banking RFP"
+            "Run Demo Pursuit — Example Banking RFP"
           )}
         </button>
 
@@ -150,7 +150,7 @@ export default function HomePage() {
                      text-gray-300 hover:text-white
                      disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          View Instant Demo (Zero Wait) — Kohler Project Polaris
+          View Instant Demo (Zero Wait) — Example Enterprise RFP
         </button>
 
         <div className="flex items-center gap-4 text-gray-600">
